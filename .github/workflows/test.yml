@@ -22,7 +22,7 @@ jobs:
       - name: Unit Tests
         run: yarn test --watchAll=false
       - name: ESLint
-        run: yarn lint
+        run: yarn lint --fix
       - name: Install Expo CLI
         run: yarn global add expo-cli
       - name: Cypress run
