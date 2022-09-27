@@ -1,7 +1,10 @@
+const API_URL = Cypress.env('API_URL');
+
 describe('Listing exercises', () => {
-  it.skip('shows exercises from the server', () => {
-    const sushiPlace = 'Sushi Place';
-    const pizzaPlace = 'Pizza Place';
+  it('shows exercises from the server', () => {
+    console.log(API_URL);
+    const exercise1 = 'Ex2';
+    const exercise2 = 'Ex1';
 
     cy.intercept('GET', 'https://api.outsidein.dev/*/exercises', [
       {id: 1, name: sushiPlace},
@@ -11,12 +14,5 @@ describe('Listing exercises', () => {
     cy.visit('/');
     cy.contains(sushiPlace);
     cy.contains(pizzaPlace);
-  });
-});
-
-describe('testing matcher', () => {
-  it('matches based on testid', () => {
-    cy.visit('/');
-    cy.findByTestID('mainView');
   });
 });
