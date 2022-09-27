@@ -1,6 +1,6 @@
 const API_URL = Cypress.env('API_URL');
 
-describe('Listing exercises', () => {
+describe('Exercise List', () => {
   it('shows exercises from the server', () => {
     console.log(API_URL);
     const exercise1 = 'Ex2';
