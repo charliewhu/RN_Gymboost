@@ -6,13 +6,13 @@ describe('Listing exercises', () => {
     const exercise1 = 'Ex2';
     const exercise2 = 'Ex1';
 
-    cy.intercept('GET', 'https://api.outsidein.dev/*/exercises', [
-      {id: 1, name: sushiPlace},
-      {id: 2, name: pizzaPlace},
+    cy.intercept('GET', `${API_URL}/exercises/`, [
+      {id: 1, name: exercise1},
+      {id: 2, name: exercise2},
     ]);
 
-    cy.visit('/');
-    cy.contains(sushiPlace);
-    cy.contains(pizzaPlace);
+    cy.visit('/exercises/');
+    cy.contains(exercise1);
+    cy.contains(exercise2);
   });
 });
