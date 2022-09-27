@@ -6,7 +6,7 @@ import Exercises from '../Exercises';
 describe('Exercises Screen', () => {
   it('shows a list of exercises', () => {
     renderWithProviders(<Exercises />);
-    expect(screen.getByText('Exercises')).toBeInTheDocument();
+    expect(screen.getByText('Exercises')).toBeTruthy();
   });
   it.todo('shows an Add Exercise button');
 });

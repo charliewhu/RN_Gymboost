@@ -1,4 +1,5 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import exerciseService from './exerciseService';
 
 export const getExercises = createAsyncThunk(
   'exercise/getExercises',
@@ -9,8 +10,7 @@ export const getExercises = createAsyncThunk(
       return exercises;
     } catch (error) {
       console.log(error);
-      const message = handleError(error);
-      return thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(error);
     }
   },
 );
