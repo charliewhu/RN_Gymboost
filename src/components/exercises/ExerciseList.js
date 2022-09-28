@@ -1,8 +1,8 @@
-import {useDispatch, useSelector} from 'react-redux';
-import {FlatList, Text, View} from 'react-native';
-import {Divider, List} from 'react-native-paper';
-import {getExercises} from '../../redux/exercise/exerciseSlice';
 import {useEffect} from 'react';
+import {FlatList, View} from 'react-native';
+import {Divider, List} from 'react-native-paper';
+import {useDispatch, useSelector} from 'react-redux';
+import {getExercises} from '../../redux/exercise/exerciseSlice';
 
 export default function ExerciseList() {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ export default function ExerciseList() {
 
   useEffect(() => {
     dispatch(getExercises());
-  }, []);
+  }, [dispatch]);
 
   return (
     <View>
