@@ -1,5 +1,5 @@
-import axios from 'axios';
 import {CYPRESS_API_URL} from '@env';
+import axios from 'axios';
 
 const axiosInstance = axios.create({
   baseURL: CYPRESS_API_URL,

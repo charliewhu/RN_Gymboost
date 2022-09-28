@@ -1,9 +1,9 @@
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import exerciseService from './exerciseService';
 
 export const getExercises = createAsyncThunk(
   'exercise/getExercises',
-  async thunkAPI => {
+  async (_, thunkAPI) => {
     try {
       const exercises = await exerciseService.getExercises();
       return exercises;

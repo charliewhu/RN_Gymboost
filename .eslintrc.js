@@ -4,6 +4,7 @@ module.exports = {
   plugins: ['import', 'cypress', 'unused-imports'],
   env: {
     'cypress/globals': true,
+    jest: true,
   },
   rules: {
     'unused-imports/no-unused-imports': 'error',
