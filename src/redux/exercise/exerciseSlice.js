@@ -3,10 +3,9 @@ import exerciseService from './exerciseService';
 
 export const getExercises = createAsyncThunk(
   'exercise/getExercises',
-  async (_, thunkAPI) => {
+  async thunkAPI => {
     try {
-      const token = thunkAPI.getState().auth.token;
-      const exercises = await exerciseService.getExercises(token);
+      const exercises = await exerciseService.getExercises();
       return exercises;
     } catch (error) {
       console.log(error);

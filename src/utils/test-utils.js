@@ -3,7 +3,26 @@ import {Provider} from 'react-redux';
 import {Provider as PaperProvider} from 'react-native-paper';
 import store from '../redux/store';
 
-export function renderWithProviders(ui, {...renderOptions} = {}) {
+// export function renderWithProviders(ui, {...renderOptions} = {}) {
+//   function Wrapper({children}) {
+//     return (
+//       <Provider store={store}>
+//         <PaperProvider>{children}</PaperProvider>
+//       </Provider>
+//     );
+//   }
+//   return {store, ...render(ui, {wrapper: Wrapper, ...renderOptions})};
+// }
+
+export function renderWithProviders(
+  ui,
+  {
+    preloadedState = {},
+    // Automatically create a store instance if no store was passed in
+    store = store,
+    ...renderOptions
+  } = {},
+) {
   function Wrapper({children}) {
     return (
       <Provider store={store}>
@@ -11,5 +30,7 @@ export function renderWithProviders(ui, {...renderOptions} = {}) {
       </Provider>
     );
   }
+
+  // Return an object with the store and all of RTL's query functions
   return {store, ...render(ui, {wrapper: Wrapper, ...renderOptions})};
 }

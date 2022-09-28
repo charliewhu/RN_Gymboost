@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
   baseURL: CYPRESS_API_URL,
 });
 
-async function getExercises(token) {
+async function getExercises() {
   const response = await axiosInstance.get('/exercises/');
   return response.data;
 }
