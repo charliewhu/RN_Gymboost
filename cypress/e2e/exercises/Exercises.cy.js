@@ -23,6 +23,6 @@ describe('Exercises page', () => {
 
   it('navigates to CreateExercise screen', () => {
     cy.findByTestId('create_exercise_btn').click();
-    cy.findByTestId('nameInput').should('be.visible');
+    cy.contains('Create Exercise');
   });
 });
