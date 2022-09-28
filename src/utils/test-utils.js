@@ -3,34 +3,17 @@ import {Provider} from 'react-redux';
 import {Provider as PaperProvider} from 'react-native-paper';
 import store from '../redux/store';
 
-// export function renderWithProviders(ui, {...renderOptions} = {}) {
-//   function Wrapper({children}) {
-//     return (
-//       <Provider store={store}>
-//         <PaperProvider>{children}</PaperProvider>
-//       </Provider>
-//     );
-//   }
-//   return {store, ...render(ui, {wrapper: Wrapper, ...renderOptions})};
-// }
+export function testRender(ui, {store, ...otherOpts}) {
+  return render(
+    <Provider store={store}>
+      <PaperProvider>{ui}</PaperProvider>
+    </Provider>,
+    otherOpts,
+  );
+}
 
-export function renderWithProviders(
-  ui,
-  {
-    preloadedState = {},
-    // Automatically create a store instance if no store was passed in
-    store = store,
-    ...renderOptions
-  } = {},
-) {
-  function Wrapper({children}) {
-    return (
-      <Provider store={store}>
-        <PaperProvider>{children}</PaperProvider>
-      </Provider>
-    );
-  }
-
-  // Return an object with the store and all of RTL's query functions
-  return {store, ...render(ui, {wrapper: Wrapper, ...renderOptions})};
+export function makeTestStore() {
+  const origDispatch = store.dispatch;
+  store.dispatch = jest.fn(origDispatch);
+  return store;
 }
