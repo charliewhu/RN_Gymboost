@@ -22,7 +22,7 @@ jobs:
       - name: Unit Tests
         run: yarn test --watchAll=false
       - name: ESLint
-        run: yarn lint
+        run: yarn lint --fix
       - name: Install Expo CLI
         run: yarn global add expo-cli
       - name: Cypress run
@@ -30,3 +30,8 @@ jobs:
         with:
           start: yarn web
           wait-on: 'http://localhost:19006'
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
