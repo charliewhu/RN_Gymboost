@@ -9,15 +9,20 @@ describe('Exercises page', () => {
     }).as('getExercises');
 
     cy.fixture('exercises.json').as('exercises');
+
+    cy.visit('/exercises/');
+    cy.wait('@getExercises');
   });
 
   it('shows exercises from the server', () => {
-    cy.visit('/exercises/');
-    cy.wait('@getExercises');
-
     cy.findByTestId('exercise_list').should('be.visible');
 
     cy.contains(exercises[0].name);
     cy.contains(exercises[0].name);
+  });
+
+  it('navigates to CreateExercise screen', () => {
+    cy.findByTestId('create_exercise_btn').click();
+    cy.findByTestId('nameInput').should('be.visible');
   });
 });
