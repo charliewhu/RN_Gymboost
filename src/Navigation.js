@@ -8,11 +8,11 @@ const linking = {
   config: {
     screens: {
       Exercises: {
-        path: '/exercises',
+        path: 'exercises',
         initialRouteName: 'Exercises',
         screens: {
           Exercises: '',
-          CreateExercise: '/create',
+          CreateExercise: 'create',
         },
       },
     },
@@ -26,7 +26,11 @@ export default function Navigation() {
     <NavigationContainer linking={linking}>
       <Stack.Navigator>
         <Stack.Screen name="Exercises" component={Exercises} />
-        <Stack.Screen name="Create Exercise" component={CreateExercise} />
+        <Stack.Screen
+          name="CreateExercise"
+          component={CreateExercise}
+          options={{title: 'Create Exercise'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,5 +1,3 @@
-import exercises from '../../fixtures/exercises.json';
-
 const API_URL = Cypress.env('API_URL');
 
 describe('Exercises page', () => {
@@ -8,9 +6,7 @@ describe('Exercises page', () => {
       fixture: 'exercises.json',
     }).as('getExercises');
 
-    cy.fixture('exercises.json').as('exercises');
-
-    cy.visit('/exercises/');
+    cy.visit('/exercises/create/');
     cy.wait('@getExercises');
   });
 
@@ -24,6 +20,5 @@ describe('Exercises page', () => {
   it('navigates to CreateExercise screen', () => {
     cy.findByTestId('create_exercise_btn').click();
     cy.contains('Create Exercise');
-    cy.url().should('include', 'exercises/create');
   });
 });
