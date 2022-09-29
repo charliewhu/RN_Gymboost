@@ -36,7 +36,7 @@ export default function CreateExercise({navigation}) {
         onChangeText={text => setName(text)}
       />
       <Button
-        testID="exerciseSubmitBtn"
+        testID="submitBtn"
         mode="contained"
         disabled={!isValid}
         buttonColor={isValid ? '#0E7AFE' : 'lightgray'}

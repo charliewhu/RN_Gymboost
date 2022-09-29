@@ -28,18 +28,18 @@ describe('Create Exercise screen', () => {
   });
 
   it('has a submit button', () => {
-    cy.findByTestId('exerciseSubmitBtn');
+    cy.findByTestId('submitBtn');
   });
 
   it('clicking submit button with invalid form doesnt navigate', () => {
-    cy.findByTestId('exerciseSubmitBtn').click();
+    cy.findByTestId('submitBtn').click();
     cy.contains('Create Exercise');
     cy.url().should('eq', 'http://localhost:19006/exercises/create/');
   });
 
   it('clicking submit button with valid form redirects to Exercises page and shows new Exercise in list', () => {
     cy.findByTestId('nameInput-outlined').type(exerciseName);
-    cy.findByTestId('exerciseSubmitBtn').click();
+    cy.findByTestId('submitBtn').click();
 
     cy.wait('@postExercise').its('request.body').should('deep.equal', {
       name: exerciseName,

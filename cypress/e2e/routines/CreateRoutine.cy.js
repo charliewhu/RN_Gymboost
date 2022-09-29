@@ -28,18 +28,18 @@ describe('Create Routine screen', () => {
   });
 
   it('has a submit button', () => {
-    cy.findByTestId('routineSubmitBtn');
+    cy.findByTestId('submitBtn');
   });
 
   it('clicking submit button with invalid form doesnt navigate', () => {
-    cy.findByTestId('routineSubmitBtn').click();
-    cy.contains('Create routine');
+    cy.findByTestId('submitBtn').click();
+    cy.contains('Create Routine');
     cy.url().should('eq', 'http://localhost:19006/routines/create/');
   });
 
   it('clicking submit button with valid form redirects to routines page and shows new routine in list', () => {
     cy.findByTestId('nameInput-outlined').type(routineName);
-    cy.findByTestId('routineSubmitBtn').click();
+    cy.findByTestId('submitBtn').click();
 
     cy.wait('@postRoutine').its('request.body').should('deep.equal', {
       name: routineName,
