@@ -6,6 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CreateExercise from './screens/CreateExercise';
 import Exercises from './screens/Exercises';
 import Home from './screens/Home';
+import Routines from './screens/Routines';
 
 const config = {
   screens: {
@@ -23,6 +24,13 @@ const config = {
       screens: {
         ExerciseScreen: '',
         CreateExerciseScreen: 'create',
+      },
+    },
+    Routines: {
+      path: 'routines',
+      initialRouteName: 'RoutineScreen',
+      screens: {
+        RoutineScreen: '',
       },
     },
   },
@@ -63,9 +71,38 @@ export function ExerciseStack() {
   );
 }
 
+const RoutineStackNav = createNativeStackNavigator();
+export function RoutineStack() {
+  return (
+    <RoutineStackNav.Navigator>
+      <RoutineStackNav.Screen
+        name="RoutineScreen"
+        component={Routines}
+        options={{title: 'Routines'}}
+      />
+    </RoutineStackNav.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => (
   <Tab.Navigator>
+    <Tab.Screen
+      name="Exercises"
+      component={ExerciseStack}
+      options={{
+        headerShown: false,
+        tabBarTestID: 'exercises_tab',
+        tabBarShowLabel: false,
+        tabBarIcon: ({focused}) => (
+          <Ionicons
+            name="barbell-outline"
+            size={26}
+            color={focused ? 'black' : 'lightgray'}
+          />
+        ),
+      }}
+    />
     <Tab.Screen
       name="Home"
       component={HomeStack}
@@ -82,15 +119,15 @@ const TabNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="Exercises"
-      component={ExerciseStack}
+      name="Routines"
+      component={RoutineStack}
       options={{
         headerShown: false,
-        tabBarTestID: 'exercises_tab',
+        tabBarTestID: 'routines_tab',
         tabBarShowLabel: false,
         tabBarIcon: ({focused}) => (
           <Ionicons
-            name="barbell-outline"
+            name="list-outline"
             size={26}
             color={focused ? 'black' : 'lightgray'}
           />
