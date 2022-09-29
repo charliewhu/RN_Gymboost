@@ -22,6 +22,16 @@ describe('Exercises page', () => {
   });
 
   it('has a submit button', () => {
+    cy.findByTestId('exerciseSubmitBtn');
+  });
+
+  it.skip('clicking submit button with invalid form doesnt navigate');
+
+  it('clicking submit button with valid form redirects to Exercises page', () => {
+    cy.findByTestId('nameInput-outlined').type('Exercise');
     cy.findByTestId('exerciseSubmitBtn').click();
+
+    cy.contains('Exercises');
+    cy.url().should('eq', 'http://localhost:19006/exercises');
   });
 });

@@ -1,9 +1,20 @@
-import React from 'react';
-import {StyleSheet} from 'react-native';
+import {useEffect, useState} from 'react';
+import {
+  View,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 
-export default function CreateExercise() {
-  const [text, setText] = React.useState('');
+export default function CreateExercise({navigation}) {
+  const [exerciseName, setExerciseName] = useState('');
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    // set isValid based on fields being completed
+    exerciseName !== '' ? setIsValid(true) : setIsValid(false);
+  }, [exerciseName]);
 
   return (
     <>
@@ -11,17 +22,20 @@ export default function CreateExercise() {
         testID="nameInput"
         label="Name"
         mode="outlined"
+        autoCapitalize="words"
         style={styles.textInput}
         outlineColor={textInputOutlineColor}
         activeOutlineColor={textInputActiveOutlineColor}
-        value={text}
-        onChangeText={text => setText(text)}
+        value={exerciseName}
+        onChangeText={text => setExerciseName(text)}
       />
       <Button
         testID="exerciseSubmitBtn"
         mode="contained"
+        disabled={!isValid}
+        buttonColor={isValid ? '#0E7AFE' : 'lightgray'}
         style={styles.btnStyle}
-        onPress={() => console.log('Pressed')}
+        onPress={() => navigation.navigate('ExerciseScreen')}
       >
         Create
       </Button>
@@ -37,7 +51,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   btnStyle: {
-    color: 'red',
+    margin: 10,
     borderRadius: 0,
   },
 });
