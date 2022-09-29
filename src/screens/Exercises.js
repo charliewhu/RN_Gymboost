@@ -18,9 +18,5 @@ export default function Exercises({navigation}) {
     });
   });
 
-  return (
-    <View>
-      <ExerciseList />
-    </View>
-  );
+  return <ExerciseList />;
 }

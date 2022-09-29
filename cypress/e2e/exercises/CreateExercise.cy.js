@@ -18,7 +18,10 @@ describe('Exercises page', () => {
   });
 
   it('has a nameInput field', () => {
-    const exerciseName = 'Exercise Name';
-    cy.findByTestId('nameInput').type(exerciseName);
+    cy.findByTestId('nameInput-outlined');
+  });
+
+  it('has a submit button', () => {
+    cy.findByTestId('exerciseSubmitBtn').click();
   });
 });

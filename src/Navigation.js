@@ -77,7 +77,7 @@ const TabNavigator = () => (
           <Ionicons
             name="home-outline"
             size={26}
-            color={focused ? 'blue' : 'black'}
+            color={focused ? 'black' : 'lightgray'}
           />
         ),
       }}
@@ -93,7 +93,7 @@ const TabNavigator = () => (
           <Ionicons
             name="barbell-outline"
             size={26}
-            color={focused ? 'blue' : 'black'}
+            color={focused ? 'black' : 'lightgray'}
           />
         ),
       }}
