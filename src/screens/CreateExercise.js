@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {postExercise} from '../redux/exercise/exerciseSlice';
@@ -23,7 +23,7 @@ export default function CreateExercise({navigation}) {
   };
 
   return (
-    <>
+    <ScrollView>
       <TextInput
         testID="nameInput"
         label="Name"
@@ -45,7 +45,7 @@ export default function CreateExercise({navigation}) {
       >
         Create
       </Button>
-    </>
+    </ScrollView>
   );
 }
 
