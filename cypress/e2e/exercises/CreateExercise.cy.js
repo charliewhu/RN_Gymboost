@@ -7,18 +7,13 @@ describe('Exercises page', () => {
     }).as('getExercises');
 
     cy.visit('/exercises/create/');
-    cy.wait('@getExercises');
   });
 
-  it('shows exercises from the server', () => {
-    cy.findByTestId('exercise_list').should('be.visible');
+  it('navigates back to Exercises screen', () => {
+    const selector = '[aria-label="Go back"]';
+    cy.get(selector).click();
 
-    cy.contains(exercises[0].name);
-    cy.contains(exercises[0].name);
-  });
-
-  it('navigates to CreateExercise screen', () => {
-    cy.findByTestId('create_exercise_btn').click();
-    cy.contains('Create Exercise');
+    cy.contains('Exercises');
+    cy.url().should('eq', 'http://localhost:19006/exercises');
   });
 });
