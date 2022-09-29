@@ -18,7 +18,7 @@ describe('Exercises screen', () => {
     cy.findByTestId('exercise_list').should('be.visible');
 
     cy.contains(exercises[0].name);
-    cy.contains(exercises[0].name);
+    cy.contains(exercises[1].name);
   });
 
   it('navigates to CreateExercise screen', () => {

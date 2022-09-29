@@ -2,26 +2,27 @@ import {useEffect} from 'react';
 import {FlatList, View} from 'react-native';
 import {Divider, List} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
-import {getExercises} from '../../redux/exercise/exerciseSlice';
 
-export default function ExerciseList() {
+import {getRoutines} from '../../redux/routine/routineSlice';
+
+export default function RoutineList() {
   const dispatch = useDispatch();
-  const exercises = useSelector(state => state.exercise.exercises);
+  const routines = useSelector(state => state.routine.routines);
 
   useEffect(() => {
-    dispatch(getExercises());
+    dispatch(getRoutines());
   }, [dispatch]);
 
   return (
     <View style={{flex: 1}}>
-      {exercises && (
+      {routines && (
         <FlatList
-          testID="exercise_list"
-          data={exercises}
+          testID="routine_list"
+          data={routines}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <>
-              <List.Item testID="exercise_list_item" title={item.name} />
+              <List.Item testID="routine_list_item" title={item.name} />
               <Divider style={{backgroundColor: 'lightgray'}} />
             </>
           )}

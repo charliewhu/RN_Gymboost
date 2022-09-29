@@ -2,9 +2,9 @@ import {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
-import {postExercise} from '../redux/exercise/exerciseSlice';
+import {postRoutine} from '../../redux/routine/routineSlice';
 
-export default function CreateExercise({navigation}) {
+export default function CreateRoutine({navigation}) {
   const dispatch = useDispatch();
 
   // form input fields
@@ -18,8 +18,9 @@ export default function CreateExercise({navigation}) {
   }, [name]);
 
   const handleSubmit = () => {
-    dispatch(postExercise({name}));
-    navigation.navigate('ExerciseScreen');
+    console.log({name});
+    dispatch(postRoutine({name}));
+    navigation.navigate('RoutineScreen');
   };
 
   return (
@@ -36,7 +37,7 @@ export default function CreateExercise({navigation}) {
         onChangeText={text => setName(text)}
       />
       <Button
-        testID="exerciseSubmitBtn"
+        testID="submitBtn"
         mode="contained"
         disabled={!isValid}
         buttonColor={isValid ? '#0E7AFE' : 'lightgray'}

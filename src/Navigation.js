@@ -3,9 +3,11 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import CreateExercise from './screens/CreateExercise';
-import Exercises from './screens/Exercises';
 import Home from './screens/Home';
+import CreateExercise from './screens/exercises/CreateExercise';
+import Exercises from './screens/exercises/Exercises';
+import CreateRoutine from './screens/routines/CreateRoutine';
+import Routines from './screens/routines/Routines';
 
 const config = {
   screens: {
@@ -23,6 +25,14 @@ const config = {
       screens: {
         ExerciseScreen: '',
         CreateExerciseScreen: 'create',
+      },
+    },
+    Routines: {
+      path: 'routines',
+      initialRouteName: 'RoutineScreen',
+      screens: {
+        RoutineScreen: '',
+        CreateRoutineScreen: 'create',
       },
     },
   },
@@ -63,9 +73,43 @@ export function ExerciseStack() {
   );
 }
 
+const RoutineStackNav = createNativeStackNavigator();
+export function RoutineStack() {
+  return (
+    <RoutineStackNav.Navigator>
+      <RoutineStackNav.Screen
+        name="RoutineScreen"
+        component={Routines}
+        options={{title: 'Routines'}}
+      />
+      <RoutineStackNav.Screen
+        name="CreateRoutineScreen"
+        component={CreateRoutine}
+        options={{title: 'Create Routine'}}
+      />
+    </RoutineStackNav.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => (
-  <Tab.Navigator>
+  <Tab.Navigator initialRouteName="Home">
+    <Tab.Screen
+      name="Exercises"
+      component={ExerciseStack}
+      options={{
+        headerShown: false,
+        tabBarTestID: 'exercises_tab',
+        tabBarShowLabel: false,
+        tabBarIcon: ({focused}) => (
+          <Ionicons
+            name="barbell-outline"
+            size={26}
+            color={focused ? 'black' : 'lightgray'}
+          />
+        ),
+      }}
+    />
     <Tab.Screen
       name="Home"
       component={HomeStack}
@@ -82,15 +126,15 @@ const TabNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="Exercises"
-      component={ExerciseStack}
+      name="Routines"
+      component={RoutineStack}
       options={{
         headerShown: false,
-        tabBarTestID: 'exercises_tab',
+        tabBarTestID: 'routines_tab',
         tabBarShowLabel: false,
         tabBarIcon: ({focused}) => (
           <Ionicons
-            name="barbell-outline"
+            name="list-outline"
             size={26}
             color={focused ? 'black' : 'lightgray'}
           />
