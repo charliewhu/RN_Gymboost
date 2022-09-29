@@ -93,7 +93,7 @@ export function RoutineStack() {
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => (
-  <Tab.Navigator>
+  <Tab.Navigator initialRouteName="Home">
     <Tab.Screen
       name="Exercises"
       component={ExerciseStack}
