@@ -14,6 +14,19 @@ export const getExercises = createAsyncThunk(
   },
 );
 
+export const postExercise = createAsyncThunk(
+  'exercise/postExercise',
+  async (data, thunkAPI) => {
+    try {
+      const exercise = await exerciseService.postExercise(data);
+      return exercise;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 const initialState = {
   exercises: [],
   isLoading: true,
@@ -37,6 +50,18 @@ export const exerciseSlice = createSlice({
         state.exercises = action.payload;
       })
       .addCase(getExercises.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(postExercise.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(postExercise.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.exercises.push(action.payload);
+      })
+      .addCase(postExercise.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

@@ -1,20 +1,26 @@
 import {useEffect, useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  Keyboard,
-} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
+import {useDispatch} from 'react-redux';
+import {postExercise} from '../redux/exercise/exerciseSlice';
 
 export default function CreateExercise({navigation}) {
-  const [exerciseName, setExerciseName] = useState('');
+  const dispatch = useDispatch();
+
+  // form input fields
+  const [name, setName] = useState('');
+
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
     // set isValid based on fields being completed
-    exerciseName !== '' ? setIsValid(true) : setIsValid(false);
-  }, [exerciseName]);
+    name !== '' ? setIsValid(true) : setIsValid(false);
+  }, [name]);
+
+  const handleSubmit = () => {
+    dispatch(postExercise({name}));
+    navigation.navigate('ExerciseScreen');
+  };
 
   return (
     <>
@@ -26,8 +32,8 @@ export default function CreateExercise({navigation}) {
         style={styles.textInput}
         outlineColor={textInputOutlineColor}
         activeOutlineColor={textInputActiveOutlineColor}
-        value={exerciseName}
-        onChangeText={text => setExerciseName(text)}
+        value={name}
+        onChangeText={text => setName(text)}
       />
       <Button
         testID="exerciseSubmitBtn"
@@ -35,7 +41,7 @@ export default function CreateExercise({navigation}) {
         disabled={!isValid}
         buttonColor={isValid ? '#0E7AFE' : 'lightgray'}
         style={styles.btnStyle}
-        onPress={() => navigation.navigate('ExerciseScreen')}
+        onPress={handleSubmit}
       >
         Create
       </Button>
