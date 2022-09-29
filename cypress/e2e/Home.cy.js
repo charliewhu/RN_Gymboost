@@ -1,7 +1,3 @@
-import exercises from '../../fixtures/exercises.json';
-
-const API_URL = Cypress.env('API_URL');
-
 describe('Home page', () => {
   beforeEach(() => {
     cy.visit('/');

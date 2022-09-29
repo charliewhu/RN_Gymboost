@@ -10,7 +10,7 @@ export default function Exercises({navigation}) {
       headerRight: () => (
         <TouchableOpacity
           testID="create_exercise_btn"
-          onPress={() => navigation.navigate('CreateExercise')}
+          onPress={() => navigation.navigate('CreateExerciseScreen')}
         >
           <Ionicons name="add" size={30} />
         </TouchableOpacity>
