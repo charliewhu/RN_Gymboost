@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {postExercise} from '../redux/exercise/exerciseSlice';
