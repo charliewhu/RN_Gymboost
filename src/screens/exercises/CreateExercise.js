@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
-import {postExercise} from '../redux/exercise/exerciseSlice';
+import {postExercise} from '../../redux/exercise/exerciseSlice';
 
 export default function CreateExercise({navigation}) {
   const dispatch = useDispatch();

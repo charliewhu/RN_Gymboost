@@ -3,10 +3,10 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import CreateExercise from './screens/CreateExercise';
-import Exercises from './screens/Exercises';
+import CreateExercise from './screens/exercises/CreateExercise';
+import Exercises from './screens/exercises/Exercises';
 import Home from './screens/Home';
-import Routines from './screens/Routines';
+import Routines from './screens/routines/Routines';
 
 const config = {
   screens: {

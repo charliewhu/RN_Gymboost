@@ -2,15 +2,15 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import {useLayoutEffect} from 'react';
 import {TouchableOpacity} from 'react-native';
 
-import RoutineList from '../components/routines/RoutineList';
+import ExerciseList from '../../components/exercises/ExerciseList';
 
-export default function Routines({navigation}) {
+export default function Exercises({navigation}) {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity
-          testID="createRoutineBtn"
-          onPress={() => navigation.navigate('CreateRoutineScreen')}
+          testID="create_exercise_btn"
+          onPress={() => navigation.navigate('CreateExerciseScreen')}
         >
           <Ionicons name="add" size={30} />
         </TouchableOpacity>
@@ -18,5 +18,5 @@ export default function Routines({navigation}) {
     });
   });
 
-  return <RoutineList />;
+  return <ExerciseList />;
 }
