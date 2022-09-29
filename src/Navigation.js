@@ -69,7 +69,7 @@ const TabNavigator = () => (
     <Tab.Screen
       name="Exercises"
       component={ExerciseStack}
-      options={{headerShown: false}}
+      options={{headerShown: false, tabBarTestID: 'exercises_tab'}}
     />
   </Tab.Navigator>
 );

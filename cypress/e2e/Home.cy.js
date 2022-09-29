@@ -8,7 +8,7 @@ describe('Home page', () => {
   });
 
   it('navigates to CreateExercise screen', () => {
-    cy.findByTestId('goto_exercises_screen').click();
+    cy.findByTestId('exercises_tab').click();
     cy.contains('Exercises');
     cy.url().should('include', 'exercises');
   });
