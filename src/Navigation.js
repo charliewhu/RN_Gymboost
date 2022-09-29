@@ -2,6 +2,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+import Ionicons from '@expo/vector-icons/Ionicons';
+
 import Home from './screens/Home';
 import CreateExercise from './screens/CreateExercise';
 import Exercises from './screens/Exercises';
@@ -35,7 +37,11 @@ const HomeStackNav = createNativeStackNavigator();
 export function HomeStack() {
   return (
     <HomeStackNav.Navigator>
-      <HomeStackNav.Screen name="HomeScreen" component={Home} />
+      <HomeStackNav.Screen
+        name="HomeScreen"
+        component={Home}
+        options={{title: 'Home Screen'}}
+      />
     </HomeStackNav.Navigator>
   );
 }
@@ -64,12 +70,33 @@ const TabNavigator = () => (
     <Tab.Screen
       name="Home"
       component={HomeStack}
-      options={{headerShown: false}}
+      options={{
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarIcon: ({focused}) => (
+          <Ionicons
+            name="home-outline"
+            size={26}
+            color={focused ? 'blue' : 'black'}
+          />
+        ),
+      }}
     />
     <Tab.Screen
       name="Exercises"
       component={ExerciseStack}
-      options={{headerShown: false, tabBarTestID: 'exercises_tab'}}
+      options={{
+        headerShown: false,
+        tabBarTestID: 'exercises_tab',
+        tabBarShowLabel: false,
+        tabBarIcon: ({focused}) => (
+          <Ionicons
+            name="barbell-outline"
+            size={26}
+            color={focused ? 'blue' : 'black'}
+          />
+        ),
+      }}
     />
   </Tab.Navigator>
 );

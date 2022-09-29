@@ -16,4 +16,9 @@ describe('Exercises page', () => {
     cy.contains('Exercises');
     cy.url().should('eq', 'http://localhost:19006/exercises');
   });
+
+  it('has a nameInput field', () => {
+    const exerciseName = 'Exercise Name';
+    cy.findByTestId('nameInput').type(exerciseName);
+  });
 });
