@@ -15,7 +15,7 @@ describe('Routines screen', () => {
   });
 
   it('shows routines from the server', () => {
-    cy.findByTestId('exercise_list').should('be.visible');
+    cy.findByTestId('routine_list').should('be.visible');
 
     cy.contains(routines[0].name);
     cy.contains(routines[1].name);

@@ -7,7 +7,7 @@ import {getRoutines} from '../../redux/routine/routineSlice';
 
 export default function RoutineList() {
   const dispatch = useDispatch();
-  const routines = useSelector(state => state.routine.exercises);
+  const routines = useSelector(state => state.routine.routines);
 
   useEffect(() => {
     dispatch(getRoutines());
