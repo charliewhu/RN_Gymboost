@@ -3,9 +3,10 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+import Home from './screens/Home';
 import CreateExercise from './screens/exercises/CreateExercise';
 import Exercises from './screens/exercises/Exercises';
-import Home from './screens/Home';
+import CreateRoutine from './screens/routines/CreateRoutine';
 import Routines from './screens/routines/Routines';
 
 const config = {
@@ -31,6 +32,7 @@ const config = {
       initialRouteName: 'RoutineScreen',
       screens: {
         RoutineScreen: '',
+        CreateRoutineScreen: 'create',
       },
     },
   },
@@ -79,6 +81,11 @@ export function RoutineStack() {
         name="RoutineScreen"
         component={Routines}
         options={{title: 'Routines'}}
+      />
+      <RoutineStackNav.Screen
+        name="CreateRoutineScreen"
+        component={CreateRoutine}
+        options={{title: 'Create Routine'}}
       />
     </RoutineStackNav.Navigator>
   );
