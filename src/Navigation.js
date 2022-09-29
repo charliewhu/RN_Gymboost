@@ -1,12 +1,11 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Ionicons from '@expo/vector-icons/Ionicons';
-
-import Home from './screens/Home';
 import CreateExercise from './screens/CreateExercise';
 import Exercises from './screens/Exercises';
+import Home from './screens/Home';
 
 const config = {
   screens: {

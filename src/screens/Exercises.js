@@ -1,6 +1,6 @@
-import {useLayoutEffect} from 'react';
-import {TouchableOpacity, View} from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import {useLayoutEffect} from 'react';
+import {TouchableOpacity} from 'react-native';
 
 import ExerciseList from '../components/exercises/ExerciseList';
 

@@ -1,6 +1,6 @@
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {TextInput, Button} from 'react-native-paper';
+import {StyleSheet} from 'react-native';
+import {Button, TextInput} from 'react-native-paper';
 
 export default function CreateExercise() {
   const [text, setText] = React.useState('');
