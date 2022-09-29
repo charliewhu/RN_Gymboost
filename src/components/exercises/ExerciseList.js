@@ -13,7 +13,7 @@ export default function ExerciseList() {
   }, [dispatch]);
 
   return (
-    <View>
+    <View style={{flex: 1}}>
       {exercises && (
         <FlatList
           testID="exercise_list"
