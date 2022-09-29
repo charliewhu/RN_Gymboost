@@ -45,7 +45,7 @@ describe('Create Routine screen', () => {
       name: routineName,
     });
 
-    cy.contains('routines');
+    cy.contains('Routines');
     cy.url().should('eq', 'http://localhost:19006/routines');
 
     cy.contains(routineName);

@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
+import {postRoutine} from '../../redux/routine/routineSlice';
 
 export default function CreateRoutine({navigation}) {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export default function CreateRoutine({navigation}) {
   }, [name]);
 
   const handleSubmit = () => {
+    console.log({name});
     dispatch(postRoutine({name}));
     navigation.navigate('RoutineScreen');
   };

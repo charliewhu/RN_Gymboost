@@ -10,8 +10,14 @@ async function getRoutines() {
   return response.data;
 }
 
+async function postRoutine(data) {
+  const response = await axiosInstance.post('/routines/', data);
+  return response.data;
+}
+
 const routineService = {
   getRoutines,
+  postRoutine,
 };
 
 export default routineService;
