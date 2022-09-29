@@ -20,4 +20,10 @@ describe('Routines screen', () => {
     cy.contains(routines[0].name);
     cy.contains(routines[1].name);
   });
+
+  it('navigates to CreateRoutine screen', () => {
+    cy.findByTestId('createRoutineBtn').click();
+    cy.contains('Create Routine');
+    cy.url().should('include', 'routines/create');
+  });
 });
