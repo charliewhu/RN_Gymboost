@@ -9,7 +9,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "eslint cypress src",
-    "test": "jest src --watchAll"
+    "test": "jest src --watchAll",
+    "deploy:web": "cross-env MY_ENV=prod expo export:web -c && cp _redirects web-build && netlify deploy --prod"
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.2",
@@ -18,10 +19,13 @@
     "@react-navigation/native-stack": "^6.9.0",
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^0.27.2",
+    "cross-env": "^7.0.3",
+    "env-cmd": "^10.1.0",
     "expo": "~46.0.9",
     "expo-linking": "^3.2.2",
     "expo-status-bar": "~1.4.0",
     "msw": "^0.47.3",
+    "netlify-cli": "^12.0.1",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.6",
