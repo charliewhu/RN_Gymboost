@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {postExercise} from '../redux/exercise/exerciseSlice';
