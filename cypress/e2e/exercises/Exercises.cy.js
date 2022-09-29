@@ -2,7 +2,7 @@ import exercises from '../../fixtures/exercises.json';
 
 const API_URL = Cypress.env('API_URL');
 
-describe('Exercises page', () => {
+describe('Exercises screen', () => {
   beforeEach(() => {
     cy.intercept('GET', `${API_URL}/exercises/`, {
       fixture: 'exercises.json',
