@@ -1,9 +1,5 @@
-import {Text, View} from 'react-native';
+import RoutineList from '../components/routines/RoutineList';
 
 export default function Routines() {
-  return (
-    <View>
-      <Text>Routines</Text>
-    </View>
-  );
+  return <RoutineList />;
 }
