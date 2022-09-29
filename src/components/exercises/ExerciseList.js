@@ -22,7 +22,7 @@ export default function ExerciseList() {
           renderItem={({item}) => (
             <>
               <List.Item testID="exercise_list_item" title={item.name} />
-              <Divider />
+              <Divider style={{backgroundColor: 'lightgray'}} />
             </>
           )}
         />

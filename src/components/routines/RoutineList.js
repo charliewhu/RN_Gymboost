@@ -23,7 +23,7 @@ export default function RoutineList() {
           renderItem={({item}) => (
             <>
               <List.Item testID="routine_list_item" title={item.name} />
-              <Divider />
+              <Divider style={{backgroundColor: 'lightgray'}} />
             </>
           )}
         />
