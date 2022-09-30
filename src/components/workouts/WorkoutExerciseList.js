@@ -19,7 +19,7 @@ export default function WorkoutExerciseList() {
     <View style={{flex: 1}}>
       {workoutExercises && (
         <FlatList
-          testID="workout_list"
+          testID="workout_exercise_list"
           data={workoutExercises}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
