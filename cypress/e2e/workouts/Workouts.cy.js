@@ -8,6 +8,10 @@ describe('Workouts screen', () => {
       fixture: 'workouts.json',
     }).as('getWorkouts');
 
+    cy.intercept('GET', `${API_URL}/workoutexercises/`, {
+      fixture: 'workoutexercises.json',
+    }).as('getWorkoutExercises');
+
     cy.fixture('workouts.json').as('workouts');
 
     cy.visit('/workouts/');
@@ -17,7 +21,13 @@ describe('Workouts screen', () => {
   it('shows workouts from the server', () => {
     cy.findByTestId('workout_list').should('be.visible');
 
-    cy.contains(workouts[0].name);
-    cy.contains(workouts[1].name);
+    cy.contains(new Date(Date.parse(workouts[0].created_on)).toUTCString());
+    cy.contains(new Date(Date.parse(workouts[1].created_on)).toUTCString());
+  });
+
+  it('navigates to a Workout', () => {
+    cy.findAllByTestId('workout_list_item').first().click();
+
+    cy.url().should('eq', 'http://localhost:19006/workouts/1');
   });
 });

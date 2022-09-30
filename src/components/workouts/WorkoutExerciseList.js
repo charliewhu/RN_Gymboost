@@ -3,31 +3,33 @@ import {FlatList, View} from 'react-native';
 import {Divider, List} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {getWorkouts} from '../../redux/workout/workoutSlice';
+import {getWorkoutExercises} from '../../redux/workoutExercise/workoutExerciseSlice';
 
-export default function WorkoutList({navigation}) {
+export default function WorkoutExerciseList({route}) {
   const dispatch = useDispatch();
-  const workouts = useSelector(state => state.workout.workouts);
+
+  const workoutExercises = useSelector(state =>
+    state.workoutExercise.workoutExercises.filter(
+      item => item.workout == route.params.id,
+    ),
+  );
 
   useEffect(() => {
-    dispatch(getWorkouts());
+    dispatch(getWorkoutExercises());
   }, [dispatch]);
 
   return (
     <View style={{flex: 1}}>
-      {workouts && (
+      {workoutExercises && (
         <FlatList
-          testID="workout_list"
-          data={workouts}
+          testID="workout_exercise_list"
+          data={workoutExercises}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <>
               <List.Item
-                testID="workout_list_item"
-                title={new Date(Date.parse(item.created_on)).toUTCString()}
-                onPress={() =>
-                  navigation.navigate('WorkoutExercisesScreen', {id: item.id})
-                }
+                testID="workout_exercise_list_item"
+                title={item.name}
               />
               <Divider style={{backgroundColor: 'lightgray'}} />
             </>
