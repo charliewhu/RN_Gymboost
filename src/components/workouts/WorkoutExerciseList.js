@@ -7,7 +7,9 @@ import {getWorkoutExercises} from '../../redux/workoutExercise/workoutExerciseSl
 
 export default function WorkoutExerciseList() {
   const dispatch = useDispatch();
-  const workoutExercises = useSelector(state => state.workout.workouts);
+  const workoutExercises = useSelector(
+    state => state.workoutExercise.workoutExercises,
+  );
 
   useEffect(() => {
     dispatch(getWorkoutExercises());
