@@ -57,7 +57,7 @@ export function HomeStack() {
       <HomeStackNav.Screen
         name="HomeScreen"
         component={Home}
-        options={{title: 'Home Screen'}}
+        options={{title: 'Gymboost'}}
       />
     </HomeStackNav.Navigator>
   );

@@ -4,7 +4,7 @@ describe('Home page', () => {
   });
 
   it('says Home', () => {
-    cy.contains('Gymboost Home');
+    cy.contains('Gymboost');
   });
 
   it('navigates to Exercise tab', () => {
