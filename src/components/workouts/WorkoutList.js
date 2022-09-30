@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {getWorkouts} from '../../redux/workout/workoutSlice';
 
-export default function WorkoutList() {
+export default function WorkoutList({navigation}) {
   const dispatch = useDispatch();
   const workouts = useSelector(state => state.workout.workouts);
 
@@ -25,6 +25,9 @@ export default function WorkoutList() {
               <List.Item
                 testID="workout_list_item"
                 title={new Date(Date.parse(item.created_on)).toUTCString()}
+                onPress={() =>
+                  navigation.navigate('WorkoutExercisesScreen', {id: item.id})
+                }
               />
               <Divider style={{backgroundColor: 'lightgray'}} />
             </>
