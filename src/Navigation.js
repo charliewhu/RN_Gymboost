@@ -8,6 +8,7 @@ import CreateExercise from './screens/exercises/CreateExercise';
 import Exercises from './screens/exercises/Exercises';
 import CreateRoutine from './screens/routines/CreateRoutine';
 import Routines from './screens/routines/Routines';
+import Workouts from './screens/workouts/Workouts';
 
 const config = {
   screens: {
@@ -33,6 +34,13 @@ const config = {
       screens: {
         RoutineScreen: '',
         CreateRoutineScreen: 'create',
+      },
+    },
+    Workouts: {
+      path: 'workouts',
+      initialRouteName: 'WorkoutScreen',
+      screens: {
+        WorkoutScreen: '',
       },
     },
   },
@@ -91,6 +99,19 @@ export function RoutineStack() {
   );
 }
 
+const WorkoutStackNav = createNativeStackNavigator();
+export function WorkoutStack() {
+  return (
+    <WorkoutStackNav.Navigator>
+      <WorkoutStackNav.Screen
+        name="WorkoutScreen"
+        component={Workouts}
+        options={{title: 'Workouts'}}
+      />
+    </WorkoutStackNav.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => (
   <Tab.Navigator initialRouteName="Home">
@@ -100,7 +121,8 @@ const TabNavigator = () => (
       options={{
         headerShown: false,
         tabBarTestID: 'exercises_tab',
-        tabBarShowLabel: false,
+        tabBarActiveTintColor: 'black',
+        tabBarInactiveTintColor: 'lightgray',
         tabBarIcon: ({focused}) => (
           <Ionicons
             name="barbell-outline"
@@ -115,7 +137,8 @@ const TabNavigator = () => (
       component={HomeStack}
       options={{
         headerShown: false,
-        tabBarShowLabel: false,
+        tabBarActiveTintColor: 'black',
+        tabBarInactiveTintColor: 'lightgray',
         tabBarIcon: ({focused}) => (
           <Ionicons
             name="home-outline"
@@ -131,10 +154,30 @@ const TabNavigator = () => (
       options={{
         headerShown: false,
         tabBarTestID: 'routines_tab',
-        tabBarShowLabel: false,
+        tabBarActiveTintColor: 'black',
+        tabBarInactiveTintColor: 'lightgray',
         tabBarIcon: ({focused}) => (
           <Ionicons
             name="list-outline"
+            size={26}
+            color={focused ? 'black' : 'lightgray'}
+          />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Workouts"
+      component={WorkoutStack}
+      options={{
+        headerShown: false,
+        tabBarTestID: 'workouts_tab',
+        tabBarActiveTintColor: 'black',
+        tabBarInactiveTintColor: 'lightgray',
+        //tabBarShowLabel: false,
+        tabBarIcon: ({focused}) => (
+          <Ionicons
+            //name="fitness-outline"
+            name="pulse-outline"
             size={26}
             color={focused ? 'black' : 'lightgray'}
           />
