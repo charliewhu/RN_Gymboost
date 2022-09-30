@@ -1,9 +1,5 @@
-import {Text, View} from 'react-native';
+import WorkoutExerciseList from '../../components/workouts/WorkoutExerciseList';
 
 export default function WorkoutExercises() {
-  return (
-    <View>
-      <Text>WorkoutExercises</Text>
-    </View>
-  );
+  return <WorkoutExerciseList />;
 }
