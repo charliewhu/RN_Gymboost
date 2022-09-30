@@ -20,10 +20,4 @@ describe('Workouts screen', () => {
     cy.contains(workouts[0].name);
     cy.contains(workouts[1].name);
   });
-
-  it('navigates to CreateWorkout screen', () => {
-    cy.findByTestId('createWorkoutBtn').click();
-    cy.contains('Create Workout');
-    cy.url().should('include', 'workouts/create');
-  });
 });
