@@ -18,4 +18,10 @@ describe('Home page', () => {
     cy.contains('Routines');
     cy.url().should('include', 'routines');
   });
+
+  it('navigates to Workout tab', () => {
+    cy.findByTestId('workouts_tab').click();
+    cy.contains('Workouts');
+    cy.url().should('include', 'workouts');
+  });
 });
