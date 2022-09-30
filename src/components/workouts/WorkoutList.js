@@ -22,7 +22,7 @@ export default function WorkoutList() {
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <>
-              <List.Item testID="workout_list_item" title={item.name} />
+              <List.Item testID="workout_list_item" title={item.created_on} />
               <Divider style={{backgroundColor: 'lightgray'}} />
             </>
           )}
