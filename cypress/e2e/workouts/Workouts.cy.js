@@ -28,6 +28,7 @@ describe('Workouts screen', () => {
   it('navigates to a Workout', () => {
     cy.findAllByTestId('workout_list_item').first().click();
 
+    cy.url().should('eq', 'http://localhost:19006/workouts/2/');
     cy.wait('@getWorkoutExercises');
 
     cy.findByTestId('workout_exercise_list');
