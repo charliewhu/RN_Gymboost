@@ -17,7 +17,7 @@ describe('Workouts screen', () => {
   it('shows workouts from the server', () => {
     cy.findByTestId('workout_list').should('be.visible');
 
-    cy.contains(workouts[0].created_on);
-    cy.contains(workouts[1].created_on);
+    cy.contains(new Date(Date.parse(workouts[0].created_on)).toUTCString());
+    cy.contains(new Date(Date.parse(workouts[1].created_on)).toUTCString());
   });
 });

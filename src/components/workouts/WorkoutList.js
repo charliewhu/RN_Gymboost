@@ -22,7 +22,10 @@ export default function WorkoutList() {
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <>
-              <List.Item testID="workout_list_item" title={item.created_on} />
+              <List.Item
+                testID="workout_list_item"
+                title={new Date(Date.parse(item.created_on)).toUTCString()}
+              />
               <Divider style={{backgroundColor: 'lightgray'}} />
             </>
           )}
