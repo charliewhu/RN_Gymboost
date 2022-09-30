@@ -1,9 +1,7 @@
-import {View, FlatList} from 'react-native';
 import {useEffect} from 'react';
-import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-
+import {FlatList, View} from 'react-native';
 import {Divider, List} from 'react-native-paper';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {getWorkouts} from '../../redux/workout/workoutSlice';
 
