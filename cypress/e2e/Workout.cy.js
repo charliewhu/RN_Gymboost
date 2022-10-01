@@ -58,5 +58,7 @@ describe('Creating a workout, adding an Exercise, adding Sets', () => {
     cy.findAllByTestId('workout_exercise_list_item').click();
 
     cy.url().should('include', 'workouts/3/exercises/1');
+
+    // TODO
   });
 });
