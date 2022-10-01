@@ -15,6 +15,7 @@ describe('WorkoutExercises screen', () => {
     cy.fixture('workoutexercises.json').as('workoutexercises');
 
     cy.visit('/workouts/1/');
+    cy.wait('@getWorkouts');
     cy.wait('@getWorkoutExercises');
   });
 
@@ -27,7 +28,7 @@ describe('WorkoutExercises screen', () => {
 
   it('doesnt show workoutexercises from the server if workout doesnt have WorkoutExercises', () => {
     cy.visit('/workouts/2/');
-    cy.wait('@getWorkoutExercises');
+    cy.wait('@getWorkoutExercises').should('not.have.been.called');
 
     cy.findAllByTestId('workout_exercise_list_item').should('have.length', 0);
   });

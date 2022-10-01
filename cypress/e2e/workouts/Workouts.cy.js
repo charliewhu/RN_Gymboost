@@ -16,6 +16,7 @@ describe('Workouts screen', () => {
 
     cy.visit('/workouts/');
     cy.wait('@getWorkouts');
+    cy.wait('@getWorkoutExercises');
   });
 
   it('shows workouts from the server', () => {
