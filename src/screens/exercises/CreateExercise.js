@@ -58,6 +58,5 @@ const styles = StyleSheet.create({
   },
   btnStyle: {
     margin: 10,
-    borderRadius: 0,
   },
 });
