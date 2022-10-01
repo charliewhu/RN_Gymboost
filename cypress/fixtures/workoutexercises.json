@@ -1,12 +1,12 @@
 [
     {
-        "id": 9,
+        "id": 1,
         "workout": 1,
         "exercise": 1,
         "name": "Exercise 1"
     },
     {
-        "id": 10,
+        "id": 2,
         "workout": 1,
         "exercise": 2,
         "name": "Exercise 2"
