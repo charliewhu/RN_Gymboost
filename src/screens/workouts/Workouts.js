@@ -14,7 +14,6 @@ export default function Workouts({navigation}) {
   useEffect(() => {
     if (!isLoading && isUpdate) {
       const workoutId = workouts[workouts.length - 1].id;
-      console.log(workoutId);
       navigation.navigate('WorkoutExercisesScreen', {id: workoutId});
     }
   }, [isUpdate, isLoading, navigation, workouts]);

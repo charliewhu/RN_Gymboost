@@ -17,11 +17,11 @@ describe('Creating a workout, adding an Exercise, adding Sets', () => {
       fixture: 'workoutexercises.json',
     }).as('getWorkoutExercises');
 
-    cy.intercept('GET', `${API_URL}/workoutexercises/`, {
+    cy.intercept('POST', `${API_URL}/workoutexercises/`, {
       id: 3,
       workout: 3,
       exercise: 1,
-    }).as('getWorkoutExercises');
+    }).as('postWorkoutExercise');
 
     cy.intercept('GET', `${API_URL}/exercises/`, {
       fixture: 'exercises.json',
