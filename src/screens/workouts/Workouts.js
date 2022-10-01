@@ -1,8 +1,7 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import {useEffect, useLayoutEffect} from 'react';
-import {TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
+import AddButton from '../../components/utils/AddButton';
 import WorkoutList from '../../components/workouts/WorkoutList';
 import {postWorkout} from '../../redux/workout/workoutSlice';
 
@@ -21,12 +20,10 @@ export default function Workouts({navigation}) {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity
+        <AddButton
           testID="createWorkoutBtn"
           onPress={() => dispatch(postWorkout())}
-        >
-          <Ionicons name="add" size={30} />
-        </TouchableOpacity>
+        />
       ),
     });
   });
