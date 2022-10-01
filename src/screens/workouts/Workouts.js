@@ -1,24 +1,30 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import {useLayoutEffect} from 'react';
+import {useEffect, useLayoutEffect} from 'react';
 import {TouchableOpacity} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import WorkoutList from '../../components/workouts/WorkoutList';
+import {postWorkout} from '../../redux/workout/workoutSlice';
 
 export default function Workouts({navigation}) {
+  const {isLoading, isUpdate} = useSelector(state => state.workout);
+  const workouts = useSelector(state => state.workout.workouts);
   const dispatch = useDispatch();
 
-  const handleCreateWorkout = async () => {
-    await dispatch(postWorkout());
-    navigation.navigate('WorkoutExercisesScreen');
-  };
+  useEffect(() => {
+    if (!isLoading && isUpdate) {
+      const workoutId = workouts[workouts.length - 1].id;
+      console.log(workoutId);
+      navigation.navigate('WorkoutExercisesScreen', {id: workoutId});
+    }
+  }, [isUpdate, isLoading, navigation, workouts]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity
           testID="createWorkoutBtn"
-          onPress={handleCreateWorkout}
+          onPress={() => dispatch(postWorkout())}
         >
           <Ionicons name="add" size={30} />
         </TouchableOpacity>
@@ -26,5 +32,5 @@ export default function Workouts({navigation}) {
     });
   });
 
-  return <WorkoutList navigation={navigation} />;
+  return <WorkoutList navigation={navigation} workouts={workouts} />;
 }
