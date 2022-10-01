@@ -43,6 +43,7 @@ const config = {
       screens: {
         WorkoutsScreen: '',
         WorkoutExercisesScreen: ':id',
+        ExerciseScreen: ':id/add_exercise',
       },
     },
   },
@@ -114,6 +115,11 @@ export function WorkoutStack() {
         name="WorkoutExercisesScreen"
         component={WorkoutExercises}
         options={{title: 'Workout Exercises'}}
+      />
+      <WorkoutStackNav.Screen
+        name="ExerciseScreen"
+        component={Exercises}
+        options={{title: 'Exercises'}}
       />
     </WorkoutStackNav.Navigator>
   );

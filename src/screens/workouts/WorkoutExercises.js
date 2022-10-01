@@ -10,7 +10,9 @@ export default function WorkoutExercises({navigation, route}) {
       headerRight: () => (
         <TouchableOpacity
           testID="addExerciseBtn"
-          onPress={() => console.log('addExerciseBtn pressed')}
+          onPress={() =>
+            navigation.navigate('ExerciseScreen', {id: route.params.id})
+          }
         >
           <Ionicons name="add" size={30} />
         </TouchableOpacity>
