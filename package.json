@@ -10,7 +10,8 @@
     "web": "expo start --web -c",
     "lint": "eslint cypress src",
     "test": "jest src --watchAll",
-    "deploy:web": "cross-env MY_ENV=prod expo export:web -c && cp _redirects web-build && netlify deploy --prod"
+    "deploy:web": "cross-env MY_ENV=prod expo export:web -c && cp _redirects web-build && netlify deploy --prod",
+    "build:ios": "eas build --platform ios --local"
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.2",
@@ -20,6 +21,7 @@
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^0.27.2",
     "cross-env": "^7.0.3",
+    "eas-cli": "^2.1.0",
     "env-cmd": "^10.1.0",
     "expo": "~46.0.9",
     "expo-linking": "^3.2.2",
