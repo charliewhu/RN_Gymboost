@@ -4,6 +4,7 @@ import {Divider, List} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {getWorkouts} from '../../redux/workout/workoutSlice';
+import {getWorkoutExercises} from '../../redux/workoutExercise/workoutExerciseSlice';
 
 export default function WorkoutList({navigation}) {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ export default function WorkoutList({navigation}) {
 
   useEffect(() => {
     dispatch(getWorkouts());
+    dispatch(getWorkoutExercises());
   }, [dispatch]);
 
   return (

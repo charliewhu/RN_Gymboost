@@ -29,6 +29,7 @@ describe('Workouts screen', () => {
   it('navigates to a Workout', () => {
     cy.findAllByTestId('workout_list_item').first().click();
 
+    cy.get('@getWorkoutExercises.all').should('have.length', 1);
     cy.url().should('eq', 'http://localhost:19006/workouts/1');
   });
 });

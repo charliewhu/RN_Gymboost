@@ -26,9 +26,9 @@ describe('WorkoutExercises screen', () => {
     cy.contains(workoutexercises[1].name);
   });
 
-  it('doesnt show workoutexercises from the server if workout doesnt have WorkoutExercises', () => {
+  it('doesnt call API or show workoutexercises from the server if workout doesnt have WorkoutExercises', () => {
     cy.visit('/workouts/2/');
-    cy.wait('@getWorkoutExercises').should('not.have.been.called');
+    cy.get('@getWorkoutExercises.all').should('have.length', 1);
 
     cy.findAllByTestId('workout_exercise_list_item').should('have.length', 0);
   });
