@@ -4,19 +4,12 @@ const API_URL = Cypress.env('API_URL');
 
 describe('WorkoutExercises screen', () => {
   beforeEach(() => {
-    cy.intercept('GET', `${API_URL}/workouts/`, {
-      fixture: 'workouts.json',
-    }).as('getWorkouts');
-
-    cy.intercept('GET', `${API_URL}/workoutexercises/`, {
-      fixture: 'workoutexercises.json',
-    }).as('getWorkoutExercises');
-
-    cy.fixture('workoutexercises.json').as('workoutexercises');
+    cy.workoutIntercepts();
 
     cy.visit('/workouts/1/');
     cy.wait('@getWorkouts');
     cy.wait('@getWorkoutExercises');
+    cy.wait('@getWorkoutExerciseSets');
   });
 
   it('shows workoutexercises from the server', () => {

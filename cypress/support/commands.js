@@ -25,3 +25,19 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 import '@testing-library/cypress/add-commands';
+
+const API_URL = Cypress.env('API_URL');
+
+Cypress.Commands.add('workoutIntercepts', () => {
+  cy.intercept('GET', `${API_URL}/workouts/`, {
+    fixture: 'workouts.json',
+  }).as('getWorkouts');
+
+  cy.intercept('GET', `${API_URL}/workoutexercises/`, {
+    fixture: 'workoutexercises.json',
+  }).as('getWorkoutExercises');
+
+  cy.intercept('GET', `${API_URL}/workoutexercisesets/`, {
+    fixture: 'workoutexercisesets.json',
+  }).as('getWorkoutExerciseSets');
+});

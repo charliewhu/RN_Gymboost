@@ -5,6 +5,7 @@ import {useDispatch} from 'react-redux';
 
 import {getWorkouts} from '../../redux/workout/workoutSlice';
 import {getWorkoutExercises} from '../../redux/workoutExercise/workoutExerciseSlice';
+import {getWorkoutExerciseSets} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
 
 export default function WorkoutList({navigation, workouts}) {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ export default function WorkoutList({navigation, workouts}) {
   useEffect(() => {
     dispatch(getWorkouts());
     dispatch(getWorkoutExercises());
+    dispatch(getWorkoutExerciseSets());
   }, [dispatch]);
 
   return (
