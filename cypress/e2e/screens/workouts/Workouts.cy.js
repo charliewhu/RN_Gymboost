@@ -6,7 +6,7 @@ describe('Workouts screen', () => {
   beforeEach(() => {
     cy.workoutIntercepts();
 
-    cy.visit('/workouts/1/exercises/1');
+    cy.visit('/workouts/');
     cy.wait('@getWorkouts');
     cy.wait('@getWorkoutExercises');
     cy.wait('@getWorkoutExerciseSets');

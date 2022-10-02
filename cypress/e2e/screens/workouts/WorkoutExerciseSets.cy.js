@@ -16,7 +16,7 @@ describe('WorkoutExercises screen', () => {
     const selector = '[aria-label="Go back"]';
     cy.get(selector).click();
 
-    cy.cy.url().should('eq', 'http://localhost:19006/workouts/1');
+    cy.url().should('eq', 'http://localhost:19006/workouts/1');
   });
 
   it('shows workoutexercises from the server', () => {
