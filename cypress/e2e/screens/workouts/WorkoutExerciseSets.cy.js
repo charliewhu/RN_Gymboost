@@ -11,8 +11,7 @@ describe('WorkoutExercises screen', () => {
   });
 
   it('navigates back to WorkoutExercises screen', () => {
-    const selector = '[aria-label="Go back"]';
-    cy.get(selector).click();
+    cy.findByTestId('goBackBtn').click();
 
     cy.url().should('eq', 'http://localhost:19006/workouts/1');
   });
