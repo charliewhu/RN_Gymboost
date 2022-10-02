@@ -15,7 +15,10 @@ export default function WorkoutList({navigation, workouts}) {
                 testID="workout_list_item"
                 title={new Date(Date.parse(item.created_on)).toUTCString()}
                 onPress={() =>
-                  navigation.navigate('WorkoutExercisesScreen', {id: item.id})
+                  navigation.navigate('WorkoutExerciseStack', {
+                    screen: 'WorkoutExercisesScreen',
+                    params: {id: item.id},
+                  })
                 }
               />
               <Divider style={{backgroundColor: 'lightgray'}} />

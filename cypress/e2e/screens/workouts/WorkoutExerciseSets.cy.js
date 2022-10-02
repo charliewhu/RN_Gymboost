@@ -1,7 +1,5 @@
 import workoutexercisesets from '../../../fixtures//workoutexercisesets.json';
 
-const API_URL = Cypress.env('API_URL');
-
 describe('WorkoutExercises screen', () => {
   beforeEach(() => {
     cy.workoutIntercepts();

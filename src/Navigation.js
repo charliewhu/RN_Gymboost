@@ -38,14 +38,34 @@ const config = {
         CreateRoutineScreen: 'create',
       },
     },
+    // Workouts: {
+    //   path: 'workouts',
+    //   initialRouteName: 'WorkoutsScreen',
+    //   screens: {
+    //     WorkoutsScreen: '',
+    //     WorkoutExerciseStack: {
+    //       screens: {
+    //         WorkoutExercisesScreen: ':id',
+    //         ExerciseScreen: ':id/add_exercise',
+    //         WorkoutExerciseSetsScreen: ':id/exercises/:workoutExerciseId',
+    //       },
+    //     },
+    //   },
+    // },
     Workouts: {
       path: 'workouts',
       initialRouteName: 'WorkoutsScreen',
       screens: {
         WorkoutsScreen: '',
-        WorkoutExercisesScreen: ':id',
-        ExerciseScreen: ':id/add_exercise',
-        WorkoutExerciseSetsScreen: ':id/exercises/:workoutExerciseId',
+        WorkoutExerciseStack: {
+          path: ':id',
+          //initialRouteName: 'WorkoutExercisesScreen',
+          screens: {
+            WorkoutExercisesScreen: '',
+            ExerciseScreen: 'add_exercise',
+            WorkoutExerciseSetsScreen: 'exercises/:workoutExerciseId',
+          },
+        },
       },
     },
   },
@@ -114,21 +134,34 @@ export function WorkoutStack() {
         options={{title: 'Workouts'}}
       />
       <WorkoutStackNav.Screen
+        name="WorkoutExerciseStack"
+        component={WorkoutExerciseStack}
+        options={{title: 'Workout Exercises'}}
+      />
+    </WorkoutStackNav.Navigator>
+  );
+}
+
+const WorkoutExerciseStackNav = createNativeStackNavigator();
+export function WorkoutExerciseStack() {
+  return (
+    <WorkoutExerciseStackNav.Navigator>
+      <WorkoutExerciseStackNav.Screen
         name="WorkoutExercisesScreen"
         component={WorkoutExercises}
         options={{title: 'Workout Exercises'}}
       />
-      <WorkoutStackNav.Screen
+      <WorkoutExerciseStackNav.Screen
         name="WorkoutExerciseSetsScreen"
         component={WorkoutExerciseSets}
         options={{title: 'Sets'}}
       />
-      <WorkoutStackNav.Screen
+      <WorkoutExerciseStackNav.Screen
         name="ExerciseScreen"
         component={Exercises}
         options={{title: 'Exercises'}}
       />
-    </WorkoutStackNav.Navigator>
+    </WorkoutExerciseStackNav.Navigator>
   );
 }
 
