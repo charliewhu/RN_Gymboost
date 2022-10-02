@@ -11,7 +11,7 @@ async function getWorkoutExercises() {
 }
 
 async function postWorkoutExercise(data) {
-  const response = await axiosInstance.get('/workoutexercises/', data);
+  const response = await axiosInstance.post('/workoutexercises/', data);
   return response.data;
 }
 

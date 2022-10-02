@@ -19,10 +19,11 @@ export const postWorkoutExercise = createAsyncThunk(
   'workoutExercise/postWorkoutExercise',
   async (data, thunkAPI) => {
     try {
-      const workoutExercises = await workoutExerciseService.postWorkoutExercise(
+      console.log(data);
+      const workoutExercise = await workoutExerciseService.postWorkoutExercise(
         data,
       );
-      return workoutExercises;
+      return workoutExercise;
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(error);

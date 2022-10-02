@@ -3,7 +3,7 @@ import {useLayoutEffect} from 'react';
 import ExerciseList from '../../components/exercises/ExerciseList';
 import AddButton from '../../components/utils/AddButton';
 
-export default function Exercises({navigation}) {
+export default function Exercises({navigation, route}) {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -15,5 +15,5 @@ export default function Exercises({navigation}) {
     });
   });
 
-  return <ExerciseList />;
+  return <ExerciseList route={route} />;
 }
