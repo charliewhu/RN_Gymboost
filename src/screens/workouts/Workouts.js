@@ -3,9 +3,9 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import AddButton from '../../components/utils/AddButton';
 import WorkoutList from '../../components/workouts/WorkoutList';
-import {getWorkoutExercises} from '../../redux/WorkoutExercise/WorkoutExerciseSlice';
-import {getWorkoutExerciseSets} from '../../redux/WorkoutExerciseSet/WorkoutExerciseSetSlice';
 import {getWorkouts, postWorkout} from '../../redux/workout/workoutSlice';
+import {getWorkoutExercises} from '../../redux/workoutExercise/workoutExerciseSlice';
+import {getWorkoutExerciseSets} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
 
 export default function Workouts({navigation}) {
   const {isLoading, isUpdate} = useSelector(state => state.workout);
