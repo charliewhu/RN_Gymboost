@@ -10,8 +10,14 @@ async function getWorkoutExercises() {
   return response.data;
 }
 
+async function postWorkoutExercise(data) {
+  const response = await axiosInstance.get('/workoutexercises/', data);
+  return response.data;
+}
+
 const workoutExerciseService = {
   getWorkoutExercises,
+  postWorkoutExercise,
 };
 
 export default workoutExerciseService;
