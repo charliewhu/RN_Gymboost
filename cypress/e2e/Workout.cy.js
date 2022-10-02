@@ -4,18 +4,7 @@ const API_URL = Cypress.env('API_URL');
 
 describe('Creating a workout, adding an Exercise, adding Sets', () => {
   beforeEach(() => {
-    cy.intercept('GET', `${API_URL}/workouts/`, {
-      fixture: 'workouts.json',
-    }).as('getWorkouts');
-
-    cy.intercept('POST', `${API_URL}/workouts/`, {
-      id: 3,
-      created_on: '2022-09-13T10:49:07.982317Z',
-    }).as('postWorkout');
-
-    cy.intercept('GET', `${API_URL}/workoutexercises/`, {
-      fixture: 'workoutexercises.json',
-    }).as('getWorkoutExercises');
+    cy.workoutIntercepts();
 
     cy.intercept('POST', `${API_URL}/workoutexercises/`, {
       id: 3,

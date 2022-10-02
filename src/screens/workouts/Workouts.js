@@ -3,12 +3,20 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import AddButton from '../../components/utils/AddButton';
 import WorkoutList from '../../components/workouts/WorkoutList';
-import {postWorkout} from '../../redux/workout/workoutSlice';
+import {getWorkoutExercises} from '../../redux/WorkoutExercise/WorkoutExerciseSlice';
+import {getWorkoutExerciseSets} from '../../redux/WorkoutExerciseSet/WorkoutExerciseSetSlice';
+import {getWorkouts, postWorkout} from '../../redux/workout/workoutSlice';
 
 export default function Workouts({navigation}) {
   const {isLoading, isUpdate} = useSelector(state => state.workout);
   const workouts = useSelector(state => state.workout.workouts);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getWorkouts());
+    dispatch(getWorkoutExercises());
+    dispatch(getWorkoutExerciseSets());
+  }, [dispatch]);
 
   useEffect(() => {
     if (!isLoading && isUpdate) {
