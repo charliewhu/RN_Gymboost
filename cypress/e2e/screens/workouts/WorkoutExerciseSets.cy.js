@@ -32,8 +32,8 @@ describe('WorkoutExercises screen', () => {
   it('shows workoutexercises from the server', () => {
     cy.findByTestId('workout_exercise_set_list').should('be.visible');
 
-    cy.contains(workoutexercisesets[0].name);
-    cy.contains(workoutexercisesets[1].name);
+    cy.contains(workoutexercisesets[0].weight);
+    cy.contains(workoutexercisesets[1].weight);
   });
 
   it('doesnt call API or show workoutexercises from the server if WorkoutExercise doesnt have WorkoutExerciseSets', () => {
