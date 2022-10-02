@@ -19,7 +19,6 @@ export const postWorkoutExercise = createAsyncThunk(
   'workoutExercise/postWorkoutExercise',
   async (data, thunkAPI) => {
     try {
-      console.log(data);
       const workoutExercise = await workoutExerciseService.postWorkoutExercise(
         data,
       );

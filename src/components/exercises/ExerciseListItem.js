@@ -5,6 +5,14 @@ import AddButton from '../utils/AddButton';
 
 export default function ExerciseListItem({testID, route, item}) {
   const dispatch = useDispatch();
+  const pressHandler = () => {
+    dispatch(
+      postWorkoutExercise({
+        workout: route.params.id,
+        exercise: item.id,
+      }),
+    );
+  };
 
   return (
     <>
@@ -15,14 +23,7 @@ export default function ExerciseListItem({testID, route, item}) {
           <AddButton
             {...props}
             testID="add_exercise_to_workout_btn"
-            onPress={() =>
-              dispatch(
-                postWorkoutExercise({
-                  workout: route.params.id,
-                  exercise: item.id,
-                }),
-              )
-            }
+            onPress={() => pressHandler(item)}
           />
         )}
       />

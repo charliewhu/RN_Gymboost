@@ -49,7 +49,10 @@ describe('Creating a workout, adding an Exercise, adding Sets', () => {
     cy.wait('@getExercises');
 
     cy.findAllByTestId('add_exercise_to_workout_btn').first().click();
-    cy.wait('@postWorkoutExercise');
+    cy.wait('@postWorkoutExercise').its('request.body').should('deep.equal', {
+      workout: 3,
+      exercise: 1,
+    });
 
     // assert exercise is on WorkoutExercise list
     cy.contains(exercises[0].name);
