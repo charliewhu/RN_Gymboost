@@ -15,5 +15,5 @@ export default function Exercises({navigation, route}) {
     });
   });
 
-  return <ExerciseList route={route} />;
+  return <ExerciseList navigation={navigation} route={route} />;
 }

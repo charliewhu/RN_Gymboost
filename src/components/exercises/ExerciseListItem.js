@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux';
 import {postWorkoutExercise} from '../../redux/workoutExercise/workoutExerciseSlice';
 import AddButton from '../utils/AddButton';
 
-export default function ExerciseListItem({testID, route, item}) {
+export default function ExerciseListItem({testID, navigation, route, item}) {
   const dispatch = useDispatch();
   const pressHandler = () => {
     dispatch(
@@ -12,6 +12,7 @@ export default function ExerciseListItem({testID, route, item}) {
         exercise: item.id,
       }),
     );
+    navigation.goBack();
   };
 
   return (

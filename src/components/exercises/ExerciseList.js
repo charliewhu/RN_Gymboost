@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getExercises} from '../../redux/exercise/exerciseSlice';
 import ExerciseListItem from './ExerciseListItem';
 
-export default function ExerciseList({route}) {
+export default function ExerciseList({navigation, route}) {
   const dispatch = useDispatch();
   const exercises = useSelector(state => state.exercise.exercises);
 
@@ -22,6 +22,7 @@ export default function ExerciseList({route}) {
           renderItem={({item}) => (
             <ExerciseListItem
               testID="exercise_list_item"
+              navigation={navigation}
               route={route}
               item={item}
             />
