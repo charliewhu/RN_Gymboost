@@ -21,7 +21,7 @@ describe('Creating a workout, adding an Exercise, adding Sets', () => {
       id: 3,
       workout: 3,
       exercise: 1,
-      name: 'Exercise 1',
+      name: 'exercise1',
     }).as('postWorkoutExercise');
 
     cy.intercept('GET', `${API_URL}/exercises/`, {
@@ -61,7 +61,8 @@ describe('Creating a workout, adding an Exercise, adding Sets', () => {
 
     cy.findAllByTestId('workout_exercise_list_item').click();
 
-    cy.url().should('include', 'workouts/3/exercises/1');
+    // should have workoutId/exercises/workoutExerciseId
+    cy.url().should('include', 'workouts/3/exercises/3');
 
     // TODO
   });

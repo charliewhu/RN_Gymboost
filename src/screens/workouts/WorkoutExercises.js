@@ -20,5 +20,5 @@ export default function WorkoutExercises({navigation, route}) {
     });
   });
 
-  return <WorkoutExerciseList route={route} />;
+  return <WorkoutExerciseList navigation={navigation} route={route} />;
 }

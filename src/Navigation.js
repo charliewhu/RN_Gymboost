@@ -8,6 +8,7 @@ import CreateExercise from './screens/exercises/CreateExercise';
 import Exercises from './screens/exercises/Exercises';
 import CreateRoutine from './screens/routines/CreateRoutine';
 import Routines from './screens/routines/Routines';
+import WorkoutExerciseSets from './screens/workouts/WorkoutExerciseSets';
 import WorkoutExercises from './screens/workouts/WorkoutExercises';
 import Workouts from './screens/workouts/Workouts';
 
@@ -44,6 +45,7 @@ const config = {
         WorkoutsScreen: '',
         WorkoutExercisesScreen: ':id',
         ExerciseScreen: ':id/add_exercise',
+        WorkoutExerciseSetsScreen: ':id/exercises/:workoutExerciseId',
       },
     },
   },
@@ -115,6 +117,11 @@ export function WorkoutStack() {
         name="WorkoutExercisesScreen"
         component={WorkoutExercises}
         options={{title: 'Workout Exercises'}}
+      />
+      <WorkoutStackNav.Screen
+        name="WorkoutExerciseSetsScreen"
+        component={WorkoutExerciseSets}
+        options={{title: 'Sets'}}
       />
       <WorkoutStackNav.Screen
         name="ExerciseScreen"

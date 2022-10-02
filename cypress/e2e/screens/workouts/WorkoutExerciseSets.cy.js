@@ -19,6 +19,7 @@ describe('WorkoutExercises screen', () => {
     cy.visit('/workouts/1/exercises/1');
     cy.wait('@getWorkouts');
     cy.wait('@getWorkoutExercises');
+    cy.wait('@getWorkoutExerciseSets');
   });
 
   it('navigates back to WorkoutExercises screen', () => {
