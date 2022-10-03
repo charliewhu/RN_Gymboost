@@ -30,11 +30,14 @@ describe('WorkoutExercises screen', () => {
     cy.findByTestId('addExerciseBtn').click();
 
     // assert redirect to add_exercise url
-    cy.url().should('include', 'workouts/3/add_exercise');
-    cy.findAllByTestId('workout_exercise_list_item').should('have.length', 0);
+    cy.url().should('include', 'workouts/1/add_exercise');
 
     cy.findByTestId('create_exercise_btn').click();
     cy.contains('Create Exercise');
     cy.url().should('include', 'exercises/create');
+
+    const selector = '[aria-label="Go back"]';
+    cy.get(selector).first().click({force: true});
+    cy.url().should('include', 'workouts/1/add_exercise');
   });
 });
