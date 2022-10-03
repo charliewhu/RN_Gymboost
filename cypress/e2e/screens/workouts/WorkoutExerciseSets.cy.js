@@ -1,9 +1,9 @@
 import workoutexercisesets from '../../../fixtures//workoutexercisesets.json';
 
 const API_URL = Cypress.env('API_URL');
-const weight = 100;
-const reps = 8;
-const rir = 2;
+const weight = '100';
+const reps = '8';
+const rir = '2';
 
 describe('WorkoutExercises screen', () => {
   beforeEach(() => {
@@ -79,7 +79,7 @@ describe('WorkoutExercises screen', () => {
       cy.wait('@postWorkoutExerciseSet')
         .its('request.body')
         .should('deep.equal', {
-          workout_exercise: 1,
+          workout_exercise: '1',
           weight: weight,
           reps: reps,
           rir: rir,

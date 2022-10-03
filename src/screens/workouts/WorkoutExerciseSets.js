@@ -26,7 +26,7 @@ export default function WorkoutExerciseSets({navigation, route}) {
 
   return (
     <>
-      <WorkoutExerciseSetForm />
+      <WorkoutExerciseSetForm route={route} />
       <WorkoutExerciseSetList route={route} />
     </>
   );
