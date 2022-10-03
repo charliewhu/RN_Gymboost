@@ -63,6 +63,13 @@ describe('Creating a workout, adding an Exercise, adding Sets', () => {
       0,
     );
 
+    // assert submit doesnt work until form is filled
+    cy.findByTestId('submitBtn').click();
+    cy.findAllByTestId('workout_exercise_set_list_item').should(
+      'have.length',
+      0,
+    );
+
     // input set info
     cy.findByTestId('weightInput-outlined').type(100);
     cy.findByTestId('repsInput-outlined').type(10);
