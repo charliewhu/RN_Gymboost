@@ -23,7 +23,9 @@ export default function CreateExercise({navigation, route}) {
 
   const handleSubmit = () => {
     dispatch(postExercise({name}));
-    navigation.navigate('ExerciseScreen', {id: route.params.id});
+    route.params
+      ? navigation.navigate('ExerciseScreen', {id: route.params.id})
+      : navigation.goBack();
   };
 
   return (
