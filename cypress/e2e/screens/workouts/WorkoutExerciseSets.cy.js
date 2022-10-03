@@ -104,5 +104,14 @@ describe('WorkoutExercises screen', () => {
       cy.findByTestId('repsInput-outlined').should('have.value', '');
       cy.findByTestId('rirInput-outlined').should('have.value', '');
     });
+
+    it('rir must be less than or equal to 5', () => {
+      cy.findByTestId('weightInput-outlined').type(weight);
+      cy.findByTestId('repsInput-outlined').type(reps);
+      cy.findByTestId('rirInput-outlined').type(6);
+      cy.findByTestId('submitBtn').click();
+
+      cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
+    });
   });
 });

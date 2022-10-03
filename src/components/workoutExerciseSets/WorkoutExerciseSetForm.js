@@ -1,5 +1,6 @@
-import {useEffect, useState} from 'react';
-import {StyleSheet} from 'react-native';
+import {Formik} from 'formik';
+import {useState} from 'react';
+import {StyleSheet, View} from 'react-native';
 import {Button, List, TextInput} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {postWorkoutExerciseSet} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
@@ -7,78 +8,96 @@ import {
   textInputActiveOutlineColor,
   textInputOutlineColor,
 } from '../../utils/sharedStyles';
+import {WorkoutExerciseSetSchema} from './WorkoutExerciseSetSchema';
 
 export default function WorkoutExerciseSetForm({route}) {
   const dispatch = useDispatch();
-  const [weight, setWeight] = useState('');
-  const [reps, setReps] = useState('');
-  const [rir, setRir] = useState('');
-  const [isValid, setIsValid] = useState(false);
 
-  useEffect(() => {
-    setIsValid(weight !== '' && reps !== '' && rir !== '');
-  }, [weight, reps, rir]);
+  const [formValues, setFormValues] = useState({
+    id: '',
+    weight: '',
+    reps: '',
+    rir: '',
+  });
 
-  const handleSubmit = () => {
+  const handleSubmitForm = values => {
     const data = {
       workout_exercise: route.params.workoutExerciseId,
-      weight,
-      reps,
-      rir,
+      weight: values.weight,
+      reps: values.reps,
+      rir: values.rir,
     };
     dispatch(postWorkoutExerciseSet(data));
-    setWeight('');
-    setReps('');
-    setRir('');
   };
 
   return (
     <>
-      <List.Section style={styles.container}>
-        <TextInput
-          mode="outlined"
-          style={styles.inputContainer}
-          outlineColor={textInputOutlineColor}
-          activeOutlineColor={textInputActiveOutlineColor}
-          keyboardType="numeric"
-          testID="weightInput"
-          label="Weight"
-          value={weight}
-          onChangeText={text => setWeight(text)}
-        />
-        <TextInput
-          mode="outlined"
-          style={styles.inputContainer}
-          outlineColor={textInputOutlineColor}
-          activeOutlineColor={textInputActiveOutlineColor}
-          keyboardType="numeric"
-          testID="repsInput"
-          label="Reps"
-          value={reps}
-          onChangeText={text => setReps(text)}
-        />
-        <TextInput
-          mode="outlined"
-          style={styles.inputContainer}
-          outlineColor={textInputOutlineColor}
-          activeOutlineColor={textInputActiveOutlineColor}
-          keyboardType="numeric"
-          testID="rirInput"
-          label="RIR"
-          value={rir}
-          onChangeText={text => setRir(text)}
-        />
-      </List.Section>
-      <Button
-        testID="submitBtn"
-        mode="contained"
-        disabled={!isValid}
-        buttonColor={isValid ? '#0E7AFE' : 'lightgray'}
-        style={styles.btnStyle}
-        onPress={handleSubmit}
+      <Formik
+        enableReinitialize
+        initialValues={formValues}
+        validationSchema={WorkoutExerciseSetSchema}
+        validateOnMount={true}
+        validateOnChange={true}
+        onSubmit={(values, {resetForm, validateForm}) => {
+          handleSubmitForm(values);
+          resetForm();
+          validateForm();
+        }}
       >
-        Add
-      </Button>
+        {({handleChange, handleSubmit, values, isValid}) => (
+          <View>
+            <List.Section
+              testID="workoutExerciseSetForm"
+              style={styles.container}
+            >
+              <TextInput
+                mode="outlined"
+                style={styles.inputContainer}
+                outlineColor={textInputOutlineColor}
+                activeOutlineColor={textInputActiveOutlineColor}
+                keyboardType="numeric"
+                testID="weightInput"
+                label="Weight"
+                value={values.weight}
+                onChangeText={handleChange('weight')}
+              />
+              <TextInput
+                mode="outlined"
+                style={styles.inputContainer}
+                outlineColor={textInputOutlineColor}
+                activeOutlineColor={textInputActiveOutlineColor}
+                keyboardType="numeric"
+                testID="repsInput"
+                label="Reps"
+                value={values.reps}
+                onChangeText={handleChange('reps')}
+              />
+              <TextInput
+                mode="outlined"
+                style={styles.inputContainer}
+                outlineColor={textInputOutlineColor}
+                activeOutlineColor={textInputActiveOutlineColor}
+                keyboardType="numeric"
+                testID="rirInput"
+                label="RIR"
+                value={values.rir}
+                onChangeText={handleChange('rir')}
+              />
+            </List.Section>
+
+            <Button
+              testID="submitBtn"
+              mode="contained"
+              disabled={!isValid}
+              buttonColor={isValid ? '#0E7AFE' : 'lightgray'}
+              style={styles.btnStyle}
+              onPress={handleSubmit}
+            >
+              Add
+            </Button>
+          </View>
+        )}
+      </Formik>
     </>
   );
 }
