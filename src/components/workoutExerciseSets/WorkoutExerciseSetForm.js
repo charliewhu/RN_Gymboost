@@ -27,6 +27,9 @@ export default function WorkoutExerciseSetForm({route}) {
       rir,
     };
     dispatch(postWorkoutExerciseSet(data));
+    setWeight('');
+    setReps('');
+    setRir('');
   };
 
   return (
