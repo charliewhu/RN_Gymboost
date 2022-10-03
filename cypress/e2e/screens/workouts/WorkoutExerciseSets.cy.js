@@ -1,5 +1,10 @@
 import workoutexercisesets from '../../../fixtures//workoutexercisesets.json';
 
+const API_URL = Cypress.env('API_URL');
+const weight = 100;
+const reps = 8;
+const rir = 2;
+
 describe('WorkoutExercises screen', () => {
   beforeEach(() => {
     cy.workoutIntercepts();
@@ -8,6 +13,13 @@ describe('WorkoutExercises screen', () => {
     cy.wait('@getWorkouts');
     cy.wait('@getWorkoutExercises');
     cy.wait('@getWorkoutExerciseSets');
+
+    cy.intercept('POST', `${API_URL}/workoutexercisesets/`, {
+      workout_exercise: 1,
+      weight: weight,
+      reps: reps,
+      rir: rir,
+    }).as('postWorkoutExerciseSet');
   });
 
   it('navigates back to WorkoutExercises screen', () => {
@@ -40,43 +52,50 @@ describe('WorkoutExercises screen', () => {
       cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
       cy.findAllByTestId('workout_exercise_set_list_item').should(
         'have.length',
-        0,
+        2,
       );
     });
 
     it('doesnt submit if form fields contain non-numeric', () => {
-      cy.findByTestId('weightInput-outlined').type(100);
-      cy.findByTestId('repsInput-outlined').type(10);
-      cy.findByTestId('rirInput-outlined').type(3);
+      cy.findByTestId('weightInput-outlined').type('weight');
+      cy.findByTestId('repsInput-outlined').type('reps');
+      cy.findByTestId('rirInput-outlined').type('rir');
 
       cy.findByTestId('submitBtn').click();
 
       cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
       cy.findAllByTestId('workout_exercise_set_list_item').should(
         'have.length',
-        0,
+        2,
       );
     });
 
     it('adds Set to the list after submit', () => {
-      cy.findByTestId('weightInput-outlined').type(100);
-      cy.findByTestId('repsInput-outlined').type(10);
-      cy.findByTestId('rirInput-outlined').type(3);
+      cy.findByTestId('weightInput-outlined').type(weight);
+      cy.findByTestId('repsInput-outlined').type(reps);
+      cy.findByTestId('rirInput-outlined').type(rir);
       cy.findByTestId('submitBtn').click();
 
-      cy.wait('@postWorkoutExerciseSet');
+      cy.wait('@postWorkoutExerciseSet')
+        .its('request.body')
+        .should('deep.equal', {
+          workout_exercise: 1,
+          weight: weight,
+          reps: reps,
+          rir: rir,
+        });
 
       // assert set shows in list
       cy.findAllByTestId('workout_exercise_set_list_item').should(
         'have.length',
-        1,
+        3,
       );
     });
 
     it('clears the form after submit', () => {
-      cy.findByTestId('weightInput-outlined').type(100);
-      cy.findByTestId('repsInput-outlined').type(10);
-      cy.findByTestId('rirInput-outlined').type(3);
+      cy.findByTestId('weightInput-outlined').type(weight);
+      cy.findByTestId('repsInput-outlined').type(reps);
+      cy.findByTestId('rirInput-outlined').type(rir);
       cy.findByTestId('submitBtn').click();
 
       cy.wait('@postWorkoutExerciseSet');
