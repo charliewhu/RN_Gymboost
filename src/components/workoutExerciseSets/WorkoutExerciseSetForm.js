@@ -58,11 +58,10 @@ export default function WorkoutExerciseSetForm() {
         mode="contained"
         disabled={!isValid}
         buttonColor={isValid ? '#0E7AFE' : 'lightgray'}
-        //style={styles.btnStyle}
+        style={styles.btnStyle}
         //onPress={handleSubmit}
-        onPress={() => console.log(isValid)}
       >
-        Create
+        Add
       </Button>
     </>
   );
@@ -79,5 +78,8 @@ const styles = StyleSheet.create({
     height: 40,
     textAlign: 'center',
     borderColor: 'lightgray',
+  },
+  btnStyle: {
+    margin: 10,
   },
 });

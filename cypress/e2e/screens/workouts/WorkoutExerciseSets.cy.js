@@ -32,4 +32,58 @@ describe('WorkoutExercises screen', () => {
       0,
     );
   });
+
+  describe('form validation', () => {
+    it('doesnt submit form if form is blank', () => {
+      cy.findByTestId('submitBtn').click();
+
+      cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
+      cy.findAllByTestId('workout_exercise_set_list_item').should(
+        'have.length',
+        0,
+      );
+    });
+
+    it('doesnt submit if form fields contain non-numeric', () => {
+      cy.findByTestId('weightInput-outlined').type(100);
+      cy.findByTestId('repsInput-outlined').type(10);
+      cy.findByTestId('rirInput-outlined').type(3);
+
+      cy.findByTestId('submitBtn').click();
+
+      cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
+      cy.findAllByTestId('workout_exercise_set_list_item').should(
+        'have.length',
+        0,
+      );
+    });
+
+    it('adds Set to the list after submit', () => {
+      cy.findByTestId('weightInput-outlined').type(100);
+      cy.findByTestId('repsInput-outlined').type(10);
+      cy.findByTestId('rirInput-outlined').type(3);
+      cy.findByTestId('submitBtn').click();
+
+      cy.wait('@postWorkoutExerciseSet');
+
+      // assert set shows in list
+      cy.findAllByTestId('workout_exercise_set_list_item').should(
+        'have.length',
+        1,
+      );
+    });
+
+    it('clears the form after submit', () => {
+      cy.findByTestId('weightInput-outlined').type(100);
+      cy.findByTestId('repsInput-outlined').type(10);
+      cy.findByTestId('rirInput-outlined').type(3);
+      cy.findByTestId('submitBtn').click();
+
+      cy.wait('@postWorkoutExerciseSet');
+
+      cy.findByTestId('weightInput-outlined').should('have.value', '');
+      cy.findByTestId('repsInput-outlined').should('have.value', '');
+      cy.findByTestId('rirInput-outlined').should('have.value', '');
+    });
+  });
 });
