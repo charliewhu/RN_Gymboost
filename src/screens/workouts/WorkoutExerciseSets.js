@@ -1,7 +1,8 @@
 import {HeaderBackButton} from '@react-navigation/elements';
 import {useLayoutEffect} from 'react';
 import {Platform} from 'react-native';
-import WorkoutExerciseSetList from '../../components/workouts/WorkoutExerciseSetList';
+import WorkoutExerciseSetForm from '../../components/workoutExerciseSets/WorkoutExerciseSetForm';
+import WorkoutExerciseSetList from '../../components/workoutExerciseSets/WorkoutExerciseSetList';
 
 export default function WorkoutExerciseSets({navigation, route}) {
   useLayoutEffect(() => {
@@ -23,5 +24,10 @@ export default function WorkoutExerciseSets({navigation, route}) {
       : null;
   });
 
-  return <WorkoutExerciseSetList route={route} />;
+  return (
+    <>
+      <WorkoutExerciseSetForm />
+      <WorkoutExerciseSetList route={route} />
+    </>
+  );
 }

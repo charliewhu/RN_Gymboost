@@ -31,8 +31,7 @@ describe('Creating a workout, adding an Exercise, adding Sets', () => {
     cy.findByTestId('createWorkoutBtn').click();
     cy.wait('@postWorkout');
 
-    // assert redirect to url with id from response
-    cy.url().should('include', 'workouts/3');
+    // assert redirect to url with id from responses
 
     // assert no existing WorkoutExercises
     cy.findAllByTestId('workout_exercise_list_item').should('have.length', 0);
@@ -55,8 +54,32 @@ describe('Creating a workout, adding an Exercise, adding Sets', () => {
 
     cy.findAllByTestId('workout_exercise_list_item').click();
 
-    // should have workoutId/exercises/workoutExerciseId
+    // assert url should have workoutId/exercises/workoutExerciseId
     cy.url().should('include', 'workouts/3/exercises/3');
+
+    // assert no sets exist
+    cy.findAllByTestId('workout_exercise_set_list_item').should(
+      'have.length',
+      0,
+    );
+
+    // input set info
+    cy.findByTestId('weightInput-outlined').type(100);
+    cy.findByTestId('repsInput-outlined').type(10);
+    cy.findByTestId('rirInput-outlined').type(3);
+    cy.findByTestId('submitBtn').click();
+
+    cy.wait('@postWorkoutExerciseSet');
+
+    // assert set shows in list
+    cy.findAllByTestId('workout_exercise_set_list_item').should(
+      'have.length',
+      1,
+    );
+
+    cy.findByTestId('weightInput-outlined').should('have.value', '');
+    cy.findByTestId('repsInput-outlined').should('have.value', '');
+    cy.findByTestId('rirInput-outlined').should('have.value', '');
 
     // TODO
   });

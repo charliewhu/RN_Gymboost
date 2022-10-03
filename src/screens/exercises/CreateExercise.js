@@ -3,6 +3,10 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {postExercise} from '../../redux/exercise/exerciseSlice';
+import {
+  textInputActiveOutlineColor,
+  textInputOutlineColor,
+} from '../../utils/sharedStyles';
 
 export default function CreateExercise({navigation}) {
   const dispatch = useDispatch();
@@ -48,9 +52,6 @@ export default function CreateExercise({navigation}) {
     </ScrollView>
   );
 }
-
-const textInputOutlineColor = 'lightgray';
-const textInputActiveOutlineColor = 'black';
 
 const styles = StyleSheet.create({
   textInput: {
