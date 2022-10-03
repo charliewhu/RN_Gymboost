@@ -3,8 +3,12 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {postExercise} from '../../redux/exercise/exerciseSlice';
+import {
+  textInputActiveOutlineColor,
+  textInputOutlineColor,
+} from '../../utils/sharedStyles';
 
-export default function CreateExercise({navigation}) {
+export default function CreateExercise({navigation, route}) {
   const dispatch = useDispatch();
 
   // form input fields
@@ -19,7 +23,9 @@ export default function CreateExercise({navigation}) {
 
   const handleSubmit = () => {
     dispatch(postExercise({name}));
-    navigation.navigate('ExerciseScreen');
+    route.params
+      ? navigation.navigate('ExerciseScreen', {id: route.params.id})
+      : navigation.goBack();
   };
 
   return (
@@ -49,15 +55,11 @@ export default function CreateExercise({navigation}) {
   );
 }
 
-const textInputOutlineColor = 'lightgray';
-const textInputActiveOutlineColor = 'black';
-
 const styles = StyleSheet.create({
   textInput: {
     margin: 10,
   },
   btnStyle: {
     margin: 10,
-    borderRadius: 0,
   },
 });

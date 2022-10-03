@@ -1,4 +1,4 @@
-import routines from '../../fixtures/routines.json';
+import routines from '../../../fixtures/routines.json';
 
 const API_URL = Cypress.env('API_URL');
 

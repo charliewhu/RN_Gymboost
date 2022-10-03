@@ -1,21 +1,15 @@
-import workouts from '../../fixtures/workouts.json';
+import workouts from '../../../fixtures/workouts.json';
 
 const API_URL = Cypress.env('API_URL');
 
 describe('Workouts screen', () => {
   beforeEach(() => {
-    cy.intercept('GET', `${API_URL}/workouts/`, {
-      fixture: 'workouts.json',
-    }).as('getWorkouts');
-
-    cy.intercept('GET', `${API_URL}/workoutexercises/`, {
-      fixture: 'workoutexercises.json',
-    }).as('getWorkoutExercises');
-
-    cy.fixture('workouts.json').as('workouts');
+    cy.workoutIntercepts();
 
     cy.visit('/workouts/');
     cy.wait('@getWorkouts');
+    cy.wait('@getWorkoutExercises');
+    cy.wait('@getWorkoutExerciseSets');
   });
 
   it('shows workouts from the server', () => {
@@ -28,6 +22,7 @@ describe('Workouts screen', () => {
   it('navigates to a Workout', () => {
     cy.findAllByTestId('workout_list_item').first().click();
 
+    cy.get('@getWorkoutExercises.all').should('have.length', 1);
     cy.url().should('eq', 'http://localhost:19006/workouts/1');
   });
 });

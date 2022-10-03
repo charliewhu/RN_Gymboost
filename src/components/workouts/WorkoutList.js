@@ -1,18 +1,7 @@
-import {useEffect} from 'react';
 import {FlatList, View} from 'react-native';
 import {Divider, List} from 'react-native-paper';
-import {useDispatch, useSelector} from 'react-redux';
 
-import {getWorkouts} from '../../redux/workout/workoutSlice';
-
-export default function WorkoutList({navigation}) {
-  const dispatch = useDispatch();
-  const workouts = useSelector(state => state.workout.workouts);
-
-  useEffect(() => {
-    dispatch(getWorkouts());
-  }, [dispatch]);
-
+export default function WorkoutList({navigation, workouts}) {
   return (
     <View style={{flex: 1}}>
       {workouts && (

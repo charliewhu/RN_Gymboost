@@ -1,4 +1,4 @@
-import exercises from '../../fixtures/exercises.json';
+import exercises from '../../../fixtures/exercises.json';
 
 const API_URL = Cypress.env('API_URL');
 

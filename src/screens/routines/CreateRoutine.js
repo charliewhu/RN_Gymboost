@@ -3,6 +3,10 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {postRoutine} from '../../redux/routine/routineSlice';
+import {
+  textInputActiveOutlineColor,
+  textInputOutlineColor,
+} from '../../utils/sharedStyles';
 
 export default function CreateRoutine({navigation}) {
   const dispatch = useDispatch();
@@ -50,15 +54,11 @@ export default function CreateRoutine({navigation}) {
   );
 }
 
-const textInputOutlineColor = 'lightgray';
-const textInputActiveOutlineColor = 'black';
-
 const styles = StyleSheet.create({
   textInput: {
     margin: 10,
   },
   btnStyle: {
     margin: 10,
-    borderRadius: 0,
   },
 });
