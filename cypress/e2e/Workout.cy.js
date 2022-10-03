@@ -1,6 +1,9 @@
 import exercises from '../fixtures/exercises.json';
 
 const API_URL = Cypress.env('API_URL');
+const weight = '100';
+const reps = '8';
+const rir = '2';
 
 describe('Creating a workout, adding an Exercise, adding Sets', () => {
   beforeEach(() => {
@@ -17,6 +20,13 @@ describe('Creating a workout, adding an Exercise, adding Sets', () => {
       exercise: 1,
       name: 'exercise1',
     }).as('postWorkoutExercise');
+
+    cy.intercept('POST', `${API_URL}/workoutexercisesets/`, {
+      workout_exercise: 3,
+      weight: weight,
+      reps: reps,
+      rir: rir,
+    }).as('postWorkoutExerciseSet');
 
     cy.intercept('GET', `${API_URL}/exercises/`, {
       fixture: 'exercises.json',
@@ -64,12 +74,19 @@ describe('Creating a workout, adding an Exercise, adding Sets', () => {
     );
 
     // input set info
-    cy.findByTestId('weightInput-outlined').type(100);
-    cy.findByTestId('repsInput-outlined').type(10);
-    cy.findByTestId('rirInput-outlined').type(3);
+    cy.findByTestId('weightInput-outlined').type(weight);
+    cy.findByTestId('repsInput-outlined').type(reps);
+    cy.findByTestId('rirInput-outlined').type(rir);
     cy.findByTestId('submitBtn').click();
 
-    cy.wait('@postWorkoutExerciseSet');
+    cy.wait('@postWorkoutExerciseSet')
+      .its('request.body')
+      .should('deep.equal', {
+        workout_exercise: 3,
+        weight: weight,
+        reps: reps,
+        rir: rir,
+      });
 
     // assert set shows in list
     cy.findAllByTestId('workout_exercise_set_list_item').should(
