@@ -25,4 +25,16 @@ describe('WorkoutExercises screen', () => {
 
     cy.findAllByTestId('workout_exercise_list_item').should('have.length', 0);
   });
+
+  it('navigates to Exercise create page', () => {
+    cy.findByTestId('addExerciseBtn').click();
+
+    // assert redirect to add_exercise url
+    cy.url().should('include', 'workouts/3/add_exercise');
+    cy.findAllByTestId('workout_exercise_list_item').should('have.length', 0);
+
+    cy.findByTestId('create_exercise_btn').click();
+    cy.contains('Create Exercise');
+    cy.url().should('include', 'exercises/create');
+  });
 });
