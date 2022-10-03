@@ -46,7 +46,7 @@ const config = {
         WorkoutExercisesScreen: ':id',
         WorkoutExerciseSetsScreen: ':id/exercises/:workoutExerciseId',
         ExerciseScreen: ':id/add_exercise',
-        CreateExerciseScreen: 'exercises/create',
+        CreateExerciseScreen: ':id/add_exercise/create',
       },
     },
 

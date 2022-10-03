@@ -34,7 +34,7 @@ describe('WorkoutExercises screen', () => {
 
     cy.findByTestId('create_exercise_btn').click();
     cy.contains('Create Exercise');
-    cy.url().should('include', 'exercises/create');
+    cy.url().should('include', 'workouts/1/add_exercise/create');
 
     const selector = '[aria-label="Go back"]';
     cy.get(selector).first().click({force: true});

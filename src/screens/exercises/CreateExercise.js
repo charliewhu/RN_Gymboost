@@ -8,7 +8,7 @@ import {
   textInputOutlineColor,
 } from '../../utils/sharedStyles';
 
-export default function CreateExercise({navigation}) {
+export default function CreateExercise({navigation, route}) {
   const dispatch = useDispatch();
 
   // form input fields
@@ -23,7 +23,7 @@ export default function CreateExercise({navigation}) {
 
   const handleSubmit = () => {
     dispatch(postExercise({name}));
-    navigation.navigate('ExerciseScreen');
+    navigation.navigate('ExerciseScreen', {id: route.params.id});
   };
 
   return (

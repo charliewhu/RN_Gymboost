@@ -9,7 +9,13 @@ export default function Exercises({navigation, route}) {
       headerRight: () => (
         <AddButton
           testID="create_exercise_btn"
-          onPress={() => navigation.navigate('CreateExerciseScreen')}
+          onPress={() =>
+            route.params
+              ? navigation.navigate('CreateExerciseScreen', {
+                  id: route.params.id,
+                })
+              : navigation.navigate('CreateExerciseScreen')
+          }
         />
       ),
     });
