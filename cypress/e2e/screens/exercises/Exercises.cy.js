@@ -26,4 +26,8 @@ describe('Exercises screen', () => {
     cy.contains('Create Exercise');
     cy.url().should('include', 'exercises/create');
   });
+
+  it('doesnt show add_exercise_to_workout_btn', () => {
+    cy.findAllByTestId('add_exercise_to_workout_btn').should('have.length', 0);
+  });
 });

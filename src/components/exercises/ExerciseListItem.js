@@ -20,13 +20,15 @@ export default function ExerciseListItem({testID, navigation, route, item}) {
       <List.Item
         testID={testID}
         title={item.name}
-        right={props => (
-          <AddButton
-            {...props}
-            testID="add_exercise_to_workout_btn"
-            onPress={() => pressHandler(item)}
-          />
-        )}
+        right={props =>
+          route.params ? (
+            <AddButton
+              {...props}
+              testID="add_exercise_to_workout_btn"
+              onPress={() => pressHandler(item)}
+            />
+          ) : null
+        }
       />
       <Divider style={{backgroundColor: 'lightgray'}} />
     </>
