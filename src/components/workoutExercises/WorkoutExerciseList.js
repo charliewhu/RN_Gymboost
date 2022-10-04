@@ -1,6 +1,6 @@
 import {FlatList, View} from 'react-native';
-import {Divider, List} from 'react-native-paper';
 import {useSelector} from 'react-redux';
+import WorkoutExerciseListItem from './WorkoutExerciseListItem';
 
 export default function WorkoutExerciseList({navigation, route}) {
   const workoutExercises = useSelector(state =>
@@ -17,19 +17,7 @@ export default function WorkoutExerciseList({navigation, route}) {
           data={workoutExercises}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
-            <>
-              <List.Item
-                testID="workout_exercise_list_item"
-                title={item.name}
-                onPress={() =>
-                  navigation.navigate('WorkoutExerciseSetsScreen', {
-                    id: item.workout,
-                    workoutExerciseId: item.id,
-                  })
-                }
-              />
-              <Divider style={{backgroundColor: 'lightgray'}} />
-            </>
+            <WorkoutExerciseListItem navigation={navigation} item={item} />
           )}
         />
       )}
