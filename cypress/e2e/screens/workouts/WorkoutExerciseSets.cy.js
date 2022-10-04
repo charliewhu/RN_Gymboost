@@ -124,8 +124,9 @@ describe('WorkoutExercises screen', () => {
 
     cy.wait('@deleteWorkoutExerciseSet');
 
-    cy.findAllByTestId('workout_exercise_set_list_item')
-      .count()
-      .should('eq', 1);
+    cy.findAllByTestId('workout_exercise_set_list_item').should(
+      'have.length',
+      1,
+    );
   });
 });
