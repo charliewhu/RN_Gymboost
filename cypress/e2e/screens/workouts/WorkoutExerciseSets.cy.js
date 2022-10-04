@@ -21,7 +21,7 @@ describe('WorkoutExercises screen', () => {
       rir: rir,
     }).as('postWorkoutExerciseSet');
 
-    cy.intercept('DELETE', `${API_URL}/workoutexercisesets/1`).as(
+    cy.intercept('DELETE', `${API_URL}/workoutexercisesets/1/`, {}).as(
       'deleteWorkoutExerciseSet',
     );
   });
