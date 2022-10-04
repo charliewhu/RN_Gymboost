@@ -1,6 +1,6 @@
-import {FlatList, Text, View} from 'react-native';
-import {Divider, List} from 'react-native-paper';
+import {FlatList, View} from 'react-native';
 import {useSelector} from 'react-redux';
+import WorkoutExerciseSetListItem from './WorkoutExerciseSetListItem';
 
 export default function WorkoutExerciseSetList({route}) {
   const workoutExerciseSets = useSelector(state =>
@@ -16,20 +16,7 @@ export default function WorkoutExerciseSetList({route}) {
           testID="workout_exercise_set_list"
           data={workoutExerciseSets}
           keyExtractor={item => item.id}
-          renderItem={({item}) => (
-            <>
-              <List.Item
-                testID="workout_exercise_set_list_item"
-                title={
-                  <Text>
-                    {item.weight} x {item.reps} @ {item.rir}
-                  </Text>
-                }
-                onPress={() => console.log('pressed')}
-              />
-              <Divider style={{backgroundColor: 'lightgray'}} />
-            </>
-          )}
+          renderItem={({item}) => <WorkoutExerciseSetListItem item={item} />}
         />
       )}
     </View>

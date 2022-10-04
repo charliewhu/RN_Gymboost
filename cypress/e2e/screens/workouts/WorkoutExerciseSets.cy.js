@@ -20,6 +20,10 @@ describe('WorkoutExercises screen', () => {
       reps: reps,
       rir: rir,
     }).as('postWorkoutExerciseSet');
+
+    cy.intercept('DELETE', `${API_URL}/workoutexercisesets/1/`, {}).as(
+      'deleteWorkoutExerciseSet',
+    );
   });
 
   it('navigates back to WorkoutExercises screen', () => {
@@ -113,5 +117,16 @@ describe('WorkoutExercises screen', () => {
 
       cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
     });
+  });
+
+  it('WorkoutExerciseSets can be deleted', () => {
+    cy.findAllByTestId('deleteWorkoutExerciseSetBtn').first().click();
+
+    cy.wait('@deleteWorkoutExerciseSet');
+
+    cy.findAllByTestId('workout_exercise_set_list_item').should(
+      'have.length',
+      1,
+    );
   });
 });
