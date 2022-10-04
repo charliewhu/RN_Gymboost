@@ -2,7 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import {useLayoutEffect} from 'react';
 import {TouchableOpacity} from 'react-native';
 
-import WorkoutExerciseList from '../../components/workouts/WorkoutExerciseList';
+import WorkoutExerciseList from '../../components/workoutExercises/WorkoutExerciseList';
 
 export default function WorkoutExercises({navigation, route}) {
   useLayoutEffect(() => {

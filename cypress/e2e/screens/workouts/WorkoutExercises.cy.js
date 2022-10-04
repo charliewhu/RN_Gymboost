@@ -40,4 +40,16 @@ describe('WorkoutExercises screen', () => {
     cy.get(selector).first().click({force: true});
     cy.url().should('include', 'workouts/1/add_exercise');
   });
+
+  it('WorkoutExerciseSets can be deleted', () => {
+    cy.intercept('DELETE', `${API_URL}/workoutexercises/1/`, {}).as(
+      'deleteWorkoutExercise',
+    );
+
+    cy.findAllByTestId('deleteWorkoutExerciseBtn').first().click();
+
+    cy.wait('@deleteWorkoutExercise');
+
+    cy.findAllByTestId('workout_exercise_list_item').should('have.length', 1);
+  });
 });
