@@ -30,4 +30,14 @@ describe('Exercises screen', () => {
   it('doesnt show add_exercise_to_workout_btn', () => {
     cy.findAllByTestId('add_exercise_to_workout_btn').should('have.length', 0);
   });
+
+  it('can delete Exercises from the list', () => {
+    cy.intercept('DELETE', `${API_URL}/exercises/1/`, {}).as('deleteExercise');
+
+    cy.findAllByTestId('deleteExerciseBtn').first().click();
+
+    cy.wait('@deleteExercise');
+
+    cy.findAllByTestId('exercise_list_item').should('have.length', 1);
+  });
 });
