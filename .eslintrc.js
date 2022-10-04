@@ -8,6 +8,7 @@ module.exports = {
   },
   rules: {
     'unused-imports/no-unused-imports': 'error',
+
     'import/order': ['warn', {alphabetize: {order: 'asc'}}], // group and then alphabetize lines - https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md
     'no-duplicate-imports': 'error',
     quotes: ['error', 'single', {avoidEscape: true}], // single quote unless using interpolation
@@ -29,11 +30,12 @@ module.exports = {
         argsIgnorePattern: '^_',
       },
     ],
-
+    'react-native/no-inline-styles': 0,
     'prettier/prettier': [
       'error',
       {
         endOfLine: 'auto',
+        'no-inline-styles': false,
       },
     ],
   },
