@@ -1,9 +1,17 @@
 import {TouchableOpacity} from 'react-native';
 import {Divider, List} from 'react-native-paper';
+import {useDispatch} from 'react-redux';
+import {deleteWorkoutExercise} from '../../redux/workoutExercise/workoutExerciseSlice';
 import {sharedStyles} from '../../utils/sharedStyles';
 import IconButton from '../utils/IconButton';
 
 export default function WorkoutExerciseListItem({navigation, item}) {
+  const dispatch = useDispatch();
+
+  const handleDelete = id => {
+    dispatch(deleteWorkoutExercise(id));
+  };
+
   return (
     <TouchableOpacity
       onPress={() =>
@@ -21,7 +29,7 @@ export default function WorkoutExerciseListItem({navigation, item}) {
         <IconButton
           testID="deleteWorkoutExerciseBtn"
           icon="trash-bin"
-          onPress={() => console.log('pressed')}
+          onPress={() => handleDelete(item.id)}
         />
       </List.Section>
       <Divider style={{backgroundColor: 'lightgray'}} />
