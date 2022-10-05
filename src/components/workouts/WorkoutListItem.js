@@ -1,11 +1,16 @@
 import {TouchableOpacity} from 'react-native';
 import {Divider, List} from 'react-native-paper';
+import {useDispatch} from 'react-redux';
 import {deleteWorkout} from '../../redux/workout/workoutSlice';
 import {sharedStyles} from '../../utils/sharedStyles';
 import IconButton from '../utils/IconButton';
 
 export default function WorkoutListItem({navigation, item}) {
-  const handleDelete = () => {};
+  const dispatch = useDispatch();
+
+  const handleDelete = id => {
+    dispatch(deleteWorkout(id));
+  };
 
   return (
     <TouchableOpacity

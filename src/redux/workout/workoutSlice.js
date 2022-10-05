@@ -31,7 +31,7 @@ export const deleteWorkout = createAsyncThunk(
   'workout/deleteWorkout',
   async (id, thunkAPI) => {
     try {
-      await workoutService.deleteWorkout();
+      await workoutService.deleteWorkout(id);
       return id;
     } catch (error) {
       console.log(error);
