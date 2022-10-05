@@ -25,4 +25,14 @@ describe('Workouts screen', () => {
     cy.get('@getWorkoutExercises.all').should('have.length', 1);
     cy.url().should('eq', 'http://localhost:19006/workouts/1');
   });
+
+  it('Workouts can be deleted', () => {
+    cy.intercept('DELETE', `${API_URL}/workouts/1/`, {}).as('deleteWorkout');
+
+    cy.findAllByTestId('deleteWorkoutBtn').first().click();
+
+    cy.wait('@deleteWorkout');
+
+    cy.findAllByTestId('workout_list_item').should('have.length', 1);
+  });
 });

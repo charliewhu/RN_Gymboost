@@ -1,5 +1,5 @@
 import {FlatList, View} from 'react-native';
-import {Divider, List} from 'react-native-paper';
+import WorkoutListItem from './WorkoutListItem';
 
 export default function WorkoutList({navigation, workouts}) {
   return (
@@ -10,16 +10,7 @@ export default function WorkoutList({navigation, workouts}) {
           data={workouts}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
-            <>
-              <List.Item
-                testID="workout_list_item"
-                title={new Date(Date.parse(item.created_on)).toUTCString()}
-                onPress={() =>
-                  navigation.navigate('WorkoutExercisesScreen', {id: item.id})
-                }
-              />
-              <Divider style={{backgroundColor: 'lightgray'}} />
-            </>
+            <WorkoutListItem navigation={navigation} item={item} />
           )}
         />
       )}
