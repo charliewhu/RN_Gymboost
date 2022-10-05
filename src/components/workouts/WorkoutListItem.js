@@ -1,5 +1,6 @@
 import {TouchableOpacity} from 'react-native';
 import {Divider, List} from 'react-native-paper';
+import {deleteWorkout} from '../../redux/workout/workoutSlice';
 import {sharedStyles} from '../../utils/sharedStyles';
 import IconButton from '../utils/IconButton';
 

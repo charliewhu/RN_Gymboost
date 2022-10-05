@@ -27,6 +27,19 @@ export const postWorkout = createAsyncThunk(
   },
 );
 
+export const deleteWorkout = createAsyncThunk(
+  'workout/deleteWorkout',
+  async (id, thunkAPI) => {
+    try {
+      await workoutService.deleteWorkout();
+      return id;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 const initialState = {
   workouts: [],
   isLoading: true,
@@ -67,6 +80,20 @@ export const workoutSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.isUpdate = false;
+        state.message = action.payload;
+      })
+      .addCase(deleteWorkout.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(deleteWorkout.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.workouts = state.workouts.filter(
+          workout => workout.id !== action.payload,
+        );
+      })
+      .addCase(deleteWorkout.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
         state.message = action.payload;
       });
   },
