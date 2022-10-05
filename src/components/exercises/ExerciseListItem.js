@@ -1,7 +1,10 @@
 import {Divider, List} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {postWorkoutExercise} from '../../redux/workoutExercise/workoutExerciseSlice';
+import {sharedStyles} from '../../utils/sharedStyles';
 import AddButton from '../utils/AddButton';
+import IconButton from '../utils/IconButton';
+import {deleteExercise} from '../../redux/exercise/exerciseSlice';
 
 export default function ExerciseListItem({testID, navigation, route, item}) {
   const dispatch = useDispatch();
@@ -15,21 +18,26 @@ export default function ExerciseListItem({testID, navigation, route, item}) {
     navigation.goBack();
   };
 
+  const handleDelete = id => {
+    dispatch(deleteExercise(id));
+  };
+
   return (
     <>
-      <List.Item
-        testID={testID}
-        title={item.name}
-        right={props =>
-          route.params ? (
-            <AddButton
-              {...props}
-              testID="add_exercise_to_workout_btn"
-              onPress={() => pressHandler(item)}
-            />
-          ) : null
-        }
-      />
+      <List.Section testID={testID} style={sharedStyles.listItemContainer}>
+        <List.Item title={item.name} />
+        {route.params ? (
+          <AddButton
+            testID="add_exercise_to_workout_btn"
+            onPress={() => pressHandler(item)}
+          />
+        ) : null}
+        <IconButton
+          testID="deleteExerciseBtn"
+          icon="trash-bin"
+          onPress={() => handleDelete(item.id)}
+        />
+      </List.Section>
       <Divider style={{backgroundColor: 'lightgray'}} />
     </>
   );
