@@ -1,10 +1,10 @@
 import {Divider, List} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
+import {deleteExercise} from '../../redux/exercise/exerciseSlice';
 import {postWorkoutExercise} from '../../redux/workoutExercise/workoutExerciseSlice';
 import {sharedStyles} from '../../utils/sharedStyles';
 import AddButton from '../utils/AddButton';
 import IconButton from '../utils/IconButton';
-import {deleteExercise} from '../../redux/exercise/exerciseSlice';
 
 export default function ExerciseListItem({testID, navigation, route, item}) {
   const dispatch = useDispatch();
