@@ -36,6 +36,7 @@ const config = {
       initialRouteName: 'RoutinesScreen',
       screens: {
         RoutinesScreen: '',
+        RoutineExercisesScreen: ':id',
         CreateRoutineScreen: 'create',
       },
     },
