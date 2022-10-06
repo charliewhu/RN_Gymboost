@@ -1,6 +1,8 @@
 import routineexercises from '../../../fixtures/routineexercises.json';
 
 const API_URL = Cypress.env('API_URL');
+const routineName = 'test routine';
+const selector = '[aria-label="Go back"]';
 
 describe('WorkoutExercises screen', () => {
   beforeEach(() => {
@@ -36,8 +38,30 @@ describe('WorkoutExercises screen', () => {
     cy.url().should('include', 'routines/1/add_exercise/create');
 
     // back button goes back to Exercises list for adding to Routine
-    const selector = '[aria-label="Go back"]';
     cy.get(selector).first().click({force: true});
     cy.url().should('include', 'routines/1/add_exercise');
+  });
+
+  it('navigates back to RoutinesScreen if just created', () => {
+    // case where we go
+    // Routines -> RoutineCreate -> RoutineExercises
+    // navigates back to RoutineCreate from RoutineExercises
+    // we want to go back to Routines
+    cy.visit('/routines/');
+    cy.findByTestId('createRoutineBtn').click();
+
+    cy.findByTestId('nameInput-outlined').type(routineName);
+
+    cy.intercept('POST', `${API_URL}/routines/`, {
+      id: 3,
+      name: routineName,
+    }).as('postRoutine');
+    cy.findByTestId('submitBtn').click();
+
+    cy.url().should('include', 'routines/3');
+
+    cy.get(selector).first().click({force: true});
+
+    cy.url().should('eq', 'http://localhost:19006/routines/');
   });
 });
