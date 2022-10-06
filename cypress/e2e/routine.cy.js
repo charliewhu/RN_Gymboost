@@ -31,9 +31,17 @@ describe('Creating a Routine, adding an Exercise', () => {
 
     cy.get('[role="heading"]').contains(routineName);
 
-    // Click addRoutineExerciseBtn
-    // Will be on ExercisesScreen (back button should go to RoutineExercisesScreen, like with workouts/id/add_exercise)
-    // Click addExerciseToRoutineBtn
+    cy.findByTestId('addExerciseBtn').click();
+
+    cy.url().should('include', 'routines/3/add_exercise');
+    cy.wait('@getExercises');
+
+    cy.findAllByTestId('addExerciseToRoutineBtn').first().click();
+    cy.wait('@postRoutineExercise').its('request.body').should('deep.equal', {
+      routine: 3,
+      exercise: 1,
+    });
+
     // Navigate to RoutineExercisesScreen
     // Exercise should be in the list
   });
