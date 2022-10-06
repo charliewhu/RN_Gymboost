@@ -1,6 +1,5 @@
 import {TouchableOpacity} from 'react-native';
 import {Divider, List} from 'react-native-paper';
-import IconButton from '../utils/IconButton';
 import {sharedStyles} from '../../utils/sharedStyles';
 
 export default function RoutineExerciseListItem({item}) {
