@@ -29,7 +29,8 @@ describe('Creating a Routine, adding an Exercise', () => {
 
     cy.url().should('include', 'routines/3');
 
-    // Header should equal name of Routine
+    cy.get('[role="heading"]').contains(routineName);
+
     // Click addRoutineExerciseBtn
     // Will be on ExercisesScreen (back button should go to RoutineExercisesScreen, like with workouts/id/add_exercise)
     // Click addExerciseToRoutineBtn
