@@ -1,17 +1,12 @@
 import routines from '../../../fixtures/routines.json';
 
-const API_URL = Cypress.env('API_URL');
-
 describe('Routines screen', () => {
   beforeEach(() => {
-    cy.intercept('GET', `${API_URL}/routines/`, {
-      fixture: 'routines.json',
-    }).as('getRoutines');
-
-    cy.fixture('routines.json').as('routines');
+    cy.routineIntercepts();
 
     cy.visit('/routines/');
     cy.wait('@getRoutines');
+    cy.wait('@getRoutineExercises');
   });
 
   it('shows routines from the server', () => {

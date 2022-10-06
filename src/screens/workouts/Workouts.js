@@ -8,7 +8,6 @@ import {getWorkoutExercises} from '../../redux/workoutExercise/workoutExerciseSl
 import {getWorkoutExerciseSets} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
 
 export default function Workouts({navigation}) {
-  const {isLoading, isUpdate} = useSelector(state => state.workout);
   const workouts = useSelector(state => state.workout.workouts);
   const dispatch = useDispatch();
 
@@ -18,20 +17,18 @@ export default function Workouts({navigation}) {
     dispatch(getWorkoutExerciseSets());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (!isLoading && isUpdate) {
-      const workoutId = workouts[workouts.length - 1].id;
-      navigation.navigate('WorkoutExercisesScreen', {id: workoutId});
-    }
-  }, [isUpdate, isLoading, navigation, workouts]);
+  const handleSubmit = () => {
+    dispatch(postWorkout())
+      .unwrap()
+      .then(res => {
+        navigation.navigate('WorkoutExercisesScreen', {id: res.id});
+      });
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <AddButton
-          testID="createWorkoutBtn"
-          onPress={() => dispatch(postWorkout())}
-        />
+        <AddButton testID="createWorkoutBtn" onPress={() => handleSubmit()} />
       ),
     });
   });

@@ -19,9 +19,7 @@ export const postRoutine = createAsyncThunk(
   'routine/postRoutine',
   async (data, thunkAPI) => {
     try {
-      console.log('routine: ', data);
       const routine = await routineService.postRoutine(data);
-
       return routine;
     } catch (error) {
       console.log(error);

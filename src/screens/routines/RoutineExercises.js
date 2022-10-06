@@ -1,19 +1,25 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {useLayoutEffect} from 'react';
 import {TouchableOpacity} from 'react-native';
+import {useSelector} from 'react-redux';
 
-import WorkoutExerciseList from '../../components/workoutExercises/WorkoutExerciseList';
+import RoutineExerciseList from '../../components/routines/RoutineExerciseList';
 
-export default function WorkoutExercises({navigation, route}) {
+export default function RoutineExercises({navigation, route}) {
+  const routine = useSelector(state =>
+    state.routine.routines.find(item => item.id == route.params.id),
+  );
+
   useLayoutEffect(() => {
     navigation.setOptions({
+      title: routine ? routine.name : null,
       headerRight: () => (
         <TouchableOpacity
           testID="addExerciseBtn"
           onPress={() =>
             navigation.navigate('ExerciseScreen', {
               id: route.params.id,
-              update: 'workouts',
+              update: 'routines',
             })
           }
         >
@@ -23,5 +29,5 @@ export default function WorkoutExercises({navigation, route}) {
     });
   });
 
-  return <WorkoutExerciseList navigation={navigation} route={route} />;
+  return <RoutineExerciseList route={route} />;
 }

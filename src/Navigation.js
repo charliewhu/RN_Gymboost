@@ -11,6 +11,7 @@ import Routines from './screens/routines/Routines';
 import WorkoutExerciseSets from './screens/workouts/WorkoutExerciseSets';
 import WorkoutExercises from './screens/workouts/WorkoutExercises';
 import Workouts from './screens/workouts/Workouts';
+import RoutineExercises from './screens/routines/RoutineExercises';
 
 const config = {
   screens: {
@@ -32,10 +33,13 @@ const config = {
     },
     Routines: {
       path: 'routines',
-      initialRouteName: 'RoutineScreen',
+      initialRouteName: 'RoutinesScreen',
       screens: {
-        RoutineScreen: '',
+        RoutinesScreen: '',
+        RoutineExercisesScreen: ':id',
         CreateRoutineScreen: 'create',
+        ExerciseScreen: ':id/add_exercise',
+        CreateExerciseScreen: ':id/add_exercise/create',
       },
     },
     Workouts: {
@@ -49,37 +53,6 @@ const config = {
         CreateExerciseScreen: ':id/add_exercise/create',
       },
     },
-
-    // Workouts: {
-    //   path: 'workouts',
-    //   initialRouteName: 'WorkoutsScreen',
-    //   screens: {
-    //     WorkoutsScreen: '',
-    //     WorkoutExerciseStack: {
-    //       screens: {
-    //         WorkoutExercisesScreen: ':id',
-    //         ExerciseScreen: ':id/add_exercise',
-    //         WorkoutExerciseSetsScreen: ':id/exercises/:workoutExerciseId',
-    //       },
-    //     },
-    //   },
-    // },
-    // Workouts: {
-    //   path: 'workouts',
-    //   initialRouteName: 'WorkoutsScreen',
-    //   screens: {
-    //     WorkoutsScreen: '',
-    //     WorkoutExerciseStack: {
-    //       path: ':id',
-    //       //initialRouteName: 'WorkoutExercisesScreen',
-    //       screens: {
-    //         WorkoutExercisesScreen: '',
-    //         ExerciseScreen: 'add_exercise',
-    //         WorkoutExerciseSetsScreen: 'exercises/:workoutExerciseId',
-    //       },
-    //     },
-    //   },
-    // },
   },
 };
 
@@ -123,14 +96,29 @@ export function RoutineStack() {
   return (
     <RoutineStackNav.Navigator>
       <RoutineStackNav.Screen
-        name="RoutineScreen"
+        name="RoutinesScreen"
         component={Routines}
         options={{title: 'Routines'}}
+      />
+      <RoutineStackNav.Screen
+        name="RoutineExercisesScreen"
+        component={RoutineExercises}
+        //options={{title: 'Routines'}}
       />
       <RoutineStackNav.Screen
         name="CreateRoutineScreen"
         component={CreateRoutine}
         options={{title: 'Create Routine'}}
+      />
+      <RoutineStackNav.Screen
+        name="ExerciseScreen"
+        component={Exercises}
+        options={{title: 'Exercises'}}
+      />
+      <RoutineStackNav.Screen
+        name="CreateExerciseScreen"
+        component={CreateExercise}
+        options={{title: 'Create Exercise'}}
       />
     </RoutineStackNav.Navigator>
   );
