@@ -7,6 +7,7 @@ import {
   textInputActiveOutlineColor,
   textInputOutlineColor,
 } from '../../utils/sharedStyles';
+import {StackActions} from '@react-navigation/native';
 
 export default function CreateRoutine({navigation}) {
   const dispatch = useDispatch();
@@ -25,7 +26,9 @@ export default function CreateRoutine({navigation}) {
     dispatch(postRoutine({name}))
       .unwrap()
       .then(res => {
-        navigation.navigate('RoutineExercisesScreen', {id: res.id});
+        navigation.dispatch(
+          StackActions.replace('RoutineExercisesScreen', {id: res.id}),
+        );
       });
   };
 
