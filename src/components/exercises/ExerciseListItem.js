@@ -1,4 +1,5 @@
 import {useEffect} from 'react';
+import {View} from 'react-native';
 import {Divider, List} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {deleteExercise} from '../../redux/exercise/exerciseSlice';
@@ -62,12 +63,14 @@ export default function ExerciseListItem({testID, navigation, route, item}) {
     <>
       <List.Section testID={testID} style={sharedStyles.listItemContainer}>
         <List.Item title={item.name} />
-        {route.params ? addButton() : null}
-        <IconButton
-          testID="deleteExerciseBtn"
-          icon="trash-bin"
-          onPress={() => handleDelete(item.id)}
-        />
+        <View style={{flexDirection: 'row'}}>
+          <IconButton
+            testID="deleteExerciseBtn"
+            icon="trash-bin"
+            onPress={() => handleDelete(item.id)}
+          />
+          {route.params ? addButton() : null}
+        </View>
       </List.Section>
       <Divider style={{backgroundColor: 'lightgray'}} />
     </>
