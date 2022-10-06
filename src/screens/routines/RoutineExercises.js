@@ -3,7 +3,7 @@ import {useLayoutEffect} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
 
-import RoutineExerciseList from '../../components/routines/RoutineExerciseList';
+import RoutineExerciseList from '../../components/routineExercises/RoutineExerciseList';
 
 export default function RoutineExercises({navigation, route}) {
   const routine = useSelector(state =>

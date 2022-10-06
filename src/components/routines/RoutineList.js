@@ -1,5 +1,4 @@
 import {FlatList, View} from 'react-native';
-import {Divider, List} from 'react-native-paper';
 import RoutineListItem from './RoutineListItem';
 
 export default function RoutineList({routines}) {
