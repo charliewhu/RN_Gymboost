@@ -10,8 +10,14 @@ async function getRoutineExercises() {
   return response.data;
 }
 
+async function postRoutineExercise(data) {
+  const response = await axiosInstance.post('/routineexercises/', data);
+  return response.data;
+}
+
 const routineExerciseService = {
   getRoutineExercises,
+  postRoutineExercise,
 };
 
 export default routineExerciseService;

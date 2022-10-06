@@ -15,6 +15,21 @@ export const getRoutineExercises = createAsyncThunk(
   },
 );
 
+export const postRoutineExercise = createAsyncThunk(
+  'routineExercise/postRoutineExercise',
+  async (data, thunkAPI) => {
+    try {
+      const routineExercise = await routineExerciseService.postRoutineExercise(
+        data,
+      );
+      return routineExercise;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 const initialState = {
   routineExercises: [],
   isLoading: true,
