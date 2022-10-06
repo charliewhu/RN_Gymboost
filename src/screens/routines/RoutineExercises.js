@@ -12,9 +12,6 @@ export default function RoutineExercises({navigation, route}) {
     state.routine.routines.find(item => item.id == route.params.id),
   );
 
-  console.log(routines);
-  console.log('routine: ', routine);
-
   useLayoutEffect(() => {
     navigation.setOptions({
       title: routine ? routine.name : null,
