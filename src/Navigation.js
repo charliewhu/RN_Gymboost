@@ -11,6 +11,7 @@ import Routines from './screens/routines/Routines';
 import WorkoutExerciseSets from './screens/workouts/WorkoutExerciseSets';
 import WorkoutExercises from './screens/workouts/WorkoutExercises';
 import Workouts from './screens/workouts/Workouts';
+import RoutineExercises from './screens/routines/RoutineExercises';
 
 const config = {
   screens: {
@@ -95,6 +96,11 @@ export function RoutineStack() {
         name="RoutinesScreen"
         component={Routines}
         options={{title: 'Routines'}}
+      />
+      <RoutineStackNav.Screen
+        name="RoutineExercisesScreen"
+        component={RoutineExercises}
+        //options={{title: 'Routines'}}
       />
       <RoutineStackNav.Screen
         name="CreateRoutineScreen"
