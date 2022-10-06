@@ -40,16 +40,4 @@ describe('WorkoutExercises screen', () => {
     cy.get(selector).first().click({force: true});
     cy.url().should('include', 'routines/1/add_exercise');
   });
-
-  it('RoutineExercises can be deleted', () => {
-    cy.intercept('DELETE', `${API_URL}/routineexercises/1/`, {}).as(
-      'deleteRoutineExercise',
-    );
-
-    cy.findAllByTestId('deleteRoutineExerciseBtn').first().click();
-
-    cy.wait('@deleteRoutineExercise');
-
-    cy.findAllByTestId('routine_exercise_list_item').should('have.length', 1);
-  });
 });
