@@ -38,6 +38,13 @@ describe('Creating a Routine, adding an Exercise', () => {
 
     cy.findAllByTestId('addExerciseToWorkoutBtn').should('have.length', 0);
 
+    cy.intercept('POST', `${API_URL}/routineexercises/`, {
+      id: 3,
+      routine: 1,
+      exercise: 1,
+      name: 'Exercise 1',
+    }).as('postRoutineExercise');
+
     cy.findAllByTestId('addExerciseToRoutineBtn').first().click();
     cy.wait('@postRoutineExercise').its('request.body').should('deep.equal', {
       routine: 3,
