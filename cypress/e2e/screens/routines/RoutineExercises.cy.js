@@ -35,6 +35,7 @@ describe('WorkoutExercises screen', () => {
     cy.contains('Create Exercise');
     cy.url().should('include', 'routines/1/add_exercise/create');
 
+    // back button goes back to Exercises list for adding to Routine
     const selector = '[aria-label="Go back"]';
     cy.get(selector).first().click({force: true});
     cy.url().should('include', 'routines/1/add_exercise');
