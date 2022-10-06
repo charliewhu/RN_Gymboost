@@ -26,5 +26,5 @@ export default function Routines({navigation}) {
     });
   });
 
-  return <RoutineList routines={routines} />;
+  return <RoutineList navigation={navigation} routines={routines} />;
 }
