@@ -2,6 +2,7 @@ import {useEffect} from 'react';
 import {Divider, List} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {deleteExercise} from '../../redux/exercise/exerciseSlice';
+import {postRoutineExercise} from '../../redux/routineExercise/routineExerciseSlice';
 import {postWorkoutExercise} from '../../redux/workoutExercise/workoutExerciseSlice';
 import {sharedStyles} from '../../utils/sharedStyles';
 import AddButton from '../utils/AddButton';
