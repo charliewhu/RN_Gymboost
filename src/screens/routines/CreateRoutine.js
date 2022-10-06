@@ -22,8 +22,11 @@ export default function CreateRoutine({navigation}) {
   }, [name]);
 
   const handleSubmit = () => {
-    dispatch(postRoutine({name}));
-    navigation.navigate('RoutineScreen');
+    dispatch(postRoutine({name}))
+      .unwrap()
+      .then(res => {
+        navigation.navigate('RoutineExercisesScreen', {id: res.id});
+      });
   };
 
   return (

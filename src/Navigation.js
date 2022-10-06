@@ -32,9 +32,9 @@ const config = {
     },
     Routines: {
       path: 'routines',
-      initialRouteName: 'RoutineScreen',
+      initialRouteName: 'RoutinesScreen',
       screens: {
-        RoutineScreen: '',
+        RoutinesScreen: '',
         CreateRoutineScreen: 'create',
       },
     },
@@ -49,37 +49,6 @@ const config = {
         CreateExerciseScreen: ':id/add_exercise/create',
       },
     },
-
-    // Workouts: {
-    //   path: 'workouts',
-    //   initialRouteName: 'WorkoutsScreen',
-    //   screens: {
-    //     WorkoutsScreen: '',
-    //     WorkoutExerciseStack: {
-    //       screens: {
-    //         WorkoutExercisesScreen: ':id',
-    //         ExerciseScreen: ':id/add_exercise',
-    //         WorkoutExerciseSetsScreen: ':id/exercises/:workoutExerciseId',
-    //       },
-    //     },
-    //   },
-    // },
-    // Workouts: {
-    //   path: 'workouts',
-    //   initialRouteName: 'WorkoutsScreen',
-    //   screens: {
-    //     WorkoutsScreen: '',
-    //     WorkoutExerciseStack: {
-    //       path: ':id',
-    //       //initialRouteName: 'WorkoutExercisesScreen',
-    //       screens: {
-    //         WorkoutExercisesScreen: '',
-    //         ExerciseScreen: 'add_exercise',
-    //         WorkoutExerciseSetsScreen: 'exercises/:workoutExerciseId',
-    //       },
-    //     },
-    //   },
-    // },
   },
 };
 
@@ -123,7 +92,7 @@ export function RoutineStack() {
   return (
     <RoutineStackNav.Navigator>
       <RoutineStackNav.Screen
-        name="RoutineScreen"
+        name="RoutinesScreen"
         component={Routines}
         options={{title: 'Routines'}}
       />
