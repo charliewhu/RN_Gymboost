@@ -1,3 +1,4 @@
+import {StackActions} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
@@ -7,7 +8,6 @@ import {
   textInputActiveOutlineColor,
   textInputOutlineColor,
 } from '../../utils/sharedStyles';
-import {StackActions} from '@react-navigation/native';
 
 export default function CreateRoutine({navigation}) {
   const dispatch = useDispatch();
