@@ -41,3 +41,13 @@ Cypress.Commands.add('workoutIntercepts', () => {
     fixture: 'workoutexercisesets.json',
   }).as('getWorkoutExerciseSets');
 });
+
+Cypress.Commands.add('routineIntercepts', () => {
+  cy.intercept('GET', `${API_URL}/routines/`, {
+    fixture: 'routines.json',
+  }).as('getRoutines');
+
+  cy.intercept('GET', `${API_URL}/routineexercises/`, {
+    fixture: 'routineexercises.json',
+  }).as('getRoutineExercises');
+});

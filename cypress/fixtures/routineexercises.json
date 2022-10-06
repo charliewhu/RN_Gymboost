@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "routine": 1,
+        "exercise": 1,
+        "name": "Exercise 1"
+    },
+    {
+        "id": 2,
+        "routine": 1,
+        "exercise": 2,
+        "name": "Exercise 2"
+    }
+]

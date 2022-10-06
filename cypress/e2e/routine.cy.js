@@ -4,7 +4,7 @@ const API_URL = Cypress.env('API_URL');
 
 describe('Creating a Routine, adding an Exercise', () => {
   beforeEach(() => {
-    cy.workoutIntercepts();
+    cy.routineIntercepts();
 
     cy.intercept('GET', `${API_URL}/exercises/`, {
       fixture: 'exercises.json',
@@ -16,8 +16,7 @@ describe('Creating a Routine, adding an Exercise', () => {
   });
 
   it('can create', () => {
-    // RoutinesScreen
-    // Click addRoutineBtn
+    cy.findByTestId('createRoutineBtn').click();
     // Type routine name
     // Click submitBtn
     // Navigate to RoutineExercisesScreen
