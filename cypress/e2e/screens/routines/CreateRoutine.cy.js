@@ -37,7 +37,7 @@ describe('Create Routine screen', () => {
     cy.url().should('eq', 'http://localhost:19006/routines/create/');
   });
 
-  it('clicking submit button with valid form redirects to routines page and shows new routine in list', () => {
+  it('clicking submit button with valid form redirects to RoutineExercises screen', () => {
     cy.findByTestId('nameInput-outlined').type(routineName);
     cy.findByTestId('submitBtn').click();
 
@@ -45,9 +45,7 @@ describe('Create Routine screen', () => {
       name: routineName,
     });
 
-    cy.contains('Routines');
-    cy.url().should('eq', 'http://localhost:19006/routines');
-
-    cy.contains(routineName);
+    cy.get('[role="heading"]').contains(routineName);
+    cy.url().should('eq', 'http://localhost:19006/routines/3');
   });
 });
