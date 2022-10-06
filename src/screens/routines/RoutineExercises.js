@@ -6,8 +6,6 @@ import {useSelector} from 'react-redux';
 import RoutineExerciseList from '../../components/routines/RoutineExerciseList';
 
 export default function RoutineExercises({navigation, route}) {
-  const routines = useSelector(state => state.routine.routines);
-
   const routine = useSelector(state =>
     state.routine.routines.find(item => item.id == route.params.id),
   );
