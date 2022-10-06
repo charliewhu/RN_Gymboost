@@ -1,13 +1,18 @@
 import {TouchableOpacity} from 'react-native';
 import {Divider, List} from 'react-native-paper';
-import IconButton from '../utils/IconButton';
 import {sharedStyles} from '../../utils/sharedStyles';
 
-export default function RoutineExerciseListItem({item}) {
+export default function RoutineListItem({navigation, item}) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('RoutineExercisesScreen', {
+          id: item.id,
+        })
+      }
+    >
       <List.Section
-        testID="workout_exercise_list_item"
+        testID="routine_list_item"
         style={sharedStyles.listItemContainer}
       >
         <List.Item title={item.name} />

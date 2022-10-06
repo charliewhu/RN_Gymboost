@@ -1,3 +1,4 @@
+import {StackActions} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
@@ -25,7 +26,9 @@ export default function CreateRoutine({navigation}) {
     dispatch(postRoutine({name}))
       .unwrap()
       .then(res => {
-        navigation.navigate('RoutineExercisesScreen', {id: res.id});
+        navigation.dispatch(
+          StackActions.replace('RoutineExercisesScreen', {id: res.id}),
+        );
       });
   };
 

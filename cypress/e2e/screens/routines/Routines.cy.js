@@ -21,4 +21,10 @@ describe('Routines screen', () => {
     cy.contains('Create Routine');
     cy.url().should('include', 'routines/create');
   });
+
+  it('navigates to RoutineExercises screen', () => {
+    cy.findAllByTestId('routine_list_item').first().click();
+    cy.get('[role="heading"]').contains(routines[0].name);
+    cy.url().should('include', 'routines/1');
+  });
 });

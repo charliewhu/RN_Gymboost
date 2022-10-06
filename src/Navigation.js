@@ -7,11 +7,11 @@ import Home from './screens/Home';
 import CreateExercise from './screens/exercises/CreateExercise';
 import Exercises from './screens/exercises/Exercises';
 import CreateRoutine from './screens/routines/CreateRoutine';
+import RoutineExercises from './screens/routines/RoutineExercises';
 import Routines from './screens/routines/Routines';
 import WorkoutExerciseSets from './screens/workouts/WorkoutExerciseSets';
 import WorkoutExercises from './screens/workouts/WorkoutExercises';
 import Workouts from './screens/workouts/Workouts';
-import RoutineExercises from './screens/routines/RoutineExercises';
 
 const config = {
   screens: {
