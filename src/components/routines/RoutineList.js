@@ -1,5 +1,6 @@
 import {FlatList, View} from 'react-native';
 import {Divider, List} from 'react-native-paper';
+import RoutineListItem from './RoutineListItem';
 
 export default function RoutineList({routines}) {
   return (
@@ -9,12 +10,7 @@ export default function RoutineList({routines}) {
           testID="routine_list"
           data={routines}
           keyExtractor={item => item.id}
-          renderItem={({item}) => (
-            <>
-              <List.Item testID="routine_list_item" title={item.name} />
-              <Divider style={{backgroundColor: 'lightgray'}} />
-            </>
-          )}
+          renderItem={({item}) => <RoutineListItem item={item} />}
         />
       )}
     </View>
