@@ -1,18 +1,7 @@
-import {useEffect} from 'react';
 import {FlatList, View} from 'react-native';
 import {Divider, List} from 'react-native-paper';
-import {useDispatch, useSelector} from 'react-redux';
 
-import {getRoutines} from '../../redux/routine/routineSlice';
-
-export default function RoutineList() {
-  const dispatch = useDispatch();
-  const routines = useSelector(state => state.routine.routines);
-
-  useEffect(() => {
-    dispatch(getRoutines());
-  }, [dispatch]);
-
+export default function RoutineList({routines}) {
   return (
     <View style={{flex: 1}}>
       {routines && (
