@@ -38,6 +38,7 @@ const config = {
         RoutinesScreen: '',
         RoutineExercisesScreen: ':id',
         CreateRoutineScreen: 'create',
+        ExerciseScreen: ':id/add_exercise',
       },
     },
     Workouts: {
@@ -107,6 +108,11 @@ export function RoutineStack() {
         name="CreateRoutineScreen"
         component={CreateRoutine}
         options={{title: 'Create Routine'}}
+      />
+      <RoutineStackNav.Screen
+        name="ExerciseScreen"
+        component={Exercises}
+        options={{title: 'Exercises'}}
       />
     </RoutineStackNav.Navigator>
   );
