@@ -2,6 +2,7 @@
 
 const API_URL = Cypress.env('API_URL');
 const routineName = 'test routine';
+const exerciseName = 'Exercise 1';
 
 describe('Creating a Routine, adding an Exercise', () => {
   beforeEach(() => {
@@ -40,9 +41,9 @@ describe('Creating a Routine, adding an Exercise', () => {
 
     cy.intercept('POST', `${API_URL}/routineexercises/`, {
       id: 3,
-      routine: 1,
+      routine: 3,
       exercise: 1,
-      name: 'Exercise 1',
+      name: exerciseName,
     }).as('postRoutineExercise');
 
     cy.findAllByTestId('addExerciseToRoutineBtn').first().click();
@@ -51,7 +52,7 @@ describe('Creating a Routine, adding an Exercise', () => {
       exercise: 1,
     });
 
-    // Navigate to RoutineExercisesScreen
-    // Exercise should be in the list
+    cy.url().should('include', 'routines/3');
+    cy.contains(exerciseName);
   });
 });
