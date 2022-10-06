@@ -36,6 +36,8 @@ describe('Creating a Routine, adding an Exercise', () => {
     cy.url().should('include', 'routines/3/add_exercise');
     cy.wait('@getExercises');
 
+    cy.findAllByTestId('addExerciseToWorkoutBtn').should('have.length', 0);
+
     cy.findAllByTestId('addExerciseToRoutineBtn').first().click();
     cy.wait('@postRoutineExercise').its('request.body').should('deep.equal', {
       routine: 3,

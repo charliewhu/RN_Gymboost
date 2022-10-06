@@ -28,7 +28,7 @@ export default function ExerciseListItem({testID, navigation, route, item}) {
         <List.Item title={item.name} />
         {route.params ? (
           <AddButton
-            testID="add_exercise_to_workout_btn"
+            testID="addExerciseToWorkoutBtn"
             onPress={() => pressHandler(item)}
           />
         ) : null}
