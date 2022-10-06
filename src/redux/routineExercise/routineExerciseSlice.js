@@ -56,6 +56,18 @@ export const routineExerciseSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+      })
+      .addCase(postRoutineExercise.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(postRoutineExercise.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.routineExercises.push(action.payload);
+      })
+      .addCase(postRoutineExercise.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
   },
 });
