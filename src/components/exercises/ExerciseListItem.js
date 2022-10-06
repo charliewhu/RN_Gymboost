@@ -1,4 +1,3 @@
-import {useEffect} from 'react';
 import {View} from 'react-native';
 import {Divider, List} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
@@ -34,10 +33,6 @@ export default function ExerciseListItem({testID, navigation, route, item}) {
   const handleDelete = id => {
     dispatch(deleteExercise(id));
   };
-
-  useEffect(() => {
-    console.log(route);
-  }, [route]);
 
   const addButton = () => {
     if (route.params.update === 'routines') {
