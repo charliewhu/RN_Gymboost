@@ -22,7 +22,6 @@ export default function CreateRoutine({navigation}) {
   }, [name]);
 
   const handleSubmit = () => {
-    console.log({name});
     dispatch(postRoutine({name}));
     navigation.navigate('RoutineScreen');
   };

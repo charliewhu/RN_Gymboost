@@ -44,7 +44,6 @@ const initialState = {
   workouts: [],
   isLoading: true,
   isError: false,
-  isUpdate: false,
   message: '',
 };
 
@@ -73,13 +72,11 @@ export const workoutSlice = createSlice({
       })
       .addCase(postWorkout.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isUpdate = true;
         state.workouts.push(action.payload);
       })
       .addCase(postWorkout.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.isUpdate = false;
         state.message = action.payload;
       })
       .addCase(deleteWorkout.pending, state => {

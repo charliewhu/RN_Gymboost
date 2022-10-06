@@ -27,6 +27,8 @@ describe('Creating a Routine, adding an Exercise', () => {
     }).as('postRoutine');
     cy.findByTestId('submitBtn').click();
 
+    cy.url().should('include', 'routines/3');
+
     // Navigate to RoutineExercisesScreen
     // Header should equal name of Routine
     // Click addRoutineExerciseBtn
