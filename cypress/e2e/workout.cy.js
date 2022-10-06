@@ -97,7 +97,5 @@ describe('Creating a workout, adding an Exercise, adding Sets', () => {
     cy.findByTestId('weightInput-outlined').should('have.value', '');
     cy.findByTestId('repsInput-outlined').should('have.value', '');
     cy.findByTestId('rirInput-outlined').should('have.value', '');
-
-    // TODO
   });
 });
