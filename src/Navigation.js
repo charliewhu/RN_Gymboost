@@ -14,6 +14,7 @@ import Routines from './screens/routines/Routines';
 import WorkoutExerciseSets from './screens/workouts/WorkoutExerciseSets';
 import WorkoutExercises from './screens/workouts/WorkoutExercises';
 import Workouts from './screens/workouts/Workouts';
+import useTheme from './utils/useTheme';
 
 const config = {
   screens: {
@@ -160,79 +161,82 @@ export function WorkoutStack() {
 }
 
 const Tab = createBottomTabNavigator();
-const TabNavigator = () => (
-  <Tab.Navigator initialRouteName="Home">
-    <Tab.Screen
-      name="Exercises"
-      component={ExerciseStack}
-      options={{
-        headerShown: false,
-        tabBarTestID: 'exercises_tab',
-        tabBarActiveTintColor: 'black',
-        tabBarInactiveTintColor: 'lightgray',
-        tabBarIcon: ({focused}) => (
-          <Ionicons
-            name="barbell-outline"
-            size={26}
-            color={focused ? 'black' : 'lightgray'}
-          />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Home"
-      component={HomeStack}
-      options={{
-        headerShown: false,
-        tabBarActiveTintColor: 'black',
-        tabBarInactiveTintColor: 'lightgray',
-        tabBarIcon: ({focused}) => (
-          <Ionicons
-            name="home-outline"
-            size={26}
-            color={focused ? 'black' : 'lightgray'}
-          />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Routines"
-      component={RoutineStack}
-      options={{
-        headerShown: false,
-        tabBarTestID: 'routines_tab',
-        tabBarActiveTintColor: 'black',
-        tabBarInactiveTintColor: 'lightgray',
-        tabBarIcon: ({focused}) => (
-          <Ionicons
-            name="list-outline"
-            size={26}
-            color={focused ? 'black' : 'lightgray'}
-          />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Workouts"
-      component={WorkoutStack}
-      options={{
-        headerShown: false,
-        tabBarTestID: 'workouts_tab',
-        tabBarActiveTintColor: 'black',
-        tabBarInactiveTintColor: 'lightgray',
-        //tabBarShowLabel: false,
-        tabBarIcon: ({focused}) => (
-          <Ionicons
-            //name="fitness-outline"
-            name="pulse-outline"
-            size={26}
-            color={focused ? 'black' : 'lightgray'}
-          />
-        ),
-      }}
-    />
-  </Tab.Navigator>
-);
+const TabNavigator = () => {
+  const theme = useTheme();
+
+  const active = theme.colors.black;
+  const inactive = theme.colors.grey3;
+
+  const options = {
+    headerShown: false,
+    tabBarActiveTintColor: active,
+    tabBarInactiveTintColor: inactive,
+  };
+
+  return (
+    <Tab.Navigator initialRouteName="Home">
+      <Tab.Screen
+        name="Exercises"
+        component={ExerciseStack}
+        options={{
+          ...options,
+          tabBarTestID: 'exercises_tab',
+          tabBarIcon: ({focused}) => (
+            <Ionicons
+              name="barbell-outline"
+              size={26}
+              color={focused ? active : inactive}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Home"
+        component={HomeStack}
+        options={{
+          ...options,
+          tabBarIcon: ({focused}) => (
+            <Ionicons
+              name="home-outline"
+              size={26}
+              color={focused ? active : inactive}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Routines"
+        component={RoutineStack}
+        options={{
+          ...options,
+          tabBarTestID: 'routines_tab',
+          tabBarIcon: ({focused}) => (
+            <Ionicons
+              name="list-outline"
+              size={26}
+              color={focused ? active : inactive}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Workouts"
+        component={WorkoutStack}
+        options={{
+          ...options,
+          tabBarTestID: 'workouts_tab',
+          tabBarIcon: ({focused}) => (
+            <Ionicons
+              name="pulse-outline"
+              size={26}
+              color={focused ? active : inactive}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 export default function Navigation() {
   const scheme = useColorScheme();
