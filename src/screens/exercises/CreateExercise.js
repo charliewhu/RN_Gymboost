@@ -1,12 +1,9 @@
+import {Button, Input} from '@rneui/themed';
 import {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
-import {Button, TextInput} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
+//import Input from '../../components/utils/Input';
 import {postExercise} from '../../redux/exercise/exerciseSlice';
-import {
-  textInputActiveOutlineColor,
-  textInputOutlineColor,
-} from '../../utils/sharedStyles';
 
 export default function CreateExercise({navigation, route}) {
   const dispatch = useDispatch();
@@ -30,22 +27,16 @@ export default function CreateExercise({navigation, route}) {
 
   return (
     <ScrollView>
-      <TextInput
+      <Input
         testID="nameInput"
-        label="Name"
-        mode="outlined"
-        autoCapitalize="words"
+        placeholder="Name"
         style={styles.textInput}
-        outlineColor={textInputOutlineColor}
-        activeOutlineColor={textInputActiveOutlineColor}
         value={name}
         onChangeText={text => setName(text)}
       />
       <Button
         testID="submitBtn"
-        mode="contained"
         disabled={!isValid}
-        buttonColor={isValid ? '#0E7AFE' : 'lightgray'}
         style={styles.btnStyle}
         onPress={handleSubmit}
       >
@@ -60,6 +51,6 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   btnStyle: {
-    margin: 10,
+    marginHorizontal: 10,
   },
 });

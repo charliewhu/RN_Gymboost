@@ -240,7 +240,10 @@ const TabNavigator = () => {
 
 export default function Navigation() {
   const scheme = useColorScheme();
-  const theme = scheme === 'dark' ? DarkTheme : DefaultTheme;
+
+  const defaultTheme = {...DefaultTheme, colors: {background: 'white'}};
+
+  const theme = scheme === 'dark' ? DarkTheme : defaultTheme;
 
   return (
     <NavigationContainer theme={theme} linking={linking}>

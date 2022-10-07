@@ -9,7 +9,7 @@ export default function useTheme() {
   const theme = createTheme({
     colors: {
       ...baseTheme,
-      primary: 'red',
+      disabled: baseTheme.grey5,
     },
     components: {
       ListItem: {
