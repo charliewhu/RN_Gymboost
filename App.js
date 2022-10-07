@@ -12,7 +12,7 @@ export default function App() {
   const myTheme = useTheme();
   return (
     <Provider store={store}>
-      <PaperProvider>
+      <PaperProvider theme={myTheme}>
         <ThemeProvider theme={myTheme}>
           <SafeAreaProvider>
             <StatusBar style="auto" />
