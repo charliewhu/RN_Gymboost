@@ -15,9 +15,15 @@ async function postRoutine(data) {
   return response.data;
 }
 
+async function deleteRoutine(id) {
+  const response = await axiosInstance.delete(`/routines/${id}/`);
+  return response.data;
+}
+
 const routineService = {
   getRoutines,
   postRoutine,
+  deleteRoutine,
 };
 
 export default routineService;

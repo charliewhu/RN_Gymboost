@@ -30,6 +30,19 @@ export const postRoutineExercise = createAsyncThunk(
   },
 );
 
+export const deleteRoutineExercise = createAsyncThunk(
+  'routineExercise/deleteRoutineExercise',
+  async (id, thunkAPI) => {
+    try {
+      await routineExerciseService.deleteRoutineExercise(id);
+      return id;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 const initialState = {
   routineExercises: [],
   isLoading: true,
@@ -65,6 +78,20 @@ export const routineExerciseSlice = createSlice({
         state.routineExercises.push(action.payload);
       })
       .addCase(postRoutineExercise.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteRoutineExercise.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(deleteRoutineExercise.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.routineExercises = state.routineExercises.filter(
+          routineExercise => routineExercise.id !== action.payload,
+        );
+      })
+      .addCase(deleteRoutineExercise.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

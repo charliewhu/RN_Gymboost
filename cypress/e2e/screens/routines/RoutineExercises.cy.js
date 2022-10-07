@@ -64,4 +64,15 @@ describe('WorkoutExercises screen', () => {
 
     cy.url().should('eq', 'http://localhost:19006/routines/');
   });
+
+  it('can be deleted', () => {
+    cy.intercept('DELETE', `${API_URL}/routineexercises/1/`, {}).as(
+      'deleteRoutineExercise',
+    );
+
+    cy.findAllByTestId('deleteRoutineExerciseBtn').first().click();
+    cy.wait('@deleteRoutineExercise');
+
+    cy.findAllByTestId('routine_exercise_list_item').should('have.length', 1);
+  });
 });

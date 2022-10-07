@@ -1,4 +1,0 @@
-
-- List item text spills over
-- Delete button is ugly
-- Use react native elements?

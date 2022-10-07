@@ -30,7 +30,6 @@ describe('Workouts screen', () => {
     cy.intercept('DELETE', `${API_URL}/workouts/1/`, {}).as('deleteWorkout');
 
     cy.findAllByTestId('deleteWorkoutBtn').first().click();
-
     cy.wait('@deleteWorkout');
 
     cy.findAllByTestId('workout_list_item').should('have.length', 1);
