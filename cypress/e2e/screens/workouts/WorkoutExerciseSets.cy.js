@@ -51,7 +51,7 @@ describe('WorkoutExercises screen', () => {
 
   describe('form validation', () => {
     it('doesnt submit form if form is blank', () => {
-      cy.findByTestId('submitBtn').click();
+      cy.findByTestId('submitBtn').click({force: true});
 
       cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
       cy.findAllByTestId('workout_exercise_set_list_item').should(
@@ -65,7 +65,7 @@ describe('WorkoutExercises screen', () => {
       cy.findByTestId('repsInput').type('reps');
       cy.findByTestId('rirInput').type('rir');
 
-      cy.findByTestId('submitBtn').click();
+      cy.findByTestId('submitBtn').click({force: true});
 
       cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
       cy.findAllByTestId('workout_exercise_set_list_item').should(
@@ -78,7 +78,7 @@ describe('WorkoutExercises screen', () => {
       cy.findByTestId('weightInput').type(weight);
       cy.findByTestId('repsInput').type(reps);
       cy.findByTestId('rirInput').type(rir);
-      cy.findByTestId('submitBtn').click();
+      cy.findByTestId('submitBtn').click({force: true});
 
       cy.wait('@postWorkoutExerciseSet')
         .its('request.body')
@@ -100,7 +100,7 @@ describe('WorkoutExercises screen', () => {
       cy.findByTestId('weightInput').type(weight);
       cy.findByTestId('repsInput').type(reps);
       cy.findByTestId('rirInput').type(rir);
-      cy.findByTestId('submitBtn').click();
+      cy.findByTestId('submitBtn').click({force: true});
 
       cy.wait('@postWorkoutExerciseSet');
 
@@ -113,7 +113,7 @@ describe('WorkoutExercises screen', () => {
       cy.findByTestId('weightInput').type(weight);
       cy.findByTestId('repsInput').type(reps);
       cy.findByTestId('rirInput').type(6);
-      cy.findByTestId('submitBtn').click();
+      cy.findByTestId('submitBtn').click({force: true});
 
       cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
     });

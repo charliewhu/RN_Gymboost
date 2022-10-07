@@ -32,7 +32,7 @@ describe('Create Exercise screen', () => {
   });
 
   it('clicking submit button with invalid form doesnt navigate', () => {
-    cy.findByTestId('submitBtn').click();
+    cy.findByTestId('submitBtn').click({force: true});
     cy.contains('Create Exercise');
     cy.url().should('eq', 'http://localhost:19006/exercises/create/');
   });
