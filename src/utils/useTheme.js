@@ -11,6 +11,11 @@ export default function useTheme() {
       ...baseTheme,
       primary: 'red',
     },
+    components: {
+      ListItem: {
+        bottomDivider: true,
+      },
+    },
   });
 
   return theme;

@@ -54,7 +54,7 @@ export default function ExerciseListItem({testID, navigation, route, item}) {
 
   return (
     <>
-      <ListItem bottomDivider testID={testID}>
+      <ListItem testID={testID}>
         <ListItem.Content>
           <ListItem.Title>{item.name}</ListItem.Title>
         </ListItem.Content>
