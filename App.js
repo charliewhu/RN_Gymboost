@@ -1,30 +1,24 @@
+import {ThemeProvider} from '@rneui/themed';
 import {StatusBar} from 'expo-status-bar';
-import {
-  MD3LightTheme as DefaultTheme,
-  Provider as PaperProvider,
-} from 'react-native-paper';
+import {Provider as PaperProvider} from 'react-native-paper';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {Provider} from 'react-redux';
 import Navigation from './src/Navigation';
 import store from './src/redux/store';
-
-const theme = {
-  ...DefaultTheme,
-  roundness: 0,
-  colors: {
-    ...DefaultTheme.colors,
-  },
-};
+import useTheme from './src/utils/useTheme';
 
 export default function App() {
+  const myTheme = useTheme();
   return (
     <Provider store={store}>
-      <PaperProvider theme={theme}>
-        <SafeAreaProvider>
-          <StatusBar style="auto" />
-          <Navigation />
-        </SafeAreaProvider>
+      <PaperProvider>
+        <ThemeProvider theme={myTheme}>
+          <SafeAreaProvider>
+            <StatusBar style="auto" />
+            <Navigation />
+          </SafeAreaProvider>
+        </ThemeProvider>
       </PaperProvider>
     </Provider>
   );

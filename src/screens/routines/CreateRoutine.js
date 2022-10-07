@@ -1,7 +1,8 @@
 import {StackActions} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
-import {Button, TextInput} from 'react-native-paper';
+import {TextInput} from 'react-native-paper';
+import {Button} from '@rneui/themed';
 import {useDispatch} from 'react-redux';
 import {postRoutine} from '../../redux/routine/routineSlice';
 import {
@@ -49,7 +50,6 @@ export default function CreateRoutine({navigation}) {
         testID="submitBtn"
         mode="contained"
         disabled={!isValid}
-        buttonColor={isValid ? '#0E7AFE' : 'lightgray'}
         style={styles.btnStyle}
         onPress={handleSubmit}
       >
