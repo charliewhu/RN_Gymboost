@@ -241,7 +241,13 @@ const TabNavigator = () => {
 export default function Navigation() {
   const scheme = useColorScheme();
 
-  const defaultTheme = {...DefaultTheme, colors: {background: 'white'}};
+  const defaultTheme = {
+    ...DefaultTheme,
+    colors: {
+      background: 'white',
+      border: 'lightgray',
+    },
+  };
 
   const theme = scheme === 'dark' ? DarkTheme : defaultTheme;
 

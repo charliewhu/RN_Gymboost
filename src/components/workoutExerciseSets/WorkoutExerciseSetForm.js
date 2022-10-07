@@ -4,10 +4,12 @@ import {useState} from 'react';
 import {StyleSheet, TextInput, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {postWorkoutExerciseSet} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
+import useTheme from '../../utils/useTheme';
 import {WorkoutExerciseSetSchema} from './WorkoutExerciseSetSchema';
 
 export default function WorkoutExerciseSetForm({route}) {
   const dispatch = useDispatch();
+  const theme = useTheme();
 
   const [formValues, setFormValues] = useState({
     id: '',
@@ -44,16 +46,17 @@ export default function WorkoutExerciseSetForm({route}) {
           <View>
             <View testID="workoutExerciseSetForm" style={styles.container}>
               <TextInput
-                style={styles.inputContainer}
+                style={{...styles.inputContainer, color: theme.colors.black}}
                 keyboardType="numeric"
                 testID="weightInput"
                 placeholder="Weight"
                 textAlign="center"
                 value={values.weight}
                 onChangeText={handleChange('weight')}
+                autoFocus={true}
               />
               <TextInput
-                style={styles.inputContainer}
+                style={{...styles.inputContainer, color: theme.colors.black}}
                 keyboardType="numeric"
                 testID="repsInput"
                 placeholder="Reps"
@@ -62,7 +65,7 @@ export default function WorkoutExerciseSetForm({route}) {
                 onChangeText={handleChange('reps')}
               />
               <TextInput
-                style={styles.inputContainer}
+                style={{...styles.inputContainer, color: theme.colors.black}}
                 keyboardType="numeric"
                 testID="rirInput"
                 placeholder="RIR"
@@ -104,6 +107,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     borderColor: 'lightgray',
+    outlineColor: 'lightgray',
   },
   btnStyle: {
     margin: 10,
