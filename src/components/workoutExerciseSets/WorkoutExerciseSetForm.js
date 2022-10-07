@@ -43,8 +43,8 @@ export default function WorkoutExerciseSetForm({route}) {
         }}
       >
         {({handleChange, handleSubmit, values, isValid}) => (
-          <View>
-            <View testID="workoutExerciseSetForm" style={styles.container}>
+          <View style={{backgroundColor: theme.colors.white}}>
+            <View testID="workoutExerciseSetForm" style={{...styles.container}}>
               <TextInput
                 style={{...styles.inputContainer, color: theme.colors.black}}
                 keyboardType="numeric"
@@ -53,7 +53,6 @@ export default function WorkoutExerciseSetForm({route}) {
                 textAlign="center"
                 value={values.weight}
                 onChangeText={handleChange('weight')}
-                autoFocus={true}
               />
               <TextInput
                 style={{...styles.inputContainer, color: theme.colors.black}}
