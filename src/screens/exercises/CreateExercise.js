@@ -2,7 +2,6 @@ import {Button, Input} from '@rneui/themed';
 import {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
-//import Input from '../../components/utils/Input';
 import {postExercise} from '../../redux/exercise/exerciseSlice';
 
 export default function CreateExercise({navigation, route}) {
@@ -30,6 +29,7 @@ export default function CreateExercise({navigation, route}) {
       <Input
         testID="nameInput"
         placeholder="Name"
+        autoCapitalize="words"
         style={styles.textInput}
         value={name}
         onChangeText={text => setName(text)}

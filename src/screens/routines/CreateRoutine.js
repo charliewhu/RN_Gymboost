@@ -1,14 +1,9 @@
 import {StackActions} from '@react-navigation/native';
-import {Button} from '@rneui/themed';
+import {Button, Input} from '@rneui/themed';
 import {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
-import {TextInput} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {postRoutine} from '../../redux/routine/routineSlice';
-import {
-  textInputActiveOutlineColor,
-  textInputOutlineColor,
-} from '../../utils/sharedStyles';
 
 export default function CreateRoutine({navigation}) {
   const dispatch = useDispatch();
@@ -35,14 +30,11 @@ export default function CreateRoutine({navigation}) {
 
   return (
     <ScrollView>
-      <TextInput
+      <Input
         testID="nameInput"
-        label="Name"
-        mode="outlined"
+        placeholder="Name"
         autoCapitalize="words"
         style={styles.textInput}
-        outlineColor={textInputOutlineColor}
-        activeOutlineColor={textInputActiveOutlineColor}
         value={name}
         onChangeText={text => setName(text)}
       />
@@ -64,6 +56,6 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   btnStyle: {
-    margin: 10,
+    marginHorizontal: 10,
   },
 });
