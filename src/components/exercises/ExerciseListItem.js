@@ -1,10 +1,8 @@
-import {View} from 'react-native';
-import {Divider, List} from 'react-native-paper';
+import {ListItem} from '@rneui/themed';
 import {useDispatch} from 'react-redux';
 import {deleteExercise} from '../../redux/exercise/exerciseSlice';
 import {postRoutineExercise} from '../../redux/routineExercise/routineExerciseSlice';
 import {postWorkoutExercise} from '../../redux/workoutExercise/workoutExerciseSlice';
-import {sharedStyles} from '../../utils/sharedStyles';
 import AddButton from '../utils/AddButton';
 import IconButton from '../utils/IconButton';
 
@@ -56,18 +54,17 @@ export default function ExerciseListItem({testID, navigation, route, item}) {
 
   return (
     <>
-      <List.Section testID={testID} style={sharedStyles.listItemContainer}>
-        <List.Item title={item.name} />
-        <View style={{flexDirection: 'row'}}>
-          <IconButton
-            testID="deleteExerciseBtn"
-            icon="trash-bin"
-            onPress={() => handleDelete(item.id)}
-          />
-          {route.params ? addButton() : null}
-        </View>
-      </List.Section>
-      <Divider style={{backgroundColor: 'lightgray'}} />
+      <ListItem testID={testID}>
+        <ListItem.Content>
+          <ListItem.Title>{item.name}</ListItem.Title>
+        </ListItem.Content>
+        <IconButton
+          testID="deleteExerciseBtn"
+          icon="remove-circle-outline"
+          onPress={() => handleDelete(item.id)}
+        />
+        {route.params ? addButton() : null}
+      </ListItem>
     </>
   );
 }

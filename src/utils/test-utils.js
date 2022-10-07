@@ -1,15 +1,10 @@
 import {render} from '@testing-library/react-native';
-import {Provider as PaperProvider} from 'react-native-paper';
+
 import {Provider} from 'react-redux';
 import store from '../redux/store';
 
 export function testRender(ui, {store, ...otherOpts}) {
-  return render(
-    <Provider store={store}>
-      <PaperProvider>{ui}</PaperProvider>
-    </Provider>,
-    otherOpts,
-  );
+  return render(<Provider store={store}>{ui}</Provider>, otherOpts);
 }
 
 export function makeTestStore() {

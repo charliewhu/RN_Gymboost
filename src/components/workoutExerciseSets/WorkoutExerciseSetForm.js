@@ -1,17 +1,15 @@
+import {Button} from '@rneui/themed';
 import {Formik} from 'formik';
 import {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {Button, List, TextInput} from 'react-native-paper';
+import {StyleSheet, TextInput, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {postWorkoutExerciseSet} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
-import {
-  textInputActiveOutlineColor,
-  textInputOutlineColor,
-} from '../../utils/sharedStyles';
+import useTheme from '../../utils/useTheme';
 import {WorkoutExerciseSetSchema} from './WorkoutExerciseSetSchema';
 
 export default function WorkoutExerciseSetForm({route}) {
   const dispatch = useDispatch();
+  const theme = useTheme();
 
   const [formValues, setFormValues] = useState({
     id: '',
@@ -45,45 +43,36 @@ export default function WorkoutExerciseSetForm({route}) {
         }}
       >
         {({handleChange, handleSubmit, values, isValid}) => (
-          <View>
-            <List.Section
-              testID="workoutExerciseSetForm"
-              style={styles.container}
-            >
+          <View style={{backgroundColor: theme.colors.white}}>
+            <View testID="workoutExerciseSetForm" style={{...styles.container}}>
               <TextInput
-                mode="outlined"
-                style={styles.inputContainer}
-                outlineColor={textInputOutlineColor}
-                activeOutlineColor={textInputActiveOutlineColor}
+                style={{...styles.inputContainer, color: theme.colors.black}}
                 keyboardType="numeric"
                 testID="weightInput"
-                label="Weight"
+                placeholder="Weight"
+                textAlign="center"
                 value={values.weight}
                 onChangeText={handleChange('weight')}
               />
               <TextInput
-                mode="outlined"
-                style={styles.inputContainer}
-                outlineColor={textInputOutlineColor}
-                activeOutlineColor={textInputActiveOutlineColor}
+                style={{...styles.inputContainer, color: theme.colors.black}}
                 keyboardType="numeric"
                 testID="repsInput"
-                label="Reps"
+                placeholder="Reps"
+                textAlign="center"
                 value={values.reps}
                 onChangeText={handleChange('reps')}
               />
               <TextInput
-                mode="outlined"
-                style={styles.inputContainer}
-                outlineColor={textInputOutlineColor}
-                activeOutlineColor={textInputActiveOutlineColor}
+                style={{...styles.inputContainer, color: theme.colors.black}}
                 keyboardType="numeric"
                 testID="rirInput"
-                label="RIR"
+                placeholder="RIR"
+                textAlign="center"
                 value={values.rir}
                 onChangeText={handleChange('rir')}
               />
-            </List.Section>
+            </View>
 
             <Button
               testID="submitBtn"
@@ -110,9 +99,14 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: 100,
-    height: 40,
+    height: 50,
+    margin: 10,
+    padding: 10,
     textAlign: 'center',
+    borderWidth: 1,
+    borderRadius: 5,
     borderColor: 'lightgray',
+    outlineColor: 'lightgray',
   },
   btnStyle: {
     margin: 10,

@@ -1,6 +1,5 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import {useLayoutEffect} from 'react';
-import {TouchableOpacity} from 'react-native';
+import AddButton from '../../components/utils/AddButton';
 
 import WorkoutExerciseList from '../../components/workoutExercises/WorkoutExerciseList';
 
@@ -8,7 +7,7 @@ export default function WorkoutExercises({navigation, route}) {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity
+        <AddButton
           testID="addExerciseBtn"
           onPress={() =>
             navigation.navigate('ExerciseScreen', {
@@ -16,9 +15,7 @@ export default function WorkoutExercises({navigation, route}) {
               update: 'workouts',
             })
           }
-        >
-          <Ionicons name="add" size={30} />
-        </TouchableOpacity>
+        />
       ),
     });
   });

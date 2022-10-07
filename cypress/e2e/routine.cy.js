@@ -20,7 +20,7 @@ describe('Creating a Routine, adding an Exercise', () => {
   it('can create', () => {
     cy.findByTestId('createRoutineBtn').click();
 
-    cy.findByTestId('nameInput-outlined').type(routineName);
+    cy.findByTestId('nameInput').type(routineName);
 
     cy.intercept('POST', `${API_URL}/routines/`, {
       id: 3,

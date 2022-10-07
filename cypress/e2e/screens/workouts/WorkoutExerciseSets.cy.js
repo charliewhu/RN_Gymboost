@@ -51,7 +51,7 @@ describe('WorkoutExercises screen', () => {
 
   describe('form validation', () => {
     it('doesnt submit form if form is blank', () => {
-      cy.findByTestId('submitBtn').click();
+      cy.findByTestId('submitBtn').click({force: true});
 
       cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
       cy.findAllByTestId('workout_exercise_set_list_item').should(
@@ -61,11 +61,11 @@ describe('WorkoutExercises screen', () => {
     });
 
     it('doesnt submit if form fields contain non-numeric', () => {
-      cy.findByTestId('weightInput-outlined').type('weight');
-      cy.findByTestId('repsInput-outlined').type('reps');
-      cy.findByTestId('rirInput-outlined').type('rir');
+      cy.findByTestId('weightInput').type('weight');
+      cy.findByTestId('repsInput').type('reps');
+      cy.findByTestId('rirInput').type('rir');
 
-      cy.findByTestId('submitBtn').click();
+      cy.findByTestId('submitBtn').click({force: true});
 
       cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
       cy.findAllByTestId('workout_exercise_set_list_item').should(
@@ -75,10 +75,10 @@ describe('WorkoutExercises screen', () => {
     });
 
     it('adds Set to the list after submit', () => {
-      cy.findByTestId('weightInput-outlined').type(weight);
-      cy.findByTestId('repsInput-outlined').type(reps);
-      cy.findByTestId('rirInput-outlined').type(rir);
-      cy.findByTestId('submitBtn').click();
+      cy.findByTestId('weightInput').type(weight);
+      cy.findByTestId('repsInput').type(reps);
+      cy.findByTestId('rirInput').type(rir);
+      cy.findByTestId('submitBtn').click({force: true});
 
       cy.wait('@postWorkoutExerciseSet')
         .its('request.body')
@@ -97,23 +97,23 @@ describe('WorkoutExercises screen', () => {
     });
 
     it('clears the form after submit', () => {
-      cy.findByTestId('weightInput-outlined').type(weight);
-      cy.findByTestId('repsInput-outlined').type(reps);
-      cy.findByTestId('rirInput-outlined').type(rir);
-      cy.findByTestId('submitBtn').click();
+      cy.findByTestId('weightInput').type(weight);
+      cy.findByTestId('repsInput').type(reps);
+      cy.findByTestId('rirInput').type(rir);
+      cy.findByTestId('submitBtn').click({force: true});
 
       cy.wait('@postWorkoutExerciseSet');
 
-      cy.findByTestId('weightInput-outlined').should('have.value', '');
-      cy.findByTestId('repsInput-outlined').should('have.value', '');
-      cy.findByTestId('rirInput-outlined').should('have.value', '');
+      cy.findByTestId('weightInput').should('have.value', '');
+      cy.findByTestId('repsInput').should('have.value', '');
+      cy.findByTestId('rirInput').should('have.value', '');
     });
 
     it('rir must be less than or equal to 5', () => {
-      cy.findByTestId('weightInput-outlined').type(weight);
-      cy.findByTestId('repsInput-outlined').type(reps);
-      cy.findByTestId('rirInput-outlined').type(6);
-      cy.findByTestId('submitBtn').click();
+      cy.findByTestId('weightInput').type(weight);
+      cy.findByTestId('repsInput').type(reps);
+      cy.findByTestId('rirInput').type(6);
+      cy.findByTestId('submitBtn').click({force: true});
 
       cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
     });

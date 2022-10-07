@@ -1,23 +1,18 @@
-import {TouchableOpacity} from 'react-native';
-import {Divider, List} from 'react-native-paper';
-import {sharedStyles} from '../../utils/sharedStyles';
+import {ListItem} from '@rneui/themed';
 
 export default function RoutineListItem({navigation, item}) {
   return (
-    <TouchableOpacity
+    <ListItem
+      testID="routine_list_item"
       onPress={() =>
         navigation.navigate('RoutineExercisesScreen', {
           id: item.id,
         })
       }
     >
-      <List.Section
-        testID="routine_list_item"
-        style={sharedStyles.listItemContainer}
-      >
-        <List.Item title={item.name} />
-      </List.Section>
-      <Divider style={{backgroundColor: 'lightgray'}} />
-    </TouchableOpacity>
+      <ListItem.Content>
+        <ListItem.Title>{item.name}</ListItem.Title>
+      </ListItem.Content>
+    </ListItem>
   );
 }

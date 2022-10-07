@@ -1,13 +1,9 @@
 import {StackActions} from '@react-navigation/native';
+import {Button, Input} from '@rneui/themed';
 import {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
-import {Button, TextInput} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {postRoutine} from '../../redux/routine/routineSlice';
-import {
-  textInputActiveOutlineColor,
-  textInputOutlineColor,
-} from '../../utils/sharedStyles';
 
 export default function CreateRoutine({navigation}) {
   const dispatch = useDispatch();
@@ -34,14 +30,11 @@ export default function CreateRoutine({navigation}) {
 
   return (
     <ScrollView>
-      <TextInput
+      <Input
         testID="nameInput"
-        label="Name"
-        mode="outlined"
+        placeholder="Name"
         autoCapitalize="words"
         style={styles.textInput}
-        outlineColor={textInputOutlineColor}
-        activeOutlineColor={textInputActiveOutlineColor}
         value={name}
         onChangeText={text => setName(text)}
       />
@@ -49,7 +42,6 @@ export default function CreateRoutine({navigation}) {
         testID="submitBtn"
         mode="contained"
         disabled={!isValid}
-        buttonColor={isValid ? '#0E7AFE' : 'lightgray'}
         style={styles.btnStyle}
         onPress={handleSubmit}
       >
@@ -62,8 +54,9 @@ export default function CreateRoutine({navigation}) {
 const styles = StyleSheet.create({
   textInput: {
     margin: 10,
+    outlineWidth: 0,
   },
   btnStyle: {
-    margin: 10,
+    marginHorizontal: 10,
   },
 });
