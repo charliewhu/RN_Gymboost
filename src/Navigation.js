@@ -1,10 +1,13 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {DarkTheme, NavigationContainer} from '@react-navigation/native';
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {useColorScheme} from 'react-native';
-import {DefaultTheme} from 'react-native-paper';
 import Home from './screens/Home';
 import CreateExercise from './screens/exercises/CreateExercise';
 import Exercises from './screens/exercises/Exercises';
@@ -241,15 +244,7 @@ const TabNavigator = () => {
 export default function Navigation() {
   const scheme = useColorScheme();
 
-  const defaultTheme = {
-    ...DefaultTheme,
-    colors: {
-      background: 'white',
-      border: 'lightgray',
-    },
-  };
-
-  const theme = scheme === 'dark' ? DarkTheme : defaultTheme;
+  const theme = scheme === 'dark' ? DarkTheme : DefaultTheme;
 
   return (
     <NavigationContainer theme={theme} linking={linking}>
