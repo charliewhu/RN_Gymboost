@@ -11,7 +11,7 @@ export default function RoutineExerciseListItem({item}) {
   };
 
   return (
-    <ListItem testID="workout_exercise_list_item">
+    <ListItem testID="routine_exercise_list_item">
       <ListItem.Content>
         <ListItem.Title>{item.name}</ListItem.Title>
       </ListItem.Content>
