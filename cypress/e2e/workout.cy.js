@@ -76,9 +76,9 @@ describe('Creating a workout, adding an Exercise, adding Sets', () => {
     );
 
     // input set info
-    cy.findByTestId('weightInput-outlined').type(weight);
-    cy.findByTestId('repsInput-outlined').type(reps);
-    cy.findByTestId('rirInput-outlined').type(rir);
+    cy.findByTestId('weightInput').type(weight);
+    cy.findByTestId('repsInput').type(reps);
+    cy.findByTestId('rirInput').type(rir);
     cy.findByTestId('submitBtn').click();
 
     cy.wait('@postWorkoutExerciseSet')
@@ -96,8 +96,8 @@ describe('Creating a workout, adding an Exercise, adding Sets', () => {
       1,
     );
 
-    cy.findByTestId('weightInput-outlined').should('have.value', '');
-    cy.findByTestId('repsInput-outlined').should('have.value', '');
-    cy.findByTestId('rirInput-outlined').should('have.value', '');
+    cy.findByTestId('weightInput').should('have.value', '');
+    cy.findByTestId('repsInput').should('have.value', '');
+    cy.findByTestId('rirInput').should('have.value', '');
   });
 });

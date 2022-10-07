@@ -24,7 +24,7 @@ describe('Create Routine screen', () => {
   });
 
   it('has a nameInput field', () => {
-    cy.findByTestId('nameInput-outlined');
+    cy.findByTestId('nameInput');
   });
 
   it('has a submit button', () => {
@@ -38,7 +38,7 @@ describe('Create Routine screen', () => {
   });
 
   it('clicking submit button with valid form redirects to RoutineExercises screen', () => {
-    cy.findByTestId('nameInput-outlined').type(routineName);
+    cy.findByTestId('nameInput').type(routineName);
     cy.findByTestId('submitBtn').click();
 
     cy.wait('@postRoutine').its('request.body').should('deep.equal', {
