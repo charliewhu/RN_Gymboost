@@ -1,5 +1,7 @@
 import routines from '../../../fixtures/routines.json';
 
+const API_URL = Cypress.env('API_URL');
+
 describe('Routines screen', () => {
   beforeEach(() => {
     cy.routineIntercepts();
@@ -26,5 +28,14 @@ describe('Routines screen', () => {
     cy.findAllByTestId('routine_list_item').first().click();
     cy.get('[role="heading"]').contains(routines[0].name);
     cy.url().should('include', 'routines/1');
+  });
+
+  it('can be deleted', () => {
+    cy.intercept('DELETE', `${API_URL}/routines/1/`, {}).as('deleteRoutine');
+
+    cy.findAllByTestId('deleteRoutineBtn').first().click();
+    cy.wait('@deleteRoutine');
+
+    cy.findAllByTestId('routine_list_item').should('have.length', 1);
   });
 });
