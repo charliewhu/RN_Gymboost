@@ -1,7 +1,7 @@
-import {Divider, List} from 'react-native-paper';
+import {ListItem} from '@rneui/themed';
 import {useDispatch} from 'react-redux';
 import {deleteWorkoutExerciseSet} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
-import {sharedStyles} from '../../utils/sharedStyles';
+
 import IconButton from '../utils/IconButton';
 
 export default function WorkoutExerciseSetListItem({item}) {
@@ -12,19 +12,17 @@ export default function WorkoutExerciseSetListItem({item}) {
   };
 
   return (
-    <>
-      <List.Section
-        testID="workout_exercise_set_list_item"
-        style={sharedStyles.listItemContainer}
-      >
-        <List.Item title={`${item.weight} x ${item.reps} @ ${item.rir}`} />
-        <IconButton
-          testID="deleteWorkoutExerciseSetBtn"
-          icon="trash-bin"
-          onPress={() => handleDelete(item.id)}
-        />
-      </List.Section>
-      <Divider style={{backgroundColor: 'lightgray'}} />
-    </>
+    <ListItem testID="workout_exercise_set_list_item">
+      <ListItem.Content>
+        <ListItem.Title>
+          {`${item.weight} x ${item.reps} @ ${item.rir}`}
+        </ListItem.Title>
+      </ListItem.Content>
+      <IconButton
+        testID="deleteWorkoutExerciseSetBtn"
+        icon="remove-circle-outline"
+        onPress={() => handleDelete(item.id)}
+      />
+    </ListItem>
   );
 }

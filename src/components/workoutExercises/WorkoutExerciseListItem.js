@@ -1,8 +1,7 @@
-import {TouchableOpacity} from 'react-native';
-import {Divider, List} from 'react-native-paper';
+import {ListItem} from '@rneui/themed';
 import {useDispatch} from 'react-redux';
 import {deleteWorkoutExercise} from '../../redux/workoutExercise/workoutExerciseSlice';
-import {sharedStyles} from '../../utils/sharedStyles';
+
 import IconButton from '../utils/IconButton';
 
 export default function WorkoutExerciseListItem({navigation, item}) {
@@ -13,7 +12,8 @@ export default function WorkoutExerciseListItem({navigation, item}) {
   };
 
   return (
-    <TouchableOpacity
+    <ListItem
+      testID="workout_exercise_list_item"
       onPress={() =>
         navigation.navigate('WorkoutExerciseSetsScreen', {
           id: item.workout,
@@ -21,18 +21,14 @@ export default function WorkoutExerciseListItem({navigation, item}) {
         })
       }
     >
-      <List.Section
-        testID="workout_exercise_list_item"
-        style={sharedStyles.listItemContainer}
-      >
-        <List.Item title={item.name} />
-        <IconButton
-          testID="deleteWorkoutExerciseBtn"
-          icon="trash-bin"
-          onPress={() => handleDelete(item.id)}
-        />
-      </List.Section>
-      <Divider style={{backgroundColor: 'lightgray'}} />
-    </TouchableOpacity>
+      <ListItem.Content>
+        <ListItem.Title>{item.name}</ListItem.Title>
+      </ListItem.Content>
+      <IconButton
+        testID="deleteWorkoutExerciseBtn"
+        icon="remove-circle-outline"
+        onPress={() => handleDelete(item.id)}
+      />
+    </ListItem>
   );
 }
