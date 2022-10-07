@@ -1,6 +1,6 @@
 import {ListItem} from '@rneui/themed';
 import {useDispatch} from 'react-redux';
-import {deleteWorkout} from '../../redux/routine/routineSlice';
+import {deleteRoutine} from '../../redux/routine/routineSlice';
 
 import IconButton from '../utils/IconButton';
 
@@ -8,7 +8,7 @@ export default function RoutineListItem({navigation, item}) {
   const dispatch = useDispatch();
 
   const handleDelete = id => {
-    dispatch(deleteWorkout(id));
+    dispatch(deleteRoutine(id));
   };
 
   return (

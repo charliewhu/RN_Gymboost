@@ -28,6 +28,19 @@ export const postRoutine = createAsyncThunk(
   },
 );
 
+export const deleteRoutine = createAsyncThunk(
+  'routine/deleteRoutine',
+  async (id, thunkAPI) => {
+    try {
+      await routineService.deleteRoutine(id);
+      return id;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 const initialState = {
   routines: [],
   isLoading: true,
@@ -63,6 +76,20 @@ export const routineSlice = createSlice({
         state.routines.push(action.payload);
       })
       .addCase(postRoutine.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteRoutine.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(deleteRoutine.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.routines = state.routines.filter(
+          routine => routine.id !== action.payload,
+        );
+      })
+      .addCase(deleteRoutine.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
