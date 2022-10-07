@@ -54,6 +54,7 @@ export default function CreateRoutine({navigation}) {
 const styles = StyleSheet.create({
   textInput: {
     margin: 10,
+    outlineWidth: 0,
   },
   btnStyle: {
     marginHorizontal: 10,
