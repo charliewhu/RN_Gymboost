@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {getWorkoutExercises} from '../workoutExercise/workoutExerciseSlice';
 import workoutService from './workoutService';
 
 export const getWorkouts = createAsyncThunk(
@@ -33,6 +34,20 @@ export const deleteWorkout = createAsyncThunk(
     try {
       await workoutService.deleteWorkout(id);
       return id;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const postRoutineWorkout = createAsyncThunk(
+  'workout/postRoutineWorkout',
+  async (id, thunkAPI) => {
+    try {
+      const workout = await workoutService.postRoutineWorkout(id);
+      getWorkoutExercises();
+      return workout;
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(error);
@@ -89,6 +104,18 @@ export const workoutSlice = createSlice({
         );
       })
       .addCase(deleteWorkout.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(postRoutineWorkout.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(postRoutineWorkout.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.workouts.push(action.payload);
+      })
+      .addCase(postRoutineWorkout.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

@@ -1,7 +1,7 @@
 import {ListItem} from '@rneui/themed';
 import {useDispatch} from 'react-redux';
 import {deleteRoutine} from '../../redux/routine/routineSlice';
-import {psotRoutineWorkout} from '../../redux/workout/WorkoutSlice';
+import {postRoutineWorkout} from '../../redux/workout/WorkoutSlice';
 
 import IconButton from '../utils/IconButton';
 
