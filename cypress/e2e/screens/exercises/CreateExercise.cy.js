@@ -50,4 +50,21 @@ describe('Create Exercise screen', () => {
 
     cy.contains(exerciseName);
   });
+
+  it('creating an Exercise while adding Exercise to Routine should still show addExerciseToRoutineBtn', () => {
+    cy.routineIntercepts();
+
+    cy.visit('/routines/1/');
+    cy.wait('@getRoutines');
+    cy.wait('@getRoutineExercises');
+
+    cy.findByTestId('addExerciseBtn').click();
+    cy.findByTestId('createExerciseBtn').click();
+
+    cy.findByTestId('nameInput').type(exerciseName);
+    cy.findByTestId('submitBtn').click();
+    cy.wait('@postExercise');
+
+    cy.findAllByTestId('addExerciseToRoutineBtn').should('exist');
+  });
 });

@@ -33,7 +33,7 @@ describe('WorkoutExercises screen', () => {
     // assert redirect to add_exercise url
     cy.url().should('include', 'routines/1/add_exercise');
 
-    cy.findByTestId('create_exercise_btn').click();
+    cy.findByTestId('createExerciseBtn').click();
     cy.contains('Create Exercise');
     cy.url().should('include', 'routines/1/add_exercise/create');
 

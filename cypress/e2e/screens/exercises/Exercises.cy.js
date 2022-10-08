@@ -22,7 +22,7 @@ describe('Exercises screen', () => {
   });
 
   it('navigates to CreateExercise screen', () => {
-    cy.findByTestId('create_exercise_btn').click();
+    cy.findByTestId('createExerciseBtn').click();
     cy.contains('Create Exercise');
     cy.url().should('include', 'exercises/create');
   });

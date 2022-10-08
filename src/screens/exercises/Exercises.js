@@ -8,11 +8,12 @@ export default function Exercises({navigation, route}) {
     navigation.setOptions({
       headerRight: () => (
         <AddButton
-          testID="create_exercise_btn"
+          testID="createExerciseBtn"
           onPress={() =>
             route.params
               ? navigation.navigate('CreateExerciseScreen', {
                   id: route.params.id,
+                  update: route.params.update,
                 })
               : navigation.navigate('CreateExerciseScreen')
           }
