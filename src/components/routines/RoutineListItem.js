@@ -13,7 +13,16 @@ export default function RoutineListItem({navigation, item}) {
   };
 
   const handleStartWorkout = id => {
-    dispatch(postRoutineWorkout(id));
+    dispatch(postRoutineWorkout(id))
+      .unwrap()
+      .then(res => {
+        navigation.navigate('Workouts', {
+          screen: 'WorkoutExercisesScreen',
+          params: {
+            id: res.id,
+          },
+        });
+      });
   };
 
   return (

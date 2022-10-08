@@ -24,6 +24,7 @@ export default function WorkoutListItem({navigation, item}) {
         <ListItem.Title>
           {new Date(Date.parse(item.created_on)).toUTCString()}
         </ListItem.Title>
+        <ListItem.Subtitle>{item.name}</ListItem.Subtitle>
       </ListItem.Content>
       <IconButton
         testID="deleteWorkoutBtn"
