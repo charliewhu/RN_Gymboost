@@ -20,7 +20,10 @@ export default function CreateExercise({navigation, route}) {
   const handleSubmit = () => {
     dispatch(postExercise({name}));
     route.params
-      ? navigation.navigate('ExerciseScreen', {id: route.params.id})
+      ? navigation.navigate('ExerciseScreen', {
+          id: route.params.id,
+          update: route.params.update,
+        })
       : navigation.goBack();
   };
 

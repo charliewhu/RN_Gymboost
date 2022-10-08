@@ -13,6 +13,7 @@ export default function Exercises({navigation, route}) {
             route.params
               ? navigation.navigate('CreateExerciseScreen', {
                   id: route.params.id,
+                  update: route.params.update,
                 })
               : navigation.navigate('CreateExerciseScreen')
           }
