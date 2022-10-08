@@ -33,7 +33,7 @@ describe('Creating a Routine, starting a Workout with it', () => {
     cy.wait('@getWorkoutExercises');
 
     // assert on WorkoutExercises Screen
-    cy.cy.url().should('include', 'workouts/3');
+    cy.url().should('include', 'workouts/3');
     cy.get('[role="heading"]').contains(routines[0].name);
 
     cy.findAllByTestId('workout_exercise_list_item').should('have.length', 2);
