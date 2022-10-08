@@ -10,5 +10,17 @@
         "workout": 1,
         "exercise": 2,
         "name": "Exercise 2"
+    },
+    {
+        "id": 3,
+        "workout": 4,
+        "exercise": 1,
+        "name": "Exercise 1"
+    },
+    {
+        "id": 4,
+        "workout": 4,
+        "exercise": 2,
+        "name": "Exercise 2"
     }
 ]

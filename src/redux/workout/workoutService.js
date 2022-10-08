@@ -20,10 +20,16 @@ async function deleteWorkout(id) {
   return response.data;
 }
 
+async function postRoutineWorkout(id) {
+  const response = await axiosInstance.post(`/routines/${id}/workout/`);
+  return response.data;
+}
+
 const workoutService = {
   getWorkouts,
   postWorkout,
   deleteWorkout,
+  postRoutineWorkout,
 };
 
 export default workoutService;
