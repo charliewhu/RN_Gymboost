@@ -19,7 +19,7 @@ describe('Creating a Routine, starting a Workout with it', () => {
   });
 
   it('can create', () => {
-    cy.intercept('POST', `${API_URL}/routines/2/workout/`, {
+    cy.intercept('POST', `${API_URL}/routines/1/workout/`, {
       id: 3,
       created_on: '2022-09-05T09:32:00.993378Z',
       routine: 1,

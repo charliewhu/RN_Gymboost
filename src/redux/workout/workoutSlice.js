@@ -46,7 +46,7 @@ export const postRoutineWorkout = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const workout = await workoutService.postRoutineWorkout(id);
-      getWorkoutExercises();
+      thunkAPI.dispatch(getWorkoutExercises());
       return workout;
     } catch (error) {
       console.log(error);
