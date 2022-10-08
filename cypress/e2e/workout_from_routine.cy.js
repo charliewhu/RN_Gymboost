@@ -20,7 +20,7 @@ describe('Creating a Routine, starting a Workout with it', () => {
 
   it('can create', () => {
     cy.intercept('POST', `${API_URL}/routines/1/workout/`, {
-      id: 3,
+      id: 4,
       created_on: '2022-09-05T09:32:00.993378Z',
       routine: 1,
       name: routines[0].name,
@@ -33,7 +33,7 @@ describe('Creating a Routine, starting a Workout with it', () => {
     cy.wait('@getWorkoutExercises');
 
     // assert on WorkoutExercises Screen
-    cy.url().should('include', 'workouts/3');
+    cy.url().should('include', 'workouts/4');
     cy.get('[role="heading"]').contains(routines[0].name);
 
     cy.findAllByTestId('workout_exercise_list_item').should('have.length', 2);
