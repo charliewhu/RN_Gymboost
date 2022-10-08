@@ -179,6 +179,20 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator initialRouteName="Home">
       <Tab.Screen
+        name="Home"
+        component={HomeStack}
+        options={{
+          ...options,
+          tabBarIcon: ({focused}) => (
+            <Ionicons
+              name="home-outline"
+              size={26}
+              color={focused ? active : inactive}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="Exercises"
         component={ExerciseStack}
         options={{
@@ -187,20 +201,6 @@ const TabNavigator = () => {
           tabBarIcon: ({focused}) => (
             <Ionicons
               name="barbell-outline"
-              size={26}
-              color={focused ? active : inactive}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Home"
-        component={HomeStack}
-        options={{
-          ...options,
-          tabBarIcon: ({focused}) => (
-            <Ionicons
-              name="home-outline"
               size={26}
               color={focused ? active : inactive}
             />
