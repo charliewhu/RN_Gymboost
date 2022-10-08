@@ -1,9 +1,8 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import {useLayoutEffect} from 'react';
-import {TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import RoutineExerciseList from '../../components/routineExercises/RoutineExerciseList';
+import AddButton from '../../components/utils/AddButton';
 
 export default function RoutineExercises({navigation, route}) {
   const routine = useSelector(state =>
@@ -14,7 +13,7 @@ export default function RoutineExercises({navigation, route}) {
     navigation.setOptions({
       title: routine ? routine.name : null,
       headerRight: () => (
-        <TouchableOpacity
+        <AddButton
           testID="addExerciseBtn"
           onPress={() =>
             navigation.navigate('ExerciseScreen', {
@@ -22,9 +21,7 @@ export default function RoutineExercises({navigation, route}) {
               update: 'routines',
             })
           }
-        >
-          <Ionicons name="add" size={30} />
-        </TouchableOpacity>
+        />
       ),
     });
   });
