@@ -19,7 +19,7 @@ export default function Home() {
     backgroundGradientFromOpacity: 0,
     backgroundGradientTo: theme.colors.background,
     backgroundGradientToOpacity: 0,
-    color: (opacity = 1) => hexToRgba(theme.colors.primary, opacity),
+    color: (opacity = 0.5) => hexToRgba(theme.colors.primary, opacity + 0.02),
   };
 
   useEffect(() => {

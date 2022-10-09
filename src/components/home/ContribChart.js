@@ -36,7 +36,7 @@ export default function ContribChart({
             chartConfig={chartConfig}
             //showMonthLabels={false}
             //onDayPress={item => console.log(item)}
-            gutterSize={2}
+            gutterSize={3}
           />
         </View>
       </ListItem>
