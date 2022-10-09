@@ -45,9 +45,4 @@ describe('Home page', () => {
   it('fetches Workouts from server', () => {
     cy.wait('@getWorkouts');
   });
-
-  it('displays workoutContribGraph', () => {
-    cy.wait('@getWorkouts');
-    cy.findByTestId('workoutContribGraph');
-  });
 });
