@@ -2,6 +2,10 @@ const API_URL = Cypress.env('API_URL');
 
 describe('Home page', () => {
   beforeEach(() => {
+    cy.intercept('GET', `${API_URL}/workouts/`, {
+      fixture: 'workouts.json',
+    }).as('getWorkouts');
+
     cy.visit('/');
   });
 
@@ -29,10 +33,6 @@ describe('Home page', () => {
   });
 
   it('navigates to Workout tab', () => {
-    cy.intercept('GET', `${API_URL}/workouts/`, {
-      fixture: 'workouts.json',
-    }).as('getWorkouts');
-
     cy.intercept('GET', `${API_URL}/workoutexercises/`, {
       fixture: 'workoutexercises.json',
     }).as('getWorkoutExercises');
@@ -40,5 +40,14 @@ describe('Home page', () => {
     cy.findByTestId('workouts_tab').click();
     cy.contains('Workouts');
     cy.url().should('include', 'workouts');
+  });
+
+  it('fetches Workouts from server', () => {
+    cy.wait('@getWorkouts');
+  });
+
+  it('displays workoutContribGraph', () => {
+    cy.wait('@getWorkouts');
+    cy.findByTestId('workoutContribGraph');
   });
 });
