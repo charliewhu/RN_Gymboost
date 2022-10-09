@@ -1,14 +1,19 @@
-import {render} from '@testing-library/react-native';
-
+import {render} from '@testing-library/react';
 import {Provider} from 'react-redux';
-import store from '../redux/store';
 
-export function testRender(ui, {store, ...otherOpts}) {
-  return render(<Provider store={store}>{ui}</Provider>, otherOpts);
-}
+import {setupStore} from '../redux/store';
 
-export function makeTestStore() {
-  const origDispatch = store.dispatch;
-  store.dispatch = jest.fn(origDispatch);
-  return store;
+export function renderWithProviders(
+  ui,
+  {
+    preloadedState = {},
+    // Automatically create a store instance if no store was passed in
+    store = setupStore(preloadedState),
+    ...renderOptions
+  } = {},
+) {
+  function Wrapper({children}) {
+    return <Provider store={store}>{children}</Provider>;
+  }
+  return {store, ...render(ui, {wrapper: Wrapper, ...renderOptions})};
 }
