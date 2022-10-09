@@ -1,5 +1,4 @@
 import {CYPRESS_API_URL} from '@env';
-import {fireEvent, screen} from '@testing-library/react-native';
 import {rest} from 'msw';
 import {setupServer} from 'msw/node';
 import {renderWithProviders} from '../../utils/test-utils';
