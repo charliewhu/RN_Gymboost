@@ -23,6 +23,7 @@ export default function WorkoutExerciseListItem({navigation, item}) {
     >
       <ListItem.Content>
         <ListItem.Title>{item.name}</ListItem.Title>
+        <ListItem.Subtitle>Sets: {item.set_count}</ListItem.Subtitle>
       </ListItem.Content>
       <IconButton
         testID="deleteWorkoutExerciseBtn"
