@@ -55,5 +55,6 @@ describe('WorkoutExercises screen', () => {
 
   it('shows the count of sets in list item', () => {
     cy.contains('Sets: 2');
+    cy.contains('Sets: 0');
   });
 });
