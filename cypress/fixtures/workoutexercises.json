@@ -3,24 +3,28 @@
         "id": 1,
         "workout": 1,
         "exercise": 1,
-        "name": "Exercise 1"
+        "name": "Exercise 1",
+        "sets": 2
     },
     {
         "id": 2,
         "workout": 1,
         "exercise": 2,
-        "name": "Exercise 2"
+        "name": "Exercise 2",
+        "sets": 0
     },
     {
         "id": 3,
         "workout": 4,
         "exercise": 1,
-        "name": "Exercise 1"
+        "name": "Exercise 1",
+        "sets": 0
     },
     {
         "id": 4,
         "workout": 4,
         "exercise": 2,
-        "name": "Exercise 2"
+        "name": "Exercise 2",
+        "sets": 0
     }
 ]
