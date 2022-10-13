@@ -52,4 +52,8 @@ describe('WorkoutExercises screen', () => {
 
     cy.findAllByTestId('workout_exercise_list_item').should('have.length', 1);
   });
+
+  it('shows the count of sets in list item', () => {
+    cy.contains('Sets: 2');
+  });
 });
