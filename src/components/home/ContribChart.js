@@ -2,7 +2,13 @@ import {ListItem, Text} from '@rneui/themed';
 import {View} from 'react-native';
 import {ContributionGraph} from 'react-native-chart-kit';
 
-export default function ContribChart({workouts, theme, styles, chartConfig}) {
+export default function ContribChart({
+  workouts,
+  theme,
+  styles,
+  chartConfig,
+  screenWidth,
+}) {
   const workoutContribs = workouts.map(item => ({
     date: new Date(Date.parse(item.created_on)),
     count: 1,
@@ -25,6 +31,7 @@ export default function ContribChart({workouts, theme, styles, chartConfig}) {
             testID="workoutContribGraph"
             values={workoutContribs}
             numDays={92}
+            width={screenWidth - 20}
             height={220}
             chartConfig={chartConfig}
             //showMonthLabels={false}

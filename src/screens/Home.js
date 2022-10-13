@@ -1,6 +1,6 @@
 import hexToRgba from 'hex-to-rgba';
 import {useEffect} from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {Dimensions, ScrollView, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import ContribChart from '../components/home/ContribChart';
 import {getWorkouts} from '../redux/workout/workoutSlice';
@@ -12,6 +12,7 @@ export default function Home() {
   const workouts = useSelector(state => state.workout.workouts);
 
   const theme = useTheme();
+  const screenWidth = Dimensions.get('window').width;
 
   const chartConfig = {
     backgroundGradientFrom: theme.colors.background,
@@ -33,6 +34,7 @@ export default function Home() {
           theme={theme}
           styles={styles}
           chartConfig={chartConfig}
+          screenWidth={screenWidth}
         />
       )}
     </ScrollView>
