@@ -31,7 +31,7 @@ export default function ContribChart({
             testID="workoutContribGraph"
             values={workoutContribs}
             numDays={92}
-            width={screenWidth - 20}
+            width={Math.min(screenWidth - 20, 400)}
             height={220}
             chartConfig={chartConfig}
             //showMonthLabels={false}
