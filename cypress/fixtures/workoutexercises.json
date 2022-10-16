@@ -1,6 +1,7 @@
 [
     {
         "id": 1,
+        "created_on": "2022-09-05T09:32:00.993378Z",
         "workout": 1,
         "exercise": 1,
         "name": "Exercise 1",
@@ -9,6 +10,7 @@
     },
     {
         "id": 2,
+        "created_on": "2022-09-05T09:42:00.993378Z", 
         "workout": 1,
         "exercise": 2,
         "name": "Exercise 2",
@@ -17,6 +19,7 @@
     },
     {
         "id": 3,
+        "created_on": "2022-09-14T09:32:00.993378Z", 
         "workout": 4,
         "exercise": 1,
         "name": "Exercise 1",
@@ -25,6 +28,7 @@
     },
     {
         "id": 4,
+        "created_on": "2022-09-15T09:32:00.993378Z", 
         "workout": 4,
         "exercise": 2,
         "name": "Exercise 2",
