@@ -58,7 +58,7 @@ describe('WorkoutExercises screen', () => {
     cy.contains('Sets: 0');
   });
 
-  it.only('shows count of sets after creating a new set', () => {
+  it('shows count of sets after creating a new set', () => {
     const weight = '100';
     const reps = '8';
     const rir = '2';
