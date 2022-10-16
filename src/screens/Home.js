@@ -1,3 +1,4 @@
+import {useIsFocused} from '@react-navigation/native';
 import hexToRgba from 'hex-to-rgba';
 import {useEffect} from 'react';
 import {Dimensions, ScrollView, StyleSheet} from 'react-native';
@@ -8,6 +9,7 @@ import useTheme from '../utils/useTheme';
 
 export default function Home() {
   const dispatch = useDispatch();
+  const isFocused = useIsFocused();
 
   const workouts = useSelector(state => state.workout.workouts);
 
@@ -23,8 +25,10 @@ export default function Home() {
   };
 
   useEffect(() => {
-    dispatch(getWorkouts());
-  }, [dispatch]);
+    if (isFocused) {
+      dispatch(getWorkouts());
+    }
+  }, [isFocused, dispatch]);
 
   return (
     <ScrollView>
