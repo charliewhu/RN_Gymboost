@@ -1,4 +1,18 @@
 [
-    {"id": 1, "created_on": "2022-09-05T09:32:00.993378Z", "routine": null, "name": null, "total_sets": 2},
-    {"id": 2, "created_on": "2022-09-02T10:49:07.982317Z", "routine": null, "name": null, "total_sets": 0}
+    {
+      "id": 1, 
+      "created_on": "2022-09-05T09:32:00.993378Z", 
+      "routine": null, 
+      "name": null, 
+      "total_sets": 2, 
+      "total_volume": 1050
+    },
+    {
+      "id": 2, 
+      "created_on": "2022-09-02T10:49:07.982317Z", 
+      "routine": null, 
+      "name": null, 
+      "total_sets": 0, 
+      "total_volume": 0
+    }
   ]
