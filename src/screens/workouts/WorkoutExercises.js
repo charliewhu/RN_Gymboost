@@ -10,8 +10,8 @@ export default function WorkoutExercises({navigation, route}) {
   );
 
   const getTitle = () => {
-    if (workout.name !== null) {
-      return workout.name;
+    if (workout.routine_name !== null) {
+      return workout.routine_name;
     } else {
       return 'Workout Exercises';
     }
