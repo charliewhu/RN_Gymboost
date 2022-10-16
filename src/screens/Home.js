@@ -4,6 +4,7 @@ import {useEffect} from 'react';
 import {Dimensions, ScrollView, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import ContribChart from '../components/home/ContribChart';
+import SetsChart from '../components/home/SetsChart';
 import {getWorkouts} from '../redux/workout/workoutSlice';
 import useTheme from '../utils/useTheme';
 
@@ -33,13 +34,16 @@ export default function Home() {
   return (
     <ScrollView>
       {workouts && (
-        <ContribChart
-          workouts={workouts}
-          theme={theme}
-          styles={styles}
-          chartConfig={chartConfig}
-          screenWidth={screenWidth}
-        />
+        <>
+          <ContribChart
+            workouts={workouts}
+            theme={theme}
+            styles={styles}
+            chartConfig={chartConfig}
+            screenWidth={screenWidth}
+          />
+          <SetsChart />
+        </>
       )}
     </ScrollView>
   );
