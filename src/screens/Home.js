@@ -3,6 +3,7 @@ import hexToRgba from 'hex-to-rgba';
 import {useEffect} from 'react';
 import {Dimensions, ScrollView, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import ChartView from '../components/home/ChartView';
 import ContribChart from '../components/home/ContribChart';
 import SetsChart from '../components/home/SetsChart';
 import {getWorkouts} from '../redux/workout/workoutSlice';
@@ -35,14 +36,20 @@ export default function Home() {
     <ScrollView>
       {workouts && (
         <>
-          <ContribChart
-            workouts={workouts}
-            theme={theme}
-            styles={styles}
-            chartConfig={chartConfig}
-            screenWidth={screenWidth}
-          />
-          <SetsChart />
+          <ChartView title="Days Worked Out">
+            <ContribChart
+              workouts={workouts}
+              chartConfig={chartConfig}
+              screenWidth={screenWidth}
+            />
+          </ChartView>
+          <ChartView title="Sets by Date">
+            <SetsChart
+              workouts={workouts}
+              chartConfig={chartConfig}
+              screenWidth={screenWidth}
+            />
+          </ChartView>
         </>
       )}
     </ScrollView>
