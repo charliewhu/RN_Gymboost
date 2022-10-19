@@ -10,7 +10,18 @@ describe('selectors', () => {
       };
 
       const result = getSetCountFromWorkoutExerciseIdList(state, [1]);
-      expect(result).toEqual([]);
+      expect(result).toEqual(0);
+    });
+
+    it('returns 1 with 1 item', () => {
+      const state = {
+        workoutExerciseSet: {
+          workoutExerciseSets: [{workout_exercise: 1}],
+        },
+      };
+
+      const result = getSetCountFromWorkoutExerciseIdList(state, [1]);
+      expect(result).toEqual(1);
     });
   });
 });
