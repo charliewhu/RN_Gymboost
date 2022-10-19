@@ -100,3 +100,9 @@ export const workoutExerciseSetSlice = createSlice({
 
 export const {reset} = workoutExerciseSetSlice.actions;
 export default workoutExerciseSetSlice.reducer;
+
+// Selectors
+
+export function getSetCount(state) {
+  return state.workoutExerciseSet.workoutExerciseSets.length;
+}
