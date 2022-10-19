@@ -57,7 +57,7 @@ describe('Home page', () => {
     it('shows total workouts in past week', () => {
       workouts.push({
         id: 3,
-        created_on: new Date().toISOString(), // TODO
+        created_on: new Date().toISOString(),
         routine: null,
         routine_name: null,
         total_sets: 1,
