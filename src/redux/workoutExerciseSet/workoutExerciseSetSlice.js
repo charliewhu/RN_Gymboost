@@ -114,4 +114,12 @@ export function getSetCountFromWorkoutExerciseIdList(
   return sets.length;
 }
 
-export function getSetCountFromWorkoutId(state, workoutId) {}
+export function getSetCountFromWorkoutId(state, workoutId) {
+  const workoutExerciseList = state.workoutExercise.workoutExercises.filter(
+    o => o.workout === workoutId,
+  );
+
+  const workoutExerciseIdList = workoutExerciseList.map(o => o.workout);
+
+  return getSetCountFromWorkoutExerciseIdList(state, workoutExerciseIdList);
+}
