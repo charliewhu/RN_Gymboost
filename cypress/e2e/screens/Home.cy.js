@@ -47,10 +47,7 @@ describe('Home page', () => {
 
   describe('analytics', () => {
     it('shows total workouts', () => {
-      cy.findByTestId('totalWorkoutCount').should(
-        'have.value',
-        workouts.length,
-      );
+      cy.findByTestId('totalWorkoutCount').contains(workouts.length);
     });
   });
 });
