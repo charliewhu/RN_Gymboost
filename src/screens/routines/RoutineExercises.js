@@ -6,7 +6,7 @@ import AddButton from '../../components/utils/AddButton';
 
 export default function RoutineExercises({navigation, route}) {
   const routine = useSelector(state =>
-    state.routine.routines.find(item => item.id == route.params.id),
+    state.routine.routines.find(item => item.id === +route.params.id),
   );
 
   useLayoutEffect(() => {

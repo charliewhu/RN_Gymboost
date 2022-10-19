@@ -5,7 +5,7 @@ import RoutineExerciseListItem from './RoutineExerciseListItem';
 export default function RoutineExerciseList({route}) {
   const routineExercises = useSelector(state =>
     state.routineExercise.routineExercises.filter(
-      item => item.routine == route.params.id,
+      item => item.routine === +route.params.id,
     ),
   );
 

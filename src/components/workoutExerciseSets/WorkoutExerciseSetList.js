@@ -5,7 +5,7 @@ import WorkoutExerciseSetListItem from './WorkoutExerciseSetListItem';
 export default function WorkoutExerciseSetList({route}) {
   const workoutExerciseSets = useSelector(state =>
     state.workoutExerciseSet.workoutExerciseSets.filter(
-      item => item.workout_exercise == route.params.workoutExerciseId,
+      item => item.workout_exercise === +route.params.workoutExerciseId,
     ),
   );
 

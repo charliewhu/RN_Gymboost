@@ -54,7 +54,7 @@ export const workoutExerciseSetSlice = createSlice({
   name: 'workoutExerciseSet',
   initialState: initialState,
   reducers: {
-    reset: state => initialState,
+    reset: () => initialState,
   },
   extraReducers: builder => {
     builder

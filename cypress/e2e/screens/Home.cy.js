@@ -1,8 +1,8 @@
 const API_URL = Cypress.env('API_URL');
 
-import workouts from '../../fixtures/workouts.json';
 import workoutexercises from '../../fixtures/workoutexercises.json';
 import workoutexercisesets from '../../fixtures/workoutexercisesets.json';
+import workouts from '../../fixtures/workouts.json';
 
 describe('Home page', () => {
   beforeEach(() => {
