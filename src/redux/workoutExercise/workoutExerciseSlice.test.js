@@ -36,5 +36,16 @@ describe('selectors', () => {
       const result = getWorkoutExerciseSetCount(state, 1);
       expect(result).toEqual(0);
     });
+
+    it('returns 1 with 1 items', () => {
+      const state = {
+        workoutExerciseSet: {
+          workoutExerciseSets: [{id: 1, workout_exercise: 1}],
+        },
+      };
+
+      const result = getWorkoutExerciseSetCount(state, 1);
+      expect(result).toEqual(1);
+    });
   });
 });
