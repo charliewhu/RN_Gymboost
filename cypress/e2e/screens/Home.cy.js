@@ -1,6 +1,6 @@
 const API_URL = Cypress.env('API_URL');
 
-import workouts from '../../../fixtures/workouts.json';
+import workouts from '../../fixtures/workouts.json';
 
 describe('Home page', () => {
   beforeEach(() => {
@@ -9,6 +9,7 @@ describe('Home page', () => {
     }).as('getWorkouts');
 
     cy.visit('/');
+    cy.wait('@getWorkouts');
   });
 
   it('says Home', () => {
@@ -46,7 +47,7 @@ describe('Home page', () => {
 
   describe('analytics', () => {
     it('shows total workouts', () => {
-      cy.findByTestId('totalWorkoutCounter').should(
+      cy.findByTestId('totalWorkoutCount').should(
         'have.value',
         workouts.length,
       );
