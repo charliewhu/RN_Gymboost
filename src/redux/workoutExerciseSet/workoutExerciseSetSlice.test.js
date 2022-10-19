@@ -23,5 +23,16 @@ describe('selectors', () => {
       const result = getSetCount(state);
       expect(result).toEqual(1);
     });
+
+    it('returns 2 with 2 items', () => {
+      const state = {
+        workoutExerciseSet: {
+          workoutExerciseSets: [{id: 1}, {id: 2}],
+        },
+      };
+
+      const result = getSetCount(state);
+      expect(result).toEqual(2);
+    });
   });
 });
