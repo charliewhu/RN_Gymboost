@@ -1,7 +1,7 @@
 import {useIsFocused} from '@react-navigation/native';
 import hexToRgba from 'hex-to-rgba';
 import {useEffect} from 'react';
-import {Dimensions, ScrollView, StyleSheet} from 'react-native';
+import {Dimensions, ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import ChartView from '../components/home/ChartView';
 import ContribChart from '../components/home/ContribChart';
@@ -55,16 +55,3 @@ export default function Home() {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  chartTitle: {
-    textAlign: 'center',
-    fontSize: 20,
-    paddingTop: 30,
-  },
-  chartView: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-});
