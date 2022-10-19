@@ -1,8 +1,9 @@
 import {useIsFocused} from '@react-navigation/native';
 import hexToRgba from 'hex-to-rgba';
 import {useEffect} from 'react';
-import {Dimensions, ScrollView} from 'react-native';
+import {Dimensions, ScrollView, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {Bars, Chart} from 'rumble-charts';
 import ChartView from '../components/home/ChartView';
 import ContribChart from '../components/home/ContribChart';
 import SetsChart from '../components/home/SetsChart';
@@ -13,7 +14,12 @@ export default function Home() {
   const dispatch = useDispatch();
   const isFocused = useIsFocused();
 
-  const workouts = useSelector(state => state.workout.workouts);
+  const workouts = useSelector(state =>
+    state.workout.workouts.map(item => ({
+      ...item,
+      date: new Date(Date.parse(item.created_on)).toDateString(),
+    })),
+  );
 
   const theme = useTheme();
   const screenWidth = Dimensions.get('window').width;
@@ -31,6 +37,8 @@ export default function Home() {
       dispatch(getWorkouts());
     }
   }, [isFocused, dispatch]);
+
+  console.log(workouts);
 
   return (
     <ScrollView>
@@ -50,6 +58,20 @@ export default function Home() {
               screenWidth={screenWidth}
             />
           </ChartView>
+          <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+            <Chart
+              height={300}
+              minY={0}
+              series={[
+                {
+                  data: workouts.map(item => item.total_sets),
+                },
+              ]}
+              width={600}
+            >
+              <Bars />
+            </Chart>
+          </View>
         </>
       )}
     </ScrollView>
