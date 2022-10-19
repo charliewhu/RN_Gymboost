@@ -100,26 +100,3 @@ export const workoutExerciseSetSlice = createSlice({
 
 export const {reset} = workoutExerciseSetSlice.actions;
 export default workoutExerciseSetSlice.reducer;
-
-// selectors
-
-export function getSetCountFromWorkoutExerciseIdList(
-  state,
-  workoutExerciseIds,
-) {
-  const sets = state.workoutExerciseSet.workoutExerciseSets.filter(o =>
-    workoutExerciseIds.includes(o.workout_exercise),
-  );
-
-  return sets.length;
-}
-
-export function getSetCountFromWorkoutId(state, workoutId) {
-  const workoutExerciseList = state.workoutExercise.workoutExercises.filter(
-    o => o.workout === workoutId,
-  );
-
-  const workoutExerciseIdList = workoutExerciseList.map(o => o.workout);
-
-  return getSetCountFromWorkoutExerciseIdList(state, workoutExerciseIdList);
-}
