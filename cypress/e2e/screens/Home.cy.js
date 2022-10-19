@@ -1,12 +1,17 @@
 const API_URL = Cypress.env('API_URL');
 
+import workoutexercises from '../../fixtures/workoutexercises.json';
+import workoutexercisesets from '../../fixtures/workoutexercisesets.json';
+import workouts from '../../fixtures/workouts.json';
+
 describe('Home page', () => {
   beforeEach(() => {
-    cy.intercept('GET', `${API_URL}/workouts/`, {
-      fixture: 'workouts.json',
-    }).as('getWorkouts');
+    cy.workoutIntercepts();
 
     cy.visit('/');
+    cy.wait('@getWorkouts');
+    cy.wait('@getWorkoutExercises');
+    cy.wait('@getWorkoutExerciseSets');
   });
 
   it('says Home', () => {
@@ -42,7 +47,43 @@ describe('Home page', () => {
     cy.url().should('include', 'workouts');
   });
 
-  it('fetches Workouts from server', () => {
-    cy.wait('@getWorkouts');
+  describe('analytics', () => {
+    it('shows total workouts', () => {
+      cy.findByTestId('totalWorkouts').contains(workouts.length);
+    });
+
+    it('shows total sets', () => {
+      cy.findByTestId('totalSets').contains(2);
+    });
+
+    it('shows total Sets in past week', () => {
+      // Need to add a WorkoutExerciseSet to a Workout
+      // That occurs within past week
+
+      workouts.push({
+        id: 3,
+        created_on: new Date().toISOString(),
+      });
+
+      workoutexercises.push({id: 3, workout: 3});
+      workoutexercisesets.push({id: 3, workout_exercise: 3});
+
+      cy.intercept('GET', `${API_URL}/workouts/`, workouts).as('getWorkouts');
+      cy.intercept('GET', `${API_URL}/workoutexercises/`, workoutexercises).as(
+        'getWorkoutExercises',
+      );
+      cy.intercept(
+        'GET',
+        `${API_URL}/workoutexercisesets/`,
+        workoutexercisesets,
+      ).as('getWorkoutExerciseSets');
+
+      cy.visit('/');
+      cy.wait('@getWorkouts');
+      cy.wait('@getWorkoutExercises');
+      cy.wait('@getWorkoutExerciseSets');
+
+      cy.findByTestId('totalWeekSets').contains(1);
+    });
   });
 });

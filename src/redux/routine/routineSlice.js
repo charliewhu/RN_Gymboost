@@ -52,7 +52,7 @@ export const routineSlice = createSlice({
   name: 'routine',
   initialState: initialState,
   reducers: {
-    reset: state => initialState,
+    reset: () => initialState,
   },
   extraReducers: builder => {
     builder

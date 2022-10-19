@@ -1,6 +1,5 @@
 import {Button} from '@rneui/themed';
 import {Formik} from 'formik';
-import {useState} from 'react';
 import {StyleSheet, TextInput, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {postWorkoutExerciseSet} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
@@ -11,12 +10,12 @@ export default function WorkoutExerciseSetForm({route}) {
   const dispatch = useDispatch();
   const theme = useTheme();
 
-  const [formValues, setFormValues] = useState({
+  const formValues = {
     id: '',
     weight: '',
     reps: '',
     rir: '',
-  });
+  };
 
   const handleSubmitForm = values => {
     const data = {

@@ -5,7 +5,7 @@ import WorkoutExerciseListItem from './WorkoutExerciseListItem';
 export default function WorkoutExerciseList({navigation, route}) {
   const workoutExercises = useSelector(state =>
     state.workoutExercise.workoutExercises.filter(
-      item => item.workout == route.params.id,
+      item => item.workout === +route.params.id,
     ),
   );
 

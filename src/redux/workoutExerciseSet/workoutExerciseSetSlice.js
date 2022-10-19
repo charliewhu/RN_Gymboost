@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {getSetCountFromWorkoutExerciseIdList} from '../workoutExercise/workoutExerciseSlice';
 import workoutExerciseSetService from './workoutExerciseSetService';
 
 export const getWorkoutExerciseSets = createAsyncThunk(
@@ -53,7 +54,7 @@ export const workoutExerciseSetSlice = createSlice({
   name: 'workoutExerciseSet',
   initialState: initialState,
   reducers: {
-    reset: state => initialState,
+    reset: () => initialState,
   },
   extraReducers: builder => {
     builder
@@ -100,3 +101,26 @@ export const workoutExerciseSetSlice = createSlice({
 
 export const {reset} = workoutExerciseSetSlice.actions;
 export default workoutExerciseSetSlice.reducer;
+
+// Selectors
+
+export function getSetCount(state) {
+  return state.workoutExerciseSet.workoutExerciseSets.length;
+}
+
+export function getTotalWeekSets(state) {
+  const today = new Date();
+  const workoutIds = state.workout.workouts
+    .filter(
+      item =>
+        new Date(Date.parse(item.created_on)) >=
+        new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6),
+    )
+    .map(o => o.id);
+
+  const workoutExercises = state.workoutExercise.workoutExercises
+    .filter(o => workoutIds.includes(o.workout))
+    .map(o => o.id);
+
+  return getSetCountFromWorkoutExerciseIdList(state, workoutExercises);
+}

@@ -1,55 +1,49 @@
-import hexToRgba from 'hex-to-rgba';
+import {Card, Text} from '@rneui/themed';
 import {useEffect} from 'react';
-import {Dimensions, ScrollView, StyleSheet} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import ContribChart from '../components/home/ContribChart';
 import {getWorkouts} from '../redux/workout/workoutSlice';
-import useTheme from '../utils/useTheme';
+import {getWorkoutExercises} from '../redux/workoutExercise/workoutExerciseSlice';
+import {
+  getSetCount,
+  getTotalWeekSets,
+  getWorkoutExerciseSets,
+} from '../redux/workoutExerciseSet/workoutExerciseSetSlice';
 
 export default function Home() {
   const dispatch = useDispatch();
-
   const workouts = useSelector(state => state.workout.workouts);
-
-  const theme = useTheme();
-  const screenWidth = Dimensions.get('window').width;
-
-  const chartConfig = {
-    backgroundGradientFrom: theme.colors.background,
-    backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: theme.colors.background,
-    backgroundGradientToOpacity: 0,
-    color: (opacity = 0.5) => hexToRgba(theme.colors.primary, opacity + 0.02),
-  };
+  const totalSets = useSelector(state => getSetCount(state));
+  const totalWeekSets = useSelector(state => getTotalWeekSets(state));
 
   useEffect(() => {
     dispatch(getWorkouts());
+    dispatch(getWorkoutExercises());
+    dispatch(getWorkoutExerciseSets());
   }, [dispatch]);
 
   return (
     <ScrollView>
-      {workouts && (
-        <ContribChart
-          workouts={workouts}
-          theme={theme}
-          styles={styles}
-          chartConfig={chartConfig}
-          screenWidth={screenWidth}
-        />
-      )}
+      <Card testID="totalWorkouts">
+        <Card.Title>Total Workouts</Card.Title>
+        <View style={{alignItems: 'center'}}>
+          <Text>{workouts.length}</Text>
+        </View>
+      </Card>
+
+      <Card testID="totalSets">
+        <Card.Title>Total Sets</Card.Title>
+        <View style={{alignItems: 'center'}}>
+          <Text>{totalSets}</Text>
+        </View>
+      </Card>
+
+      <Card testID="totalWeekSets">
+        <Card.Title>Total Sets In Past Week</Card.Title>
+        <View style={{alignItems: 'center'}}>
+          <Text>{totalWeekSets}</Text>
+        </View>
+      </Card>
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  chartTitle: {
-    textAlign: 'center',
-    fontSize: 20,
-    paddingTop: 30,
-  },
-  chartView: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-});

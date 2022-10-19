@@ -23,7 +23,7 @@ describe('Creating a Routine, starting a Workout with it', () => {
       id: 4,
       created_on: '2022-09-05T09:32:00.993378Z',
       routine: 1,
-      name: routines[0].name,
+      routine_name: routines[0].name,
     }).as('postRoutineWorkout');
 
     cy.findAllByTestId('startWorkoutBtn').first().click();

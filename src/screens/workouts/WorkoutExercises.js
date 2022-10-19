@@ -6,12 +6,12 @@ import WorkoutExerciseList from '../../components/workoutExercises/WorkoutExerci
 
 export default function WorkoutExercises({navigation, route}) {
   const workout = useSelector(state =>
-    state.workout.workouts.find(item => item.id == route.params.id),
+    state.workout.workouts.find(item => item.id === +route.params.id),
   );
 
   const getTitle = () => {
-    if (workout.name !== null) {
-      return workout.name;
+    if (workout.routine_name !== null) {
+      return workout.routine_name;
     } else {
       return 'Workout Exercises';
     }

@@ -54,7 +54,7 @@ export const workoutExerciseSlice = createSlice({
   name: 'workoutExercise',
   initialState: initialState,
   reducers: {
-    reset: state => initialState,
+    reset: () => initialState,
   },
   extraReducers: builder => {
     builder
@@ -101,3 +101,24 @@ export const workoutExerciseSlice = createSlice({
 
 export const {reset} = workoutExerciseSlice.actions;
 export default workoutExerciseSlice.reducer;
+
+// Selectors
+
+export function getWorkoutExerciseSetCount(state, workoutExerciseId) {
+  const sets = state.workoutExerciseSet.workoutExerciseSets.filter(
+    o => o.workout_exercise === workoutExerciseId,
+  );
+
+  return sets.length;
+}
+
+export function getSetCountFromWorkoutExerciseIdList(
+  state,
+  workoutExerciseIds,
+) {
+  const sets = state.workoutExerciseSet.workoutExerciseSets.filter(o =>
+    workoutExerciseIds.includes(o.workout_exercise),
+  );
+
+  return sets.length;
+}

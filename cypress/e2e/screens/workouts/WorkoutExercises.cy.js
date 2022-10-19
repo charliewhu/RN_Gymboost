@@ -52,4 +52,34 @@ describe('WorkoutExercises screen', () => {
 
     cy.findAllByTestId('workout_exercise_list_item').should('have.length', 1);
   });
+
+  it('shows the count of sets in list item', () => {
+    cy.contains('Sets: 2');
+    cy.contains('Sets: 0');
+  });
+
+  it('shows count of sets after creating a new set', () => {
+    const weight = '100';
+    const reps = '8';
+    const rir = '2';
+
+    cy.intercept('POST', `${API_URL}/workoutexercisesets/`, {
+      workout_exercise: 1,
+      weight: weight,
+      reps: reps,
+      rir: rir,
+    }).as('postWorkoutExerciseSet');
+
+    cy.findAllByTestId('workout_exercise_list_item').first().click();
+    cy.findByTestId('weightInput').type(weight);
+    cy.findByTestId('repsInput').type(reps);
+    cy.findByTestId('rirInput').type(rir);
+    cy.findByTestId('submitBtn').click({force: true});
+
+    const selector = '[aria-label="Go back"]';
+    cy.get(selector).first().click({force: true});
+
+    cy.contains('Sets: 3');
+    cy.contains('Sets: 0');
+  });
 });

@@ -1,5 +1,8 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {getWorkoutExercises} from '../workoutExercise/workoutExerciseSlice';
+import {
+  getSetCountFromWorkoutExerciseIdList,
+  getWorkoutExercises,
+} from '../workoutExercise/workoutExerciseSlice';
 import workoutService from './workoutService';
 
 export const getWorkouts = createAsyncThunk(
@@ -66,7 +69,7 @@ export const workoutSlice = createSlice({
   name: 'workout',
   initialState: initialState,
   reducers: {
-    reset: state => initialState,
+    reset: () => initialState,
   },
   extraReducers: builder => {
     builder
@@ -125,3 +128,15 @@ export const workoutSlice = createSlice({
 
 export const {reset} = workoutSlice.actions;
 export default workoutSlice.reducer;
+
+// Selectors
+
+export function getSetCountFromWorkoutId(state, workoutId) {
+  const workoutExerciseList = state.workoutExercise.workoutExercises.filter(
+    o => o.workout === workoutId,
+  );
+
+  const workoutExerciseIdList = workoutExerciseList.map(o => o.workout);
+
+  return getSetCountFromWorkoutExerciseIdList(state, workoutExerciseIdList);
+}

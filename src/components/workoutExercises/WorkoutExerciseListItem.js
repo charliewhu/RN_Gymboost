@@ -1,10 +1,17 @@
 import {ListItem} from '@rneui/themed';
-import {useDispatch} from 'react-redux';
-import {deleteWorkoutExercise} from '../../redux/workoutExercise/workoutExerciseSlice';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  deleteWorkoutExercise,
+  getWorkoutExerciseSetCount,
+} from '../../redux/workoutExercise/workoutExerciseSlice';
 
 import IconButton from '../utils/IconButton';
 
 export default function WorkoutExerciseListItem({navigation, item}) {
+  const workoutExerciseSets = useSelector(state =>
+    getWorkoutExerciseSetCount(state, item.id),
+  );
+
   const dispatch = useDispatch();
 
   const handleDelete = id => {
@@ -23,6 +30,7 @@ export default function WorkoutExerciseListItem({navigation, item}) {
     >
       <ListItem.Content>
         <ListItem.Title>{item.name}</ListItem.Title>
+        <ListItem.Subtitle>Sets: {workoutExerciseSets}</ListItem.Subtitle>
       </ListItem.Content>
       <IconButton
         testID="deleteWorkoutExerciseBtn"
