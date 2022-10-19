@@ -1,4 +1,7 @@
-import {getSetCountFromWorkoutExerciseIdList} from './workoutExerciseSetSlice';
+import {
+  getSetCountFromWorkoutExerciseIdList,
+  getSetCountFromWorkoutId,
+} from './workoutExerciseSetSlice';
 
 describe('selectors', () => {
   describe('getSetCountFromWorkoutExerciseIdList', () => {
