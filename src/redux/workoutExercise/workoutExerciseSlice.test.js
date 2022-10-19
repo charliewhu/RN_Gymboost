@@ -1,4 +1,7 @@
-import {getSetCountFromWorkoutExerciseIdList} from './workoutExerciseSlice';
+import {
+  getSetCountFromWorkoutExerciseIdList,
+  getWorkoutExerciseSetCount,
+} from './workoutExerciseSlice';
 
 describe('selectors', () => {
   describe('getSetCountFromWorkoutExerciseIdList', () => {
@@ -40,7 +43,10 @@ describe('selectors', () => {
     it('returns 1 with 1 items', () => {
       const state = {
         workoutExerciseSet: {
-          workoutExerciseSets: [{id: 1, workout_exercise: 1}],
+          workoutExerciseSets: [
+            {id: 1, workout_exercise: 1},
+            {id: 1, workout_exercise: 2},
+          ],
         },
       };
 

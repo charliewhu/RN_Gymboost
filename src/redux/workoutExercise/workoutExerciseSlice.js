@@ -104,6 +104,14 @@ export default workoutExerciseSlice.reducer;
 
 // Selectors
 
+export function getWorkoutExerciseSetCount(state, workoutExerciseId) {
+  const sets = state.workoutExerciseSet.workoutExerciseSets.filter(
+    o => o.workout_exercise === workoutExerciseId,
+  );
+
+  return sets.length;
+}
+
 export function getSetCountFromWorkoutExerciseIdList(
   state,
   workoutExerciseIds,
