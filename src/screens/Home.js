@@ -6,9 +6,19 @@ import {getWorkouts} from '../redux/workout/workoutSlice';
 
 export default function Home() {
   const dispatch = useDispatch();
+  const today = new Date();
   const workouts = useSelector(state => state.workout.workouts);
   const totalSets = useSelector(state =>
     state.workout.workouts.reduce((prev, curr) => prev + curr.total_sets, 0),
+  );
+  const totalWeekSets = useSelector(state =>
+    state.workout.workouts
+      .filter(
+        item =>
+          new Date(Date.parse(item.created_on)) >=
+          new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6),
+      )
+      .reduce((prev, curr) => prev + curr.total_sets, 0),
   );
 
   useEffect(() => {
@@ -28,6 +38,13 @@ export default function Home() {
         <Card.Title>Total Sets</Card.Title>
         <View style={{alignItems: 'center'}}>
           <Text>{totalSets}</Text>
+        </View>
+      </Card>
+
+      <Card testID="totalWeekSets">
+        <Card.Title>Total Sets In Past Week</Card.Title>
+        <View style={{alignItems: 'center'}}>
+          <Text>{totalWeekSets}</Text>
         </View>
       </Card>
     </ScrollView>

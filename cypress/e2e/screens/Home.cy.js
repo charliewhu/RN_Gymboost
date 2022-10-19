@@ -53,13 +53,13 @@ describe('Home page', () => {
       );
     });
 
-    it.only('shows total workouts in past week', () => {
+    it('shows total workouts in past week', () => {
       workouts.push({
         id: 3,
         created_on: new Date().toISOString(), // TODO
         routine: null,
         routine_name: null,
-        total_sets: 0,
+        total_sets: 1,
         total_volume: 0,
       });
 
