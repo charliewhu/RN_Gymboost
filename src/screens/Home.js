@@ -6,6 +6,7 @@ import {getWorkouts} from '../redux/workout/workoutSlice';
 import {getWorkoutExercises} from '../redux/workoutExercise/workoutExerciseSlice';
 import {
   getSetCount,
+  getTotalWeekSets,
   getWorkoutExerciseSets,
 } from '../redux/workoutExerciseSet/workoutExerciseSetSlice';
 
