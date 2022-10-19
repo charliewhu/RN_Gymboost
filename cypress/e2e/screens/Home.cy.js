@@ -4,9 +4,7 @@ import workouts from '../../fixtures/workouts.json';
 
 describe('Home page', () => {
   beforeEach(() => {
-    cy.intercept('GET', `${API_URL}/workouts/`, {
-      fixture: 'workouts.json',
-    }).as('getWorkouts');
+    cy.intercept('GET', `${API_URL}/workouts/`, workouts).as('getWorkouts');
 
     cy.visit('/');
     cy.wait('@getWorkouts');
@@ -53,6 +51,23 @@ describe('Home page', () => {
       cy.findByTestId('totalSets').contains(
         workouts.reduce((prev, curr) => prev.total_sets + curr.total_sets),
       );
+    });
+
+    it.only('shows total workouts in past week', () => {
+      workouts.push({
+        id: 3,
+        created_on: new Date().toISOString(), // TODO
+        routine: null,
+        routine_name: null,
+        total_sets: 0,
+        total_volume: 0,
+      });
+
+      cy.intercept('GET', `${API_URL}/workouts/`, workouts).as('getWorkouts');
+      cy.visit('/');
+      cy.wait('@getWorkouts');
+
+      cy.findByTestId('totalWeekSets').contains(1);
     });
   });
 });
