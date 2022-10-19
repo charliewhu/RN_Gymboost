@@ -24,4 +24,17 @@ describe('selectors', () => {
       expect(result).toEqual(1);
     });
   });
+
+  describe('getWorkoutExerciseSetCount', () => {
+    it('returns 0 with no items', () => {
+      const state = {
+        workoutExerciseSet: {
+          workoutExerciseSets: [],
+        },
+      };
+
+      const result = getWorkoutExerciseSetCount(state, 1);
+      expect(result).toEqual(0);
+    });
+  });
 });
