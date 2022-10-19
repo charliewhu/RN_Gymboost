@@ -122,6 +122,5 @@ export function getTotalWeekSets(state) {
     .filter(o => workoutIds.includes(o.workout))
     .map(o => o.id);
 
-  console.log(workoutExercises);
   return getSetCountFromWorkoutExerciseIdList(state, workoutExercises);
 }
