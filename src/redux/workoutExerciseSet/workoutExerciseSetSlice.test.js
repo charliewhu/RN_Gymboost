@@ -53,7 +53,7 @@ describe('selectors', () => {
         },
       };
 
-      const result = getSetCountFromWorkoutId(state, [1]);
+      const result = getSetCountFromWorkoutId(state, 1);
       expect(result).toEqual(1);
     });
   });
