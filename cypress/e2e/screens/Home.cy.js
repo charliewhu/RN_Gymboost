@@ -41,8 +41,4 @@ describe('Home page', () => {
     cy.contains('Workouts');
     cy.url().should('include', 'workouts');
   });
-
-  it('fetches Workouts from server', () => {
-    cy.wait('@getWorkouts');
-  });
 });
