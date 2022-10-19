@@ -113,3 +113,5 @@ export function getSetCountFromWorkoutExerciseIdList(
 
   return sets.length;
 }
+
+export function getSetCountFromWorkoutId(state, workoutId) {}
