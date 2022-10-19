@@ -47,7 +47,12 @@ describe('Home page', () => {
 
   describe('analytics', () => {
     it('shows total workouts', () => {
-      cy.findByTestId('totalWorkoutCount').contains(workouts.length);
+      cy.findByTestId('totalWorkouts').contains(workouts.length);
+    });
+    it('shows total sets', () => {
+      cy.findByTestId('totalSets').contains(
+        workouts.reduce((prev, curr) => prev.total_sets + curr.total_sets),
+      );
     });
   });
 });

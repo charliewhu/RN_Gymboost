@@ -7,20 +7,27 @@ import {getWorkouts} from '../redux/workout/workoutSlice';
 export default function Home() {
   const dispatch = useDispatch();
   const workouts = useSelector(state => state.workout.workouts);
+  const totalSets = useSelector(state =>
+    state.workout.workouts.reduce((prev, curr) => prev + curr.total_sets, 0),
+  );
 
   useEffect(() => {
     dispatch(getWorkouts());
   }, [dispatch]);
 
-  console.log(workouts);
-
   return (
     <ScrollView>
-      <Text>Home Screen</Text>
-      <Card testID="totalWorkoutCount">
+      <Card testID="totalWorkouts">
         <Card.Title>Total Workouts</Card.Title>
         <View style={{alignItems: 'center'}}>
           <Text>{workouts.length}</Text>
+        </View>
+      </Card>
+
+      <Card testID="totalSets">
+        <Card.Title>Total Sets</Card.Title>
+        <View style={{alignItems: 'center'}}>
+          <Text>{totalSets}</Text>
         </View>
       </Card>
     </ScrollView>
