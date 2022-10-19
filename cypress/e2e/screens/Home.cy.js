@@ -4,10 +4,12 @@ import workouts from '../../fixtures/workouts.json';
 
 describe('Home page', () => {
   beforeEach(() => {
-    cy.intercept('GET', `${API_URL}/workouts/`, workouts).as('getWorkouts');
+    cy.workoutIntercepts();
 
     cy.visit('/');
     cy.wait('@getWorkouts');
+    cy.wait('@getWorkoutExercises');
+    cy.wait('@getWorkoutExerciseSets');
   });
 
   it('says Home', () => {
@@ -47,10 +49,9 @@ describe('Home page', () => {
     it('shows total workouts', () => {
       cy.findByTestId('totalWorkouts').contains(workouts.length);
     });
+
     it('shows total sets', () => {
-      cy.findByTestId('totalSets').contains(
-        workouts.reduce((prev, curr) => prev.total_sets + curr.total_sets),
-      );
+      cy.findByTestId('totalSets').contains(2);
     });
 
     it('shows total workouts in past week', () => {
