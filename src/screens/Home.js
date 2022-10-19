@@ -12,18 +12,8 @@ import {
 
 export default function Home() {
   const dispatch = useDispatch();
-  // const today = new Date();
   const workouts = useSelector(state => state.workout.workouts);
   const totalSets = useSelector(state => getSetCount(state));
-  // const totalWeekSets = useSelector(state =>
-  //   state.workout.workouts
-  //     .filter(
-  //       item =>
-  //         new Date(Date.parse(item.created_on)) >=
-  //         new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6),
-  //     )
-  //     .reduce((prev, curr) => prev + curr.total_sets, 0),
-  // );
   const totalWeekSets = useSelector(state => getTotalWeekSets(state));
 
   useEffect(() => {

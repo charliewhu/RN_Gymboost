@@ -1,6 +1,8 @@
 const API_URL = Cypress.env('API_URL');
 
 import workouts from '../../fixtures/workouts.json';
+import workoutexercises from '../../fixtures/workoutexercises.json';
+import workoutexercisesets from '../../fixtures/workoutexercisesets.json';
 
 describe('Home page', () => {
   beforeEach(() => {
@@ -54,19 +56,32 @@ describe('Home page', () => {
       cy.findByTestId('totalSets').contains(2);
     });
 
-    it('shows total workouts in past week', () => {
+    it('shows total Sets in past week', () => {
+      // Need to add a WorkoutExerciseSet to a Workout
+      // That occurs within past week
+
       workouts.push({
         id: 3,
         created_on: new Date().toISOString(),
-        routine: null,
-        routine_name: null,
-        total_sets: 1,
-        total_volume: 0,
       });
 
+      workoutexercises.push({id: 3, workout: 3});
+      workoutexercisesets.push({id: 3, workout_exercise: 3});
+
       cy.intercept('GET', `${API_URL}/workouts/`, workouts).as('getWorkouts');
+      cy.intercept('GET', `${API_URL}/workoutexercises/`, workoutexercises).as(
+        'getWorkoutExercises',
+      );
+      cy.intercept(
+        'GET',
+        `${API_URL}/workoutexercisesets/`,
+        workoutexercisesets,
+      ).as('getWorkoutExerciseSets');
+
       cy.visit('/');
       cy.wait('@getWorkouts');
+      cy.wait('@getWorkoutExercises');
+      cy.wait('@getWorkoutExerciseSets');
 
       cy.findByTestId('totalWeekSets').contains(1);
     });
