@@ -1,3 +1,4 @@
+import hexToRgba from 'hex-to-rgba';
 import {KeyboardAvoidingBottomSheet} from '../utils/KeyboardAvoidingBottomSheet';
 import WorkoutExerciseSetForm from './WorkoutExerciseSetForm';
 
@@ -20,7 +21,7 @@ export default function FormModal({
           },
         }}
         isVisible={modalIsVisible}
-        backdropStyle={{backgroundColor: 'rgba(0,0,0,0)'}}
+        backdropStyle={{backgroundColor: hexToRgba(theme.colors.white, 0.85)}}
         onBackdropPress={() => setModalIsVisible(false)}
       >
         <WorkoutExerciseSetForm
