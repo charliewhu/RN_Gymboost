@@ -76,6 +76,8 @@ describe('Creating a workout, adding an Exercise, adding Sets', () => {
     );
 
     // input set info
+    cy.findByTestId('actionBtn').click();
+    cy.findByTestId('addSetBtn').click();
     cy.findByTestId('weightInput').type(weight);
     cy.findByTestId('repsInput').type(reps);
     cy.findByTestId('rirInput').type(rir);
