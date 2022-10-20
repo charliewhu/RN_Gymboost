@@ -155,7 +155,7 @@ describe.only('WorkoutExercises screen where no sets exist', () => {
   describe('adding a set', () => {
     it('doesnt show a form on first render', () => {
       cy.visit('/workouts/1/exercises/2');
-      cy.findAllByTestId('weightInput').should('not', 'be.visible');
+      cy.findAllByTestId('weightInput').should('not.exist');
     });
 
     it('shows a form when addSetBtn is pressed', () => {
