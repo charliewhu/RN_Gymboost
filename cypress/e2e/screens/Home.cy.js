@@ -85,5 +85,24 @@ describe('Home page', () => {
 
       cy.findByTestId('totalWeekSets').contains(1);
     });
+
+    it('shows total Workouts in past week', () => {
+      // Need to add a Workout
+      // That occurs within past week
+
+      workouts.push({
+        id: 3,
+        created_on: new Date().toISOString(),
+      });
+
+      cy.intercept('GET', `${API_URL}/workouts/`, workouts).as('getWorkouts');
+
+      cy.visit('/');
+      cy.wait('@getWorkouts');
+      cy.wait('@getWorkoutExercises');
+      cy.wait('@getWorkoutExerciseSets');
+
+      cy.findByTestId('totalWeekWorkouts').contains(1);
+    });
   });
 });
