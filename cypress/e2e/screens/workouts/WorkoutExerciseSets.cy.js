@@ -1,3 +1,4 @@
+import workoutexercises from '../../../fixtures//workoutexercises.json';
 import workoutexercisesets from '../../../fixtures//workoutexercisesets.json';
 
 const API_URL = Cypress.env('API_URL');
@@ -5,7 +6,7 @@ const weight = '100';
 const reps = '8';
 const rir = '2';
 
-describe('WorkoutExercises screen', () => {
+describe('WorkoutExercises screen where sets exist', () => {
   beforeEach(() => {
     cy.workoutIntercepts();
 
@@ -24,6 +25,10 @@ describe('WorkoutExercises screen', () => {
     cy.intercept('DELETE', `${API_URL}/workoutexercisesets/1/`, {}).as(
       'deleteWorkoutExerciseSet',
     );
+  });
+
+  it('has header of exercise name', () => {
+    cy.contains(workoutexercises[0].name);
   });
 
   it('navigates back to WorkoutExercises screen', () => {
@@ -51,6 +56,8 @@ describe('WorkoutExercises screen', () => {
 
   describe('form validation', () => {
     it('doesnt submit form if form is blank', () => {
+      cy.findByTestId('actionBtn').click();
+      cy.findByTestId('addSetBtn').click();
       cy.findByTestId('submitBtn').click({force: true});
 
       cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
@@ -61,6 +68,8 @@ describe('WorkoutExercises screen', () => {
     });
 
     it('doesnt submit if form fields contain non-numeric', () => {
+      cy.findByTestId('actionBtn').click();
+      cy.findByTestId('addSetBtn').click();
       cy.findByTestId('weightInput').type('weight');
       cy.findByTestId('repsInput').type('reps');
       cy.findByTestId('rirInput').type('rir');
@@ -75,6 +84,8 @@ describe('WorkoutExercises screen', () => {
     });
 
     it('adds Set to the list after submit', () => {
+      cy.findByTestId('actionBtn').click();
+      cy.findByTestId('addSetBtn').click();
       cy.findByTestId('weightInput').type(weight);
       cy.findByTestId('repsInput').type(reps);
       cy.findByTestId('rirInput').type(rir);
@@ -95,15 +106,62 @@ describe('WorkoutExercises screen', () => {
         3,
       );
     });
+  });
 
-    it('clears the form after submit', () => {
+  it('WorkoutExerciseSets can be deleted', () => {
+    cy.findAllByTestId('deleteWorkoutExerciseSetBtn').first().click();
+
+    cy.wait('@deleteWorkoutExerciseSet');
+
+    cy.findAllByTestId('workout_exercise_set_list_item').should(
+      'have.length',
+      1,
+    );
+  });
+});
+
+describe('WorkoutExercises screen where no sets exist', () => {
+  beforeEach(() => {
+    cy.workoutIntercepts();
+    cy.intercept('POST', `${API_URL}/workoutexercisesets/`, {
+      workout_exercise: 2,
+      weight: weight,
+      reps: reps,
+      rir: rir,
+    }).as('postWorkoutExerciseSet');
+
+    cy.visit('/workouts/1/exercises/2');
+    cy.findByTestId('actionBtn').click();
+    cy.findByTestId('addSetBtn').click();
+  });
+
+  describe('adding a set', () => {
+    it('doesnt show a form on first render', () => {
+      cy.visit('/workouts/1/exercises/2');
+      cy.findAllByTestId('weightInput').should('not.exist');
+    });
+
+    it('shows a form when addSetBtn is pressed', () => {
+      cy.findByTestId('workoutExerciseSetForm').should('be.visible');
+      cy.findAllByTestId('weightInput').should('have.length', 1);
+    });
+
+    it('adds set and closes modal', () => {
       cy.findByTestId('weightInput').type(weight);
       cy.findByTestId('repsInput').type(reps);
       cy.findByTestId('rirInput').type(rir);
-      cy.findByTestId('submitBtn').click({force: true});
+      cy.findByTestId('submitBtn').click();
 
-      cy.wait('@postWorkoutExerciseSet');
+      cy.findByTestId('workoutExerciseSetForm').should('not.be.visible');
+      cy.findAllByTestId('workout_exercise_set_list_item').should(
+        'have.length',
+        1,
+      );
 
+      // form is empty when reopened
+
+      cy.findByTestId('actionBtn').click();
+      cy.findByTestId('addSetBtn').click();
       cy.findByTestId('weightInput').should('have.value', '');
       cy.findByTestId('repsInput').should('have.value', '');
       cy.findByTestId('rirInput').should('have.value', '');
@@ -117,16 +175,5 @@ describe('WorkoutExercises screen', () => {
 
       cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
     });
-  });
-
-  it('WorkoutExerciseSets can be deleted', () => {
-    cy.findAllByTestId('deleteWorkoutExerciseSetBtn').first().click();
-
-    cy.wait('@deleteWorkoutExerciseSet');
-
-    cy.findAllByTestId('workout_exercise_set_list_item').should(
-      'have.length',
-      1,
-    );
   });
 });

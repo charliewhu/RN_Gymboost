@@ -71,6 +71,9 @@ describe('WorkoutExercises screen', () => {
     }).as('postWorkoutExerciseSet');
 
     cy.findAllByTestId('workout_exercise_list_item').first().click();
+
+    cy.findByTestId('actionBtn').click();
+    cy.findByTestId('addSetBtn').click();
     cy.findByTestId('weightInput').type(weight);
     cy.findByTestId('repsInput').type(reps);
     cy.findByTestId('rirInput').type(rir);

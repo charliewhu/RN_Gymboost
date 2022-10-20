@@ -6,7 +6,7 @@ import {postWorkoutExerciseSet} from '../../redux/workoutExerciseSet/workoutExer
 import useTheme from '../../utils/useTheme';
 import {WorkoutExerciseSetSchema} from './WorkoutExerciseSetSchema';
 
-export default function WorkoutExerciseSetForm({route}) {
+export default function WorkoutExerciseSetForm({route, setModalIsVisible}) {
   const dispatch = useDispatch();
   const theme = useTheme();
 
@@ -39,10 +39,11 @@ export default function WorkoutExerciseSetForm({route}) {
           handleSubmitForm(values);
           resetForm();
           validateForm();
+          setModalIsVisible();
         }}
       >
         {({handleChange, handleSubmit, values, isValid}) => (
-          <View style={{backgroundColor: theme.colors.white}}>
+          <View style={{backgroundColor: theme.colors.grey6}}>
             <View testID="workoutExerciseSetForm" style={{...styles.container}}>
               <TextInput
                 style={{...styles.inputContainer, color: theme.colors.black}}
@@ -73,16 +74,18 @@ export default function WorkoutExerciseSetForm({route}) {
               />
             </View>
 
-            <Button
-              testID="submitBtn"
-              mode="contained"
-              disabled={!isValid}
-              buttonColor={isValid ? '#0E7AFE' : 'lightgray'}
-              style={styles.btnStyle}
-              onPress={handleSubmit}
-            >
-              Add
-            </Button>
+            <View>
+              <Button
+                testID="submitBtn"
+                mode="contained"
+                disabled={!isValid}
+                buttonColor={isValid ? '#0E7AFE' : 'lightgray'}
+                style={styles.btnStyle}
+                onPress={handleSubmit}
+              >
+                Add
+              </Button>
+            </View>
           </View>
         )}
       </Formik>
@@ -92,20 +95,18 @@ export default function WorkoutExerciseSetForm({route}) {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    //flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
   inputContainer: {
-    width: 100,
-    height: 50,
-    margin: 10,
+    width: 120,
+    height: 60,
+    margin: 15,
     padding: 10,
     textAlign: 'center',
-    borderWidth: 1,
     borderRadius: 5,
-    borderColor: 'lightgray',
-    outlineColor: 'lightgray',
+    fontSize: 28,
   },
   btnStyle: {
     margin: 10,
