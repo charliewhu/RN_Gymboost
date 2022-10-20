@@ -24,8 +24,8 @@ export default function ActionButton({
         color={theme.colors.primary}
         title="Add Set"
         onPress={() => {
-          setFabOpen(false);
           setModalIsVisible(true);
+          setFabOpen(false);
         }}
       />
     </SpeedDial>
