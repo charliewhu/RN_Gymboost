@@ -42,7 +42,7 @@ export default function WorkoutExerciseSetForm({route}) {
         }}
       >
         {({handleChange, handleSubmit, values, isValid}) => (
-          <View style={{backgroundColor: theme.colors.white}}>
+          <View style={{backgroundColor: theme.colors.grey6}}>
             <View testID="workoutExerciseSetForm" style={{...styles.container}}>
               <TextInput
                 style={{...styles.inputContainer, color: theme.colors.black}}
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: 120,
-    height: 70,
+    height: 60,
     margin: 15,
     padding: 10,
     textAlign: 'center',

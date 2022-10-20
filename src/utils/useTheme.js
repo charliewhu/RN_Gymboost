@@ -6,7 +6,7 @@ export default function useTheme() {
 
   const baseTheme = colorScheme === 'dark' ? darkColors : lightColors;
 
-  const grey6 = colorScheme === 'dark' ? '#202020' : '#F5F5F5';
+  const grey6 = colorScheme === 'dark' ? '#101010' : '#F5F5F5';
 
   const theme = createTheme({
     colors: {

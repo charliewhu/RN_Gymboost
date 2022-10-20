@@ -14,7 +14,9 @@ export default function FormModal({
         scrollViewProps={{
           style: {
             paddingBottom: 50,
-            backgroundColor: theme.colors.white,
+            backgroundColor: theme.colors.grey6,
+            borderTopWidth: 2,
+            borderColor: theme.colors.grey5,
           },
         }}
         isVisible={modalIsVisible}
