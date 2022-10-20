@@ -37,5 +37,11 @@ describe('Creating a Routine, starting a Workout with it', () => {
     cy.get('[role="heading"]').contains(routines[0].name);
 
     cy.findAllByTestId('workout_exercise_list_item').should('have.length', 2);
+
+    // assert can go back to Workout list
+    const selector = '[aria-label="Go back"]';
+    cy.get(selector).click();
+
+    cy.url().should('eq', 'http://localhost:19006/workouts');
   });
 });
