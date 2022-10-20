@@ -1,6 +1,5 @@
-import {BottomSheet} from '@rneui/themed';
 import hexToRgba from 'hex-to-rgba';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {KeyboardAvoidingBottomSheet} from '../utils/KeyboardAvoidingBottomSheet';
 import WorkoutExerciseSetForm from './WorkoutExerciseSetForm';
 
 export default function FormModal({
@@ -10,8 +9,8 @@ export default function FormModal({
   setModalIsVisible,
 }) {
   return (
-    <SafeAreaProvider>
-      <BottomSheet
+    <>
+      <KeyboardAvoidingBottomSheet
         modalProps={{}}
         scrollViewProps={{
           style: {
@@ -24,7 +23,7 @@ export default function FormModal({
         onBackdropPress={() => setModalIsVisible(false)}
       >
         <WorkoutExerciseSetForm route={route} />
-      </BottomSheet>
-    </SafeAreaProvider>
+      </KeyboardAvoidingBottomSheet>
+    </>
   );
 }
