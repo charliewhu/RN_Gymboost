@@ -50,7 +50,13 @@ export const KeyboardAvoidingBottomSheet = ({
           {...rest}
         >
           <View>
-            <ScrollView {...scrollViewProps}>{children}</ScrollView>
+            <ScrollView
+              keyboardShouldPersistTaps="always"
+              keyboardDismissMode="on-drag"
+              {...scrollViewProps}
+            >
+              {children}
+            </ScrollView>
           </View>
         </SafeAreaView>
       </KeyboardAvoidingView>
@@ -63,6 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.2)',
     flexDirection: 'column-reverse',
+    marginBottom: 0,
   },
   container: {
     flex: 1,
