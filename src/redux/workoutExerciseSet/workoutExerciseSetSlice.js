@@ -109,14 +109,16 @@ export function getSetCount(state) {
 }
 
 export function getTotalWeekSets(state) {
-  const today = new Date();
-  const workoutIds = state.workout.workouts
-    .filter(
-      item =>
-        new Date(Date.parse(item.created_on)) >=
-        new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6),
-    )
-    .map(o => o.id);
+  // const today = new Date();
+  // const workoutIds = state.workout.workouts
+  //   .filter(
+  //     item =>
+  //       new Date(Date.parse(item.created_on)) >=
+  //       new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6),
+  //   )
+  //   .map(o => o.id);
+
+  const workoutIds = getWeekWorkoutIds(state);
 
   const workoutExercises = state.workoutExercise.workoutExercises
     .filter(o => workoutIds.includes(o.workout))
