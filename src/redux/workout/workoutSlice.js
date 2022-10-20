@@ -141,4 +141,13 @@ export function getSetCountFromWorkoutId(state, workoutId) {
   return getSetCountFromWorkoutExerciseIdList(state, workoutExerciseIdList);
 }
 
-export function getWeekWorkoutIds(state) {}
+export function getWeekWorkoutIds(state) {
+  const today = new Date();
+  return state.workout.workouts
+    .filter(
+      item =>
+        new Date(Date.parse(item.created_on)) >=
+        new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6),
+    )
+    .map(o => o.id);
+}

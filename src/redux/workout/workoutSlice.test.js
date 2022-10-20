@@ -46,7 +46,7 @@ describe('selectors', () => {
     it('returns 1 with 1 item', () => {
       const state = {
         workout: {
-          workouts: [{id: 1, workout_exercise: 1}],
+          workouts: [{id: 1, created_on: new Date().toISOString()}],
         },
       };
 
