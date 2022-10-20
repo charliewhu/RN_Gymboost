@@ -1,32 +1,30 @@
-import {BottomSheet, ListItem} from '@rneui/themed';
-import {StyleSheet} from 'react-native';
+import {BottomSheet} from '@rneui/themed';
+import hexToRgba from 'hex-to-rgba';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import WorkoutExerciseSetForm from './WorkoutExerciseSetForm';
 
-export default function FormModal({modalIsVisible, setModalIsVisible}) {
+export default function FormModal({
+  route,
+  theme,
+  modalIsVisible,
+  setModalIsVisible,
+}) {
   return (
     <SafeAreaProvider>
       <BottomSheet
         modalProps={{}}
+        scrollViewProps={{
+          style: {
+            paddingBottom: 50,
+            backgroundColor: theme.colors.white,
+          },
+        }}
         isVisible={modalIsVisible}
+        backdropStyle={{backgroundColor: hexToRgba(theme.colors.white, 0.9)}}
         onBackdropPress={() => setModalIsVisible(false)}
       >
-        <ListItem bottomDivider={false}>
-          <ListItem.Content style={styles.listItem}>
-            <ListItem.Title>Modal Item 1</ListItem.Title>
-          </ListItem.Content>
-        </ListItem>
-        <ListItem bottomDivider={false}>
-          <ListItem.Content style={styles.listItem}>
-            <ListItem.Title>Modal Item 2</ListItem.Title>
-          </ListItem.Content>
-        </ListItem>
+        <WorkoutExerciseSetForm route={route} />
       </BottomSheet>
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  listItem: {
-    height: 100,
-  },
-});
