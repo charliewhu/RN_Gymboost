@@ -51,6 +51,8 @@ describe('WorkoutExercises screen where sets exist', () => {
 
   describe('form validation', () => {
     it('doesnt submit form if form is blank', () => {
+      cy.findByTestId('actionBtn').click();
+      cy.findByTestId('addSetBtn').click();
       cy.findByTestId('submitBtn').click({force: true});
 
       cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
@@ -61,6 +63,8 @@ describe('WorkoutExercises screen where sets exist', () => {
     });
 
     it('doesnt submit if form fields contain non-numeric', () => {
+      cy.findByTestId('actionBtn').click();
+      cy.findByTestId('addSetBtn').click();
       cy.findByTestId('weightInput').type('weight');
       cy.findByTestId('repsInput').type('reps');
       cy.findByTestId('rirInput').type('rir');
@@ -75,6 +79,8 @@ describe('WorkoutExercises screen where sets exist', () => {
     });
 
     it('adds Set to the list after submit', () => {
+      cy.findByTestId('actionBtn').click();
+      cy.findByTestId('addSetBtn').click();
       cy.findByTestId('weightInput').type(weight);
       cy.findByTestId('repsInput').type(reps);
       cy.findByTestId('rirInput').type(rir);
@@ -95,28 +101,6 @@ describe('WorkoutExercises screen where sets exist', () => {
         3,
       );
     });
-
-    it('clears the form after submit', () => {
-      cy.findByTestId('weightInput').type(weight);
-      cy.findByTestId('repsInput').type(reps);
-      cy.findByTestId('rirInput').type(rir);
-      cy.findByTestId('submitBtn').click({force: true});
-
-      cy.wait('@postWorkoutExerciseSet');
-
-      cy.findByTestId('weightInput').should('have.value', '');
-      cy.findByTestId('repsInput').should('have.value', '');
-      cy.findByTestId('rirInput').should('have.value', '');
-    });
-
-    it('rir must be less than or equal to 5', () => {
-      cy.findByTestId('weightInput').type(weight);
-      cy.findByTestId('repsInput').type(reps);
-      cy.findByTestId('rirInput').type(6);
-      cy.findByTestId('submitBtn').click({force: true});
-
-      cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
-    });
   });
 
   it('WorkoutExerciseSets can be deleted', () => {
@@ -131,15 +115,9 @@ describe('WorkoutExercises screen where sets exist', () => {
   });
 });
 
-describe.only('WorkoutExercises screen where no sets exist', () => {
+describe('WorkoutExercises screen where no sets exist', () => {
   beforeEach(() => {
     cy.workoutIntercepts();
-
-    cy.visit('/workouts/1/exercises/2');
-    cy.wait('@getWorkouts');
-    cy.wait('@getWorkoutExercises');
-    cy.wait('@getWorkoutExerciseSets');
-
     cy.intercept('POST', `${API_URL}/workoutexercisesets/`, {
       workout_exercise: 2,
       weight: weight,
@@ -147,9 +125,9 @@ describe.only('WorkoutExercises screen where no sets exist', () => {
       rir: rir,
     }).as('postWorkoutExerciseSet');
 
-    cy.intercept('DELETE', `${API_URL}/workoutexercisesets/1/`, {}).as(
-      'deleteWorkoutExerciseSet',
-    );
+    cy.visit('/workouts/1/exercises/2');
+    cy.findByTestId('actionBtn').click();
+    cy.findByTestId('addSetBtn').click();
   });
 
   describe('adding a set', () => {
@@ -159,19 +137,11 @@ describe.only('WorkoutExercises screen where no sets exist', () => {
     });
 
     it('shows a form when addSetBtn is pressed', () => {
-      cy.visit('/workouts/1/exercises/2');
-      cy.findByTestId('actionBtn').click();
-      cy.findByTestId('addSetBtn').click();
-
       cy.findByTestId('workoutExerciseSetForm').should('be.visible');
       cy.findAllByTestId('weightInput').should('have.length', 1);
     });
 
     it('adds set and closes modal', () => {
-      cy.visit('/workouts/1/exercises/2');
-      cy.findByTestId('actionBtn').click();
-      cy.findByTestId('addSetBtn').click();
-
       cy.findByTestId('weightInput').type(weight);
       cy.findByTestId('repsInput').type(reps);
       cy.findByTestId('rirInput').type(rir);
@@ -182,6 +152,23 @@ describe.only('WorkoutExercises screen where no sets exist', () => {
         'have.length',
         1,
       );
+
+      // form is empty when reopened
+
+      cy.findByTestId('actionBtn').click();
+      cy.findByTestId('addSetBtn').click();
+      cy.findByTestId('weightInput').should('have.value', '');
+      cy.findByTestId('repsInput').should('have.value', '');
+      cy.findByTestId('rirInput').should('have.value', '');
+    });
+
+    it('rir must be less than or equal to 5', () => {
+      cy.findByTestId('weightInput').type(weight);
+      cy.findByTestId('repsInput').type(reps);
+      cy.findByTestId('rirInput').type(6);
+      cy.findByTestId('submitBtn').click({force: true});
+
+      cy.get('@postWorkoutExerciseSet.all').should('have.length', 0);
     });
   });
 });
