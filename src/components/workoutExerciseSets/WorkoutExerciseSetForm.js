@@ -73,16 +73,18 @@ export default function WorkoutExerciseSetForm({route}) {
               />
             </View>
 
-            <Button
-              testID="submitBtn"
-              mode="contained"
-              disabled={!isValid}
-              buttonColor={isValid ? '#0E7AFE' : 'lightgray'}
-              style={styles.btnStyle}
-              onPress={handleSubmit}
-            >
-              Add
-            </Button>
+            <View>
+              <Button
+                testID="submitBtn"
+                mode="contained"
+                disabled={!isValid}
+                buttonColor={isValid ? '#0E7AFE' : 'lightgray'}
+                style={styles.btnStyle}
+                onPress={handleSubmit}
+              >
+                Add
+              </Button>
+            </View>
           </View>
         )}
       </Formik>
@@ -97,15 +99,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   inputContainer: {
-    width: 100,
-    height: 100,
-    margin: 10,
+    width: 120,
+    height: 70,
+    margin: 15,
     padding: 10,
     textAlign: 'center',
-    borderWidth: 1,
     borderRadius: 5,
-    borderColor: 'lightgray',
-    outlineColor: 'lightgray',
+    fontSize: 28,
   },
   btnStyle: {
     margin: 10,
