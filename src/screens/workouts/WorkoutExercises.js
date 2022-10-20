@@ -1,3 +1,4 @@
+import {HeaderBackButton} from '@react-navigation/elements';
 import {useLayoutEffect} from 'react';
 import {useSelector} from 'react-redux';
 import AddButton from '../../components/utils/AddButton';
@@ -29,6 +30,19 @@ export default function WorkoutExercises({navigation, route}) {
               update: 'workouts',
             })
           }
+        />
+      ),
+      headerLeft: props => (
+        <HeaderBackButton
+          {...props}
+          testID="goBackBtn"
+          label="Workouts"
+          truncatedLabel="Back"
+          labelVisible={true}
+          onPress={() => {
+            navigation.pop();
+            navigation.navigate('WorkoutsScreen');
+          }}
         />
       ),
     });
