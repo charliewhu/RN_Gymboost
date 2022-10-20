@@ -34,7 +34,11 @@ export default function WorkoutExerciseSets({navigation, route}) {
   return (
     <>
       <WorkoutExerciseSetList route={route} />
-      <FormModal modalIsVisible={modalIsVisible} />
+      <FormModal
+        theme={theme}
+        modalIsVisible={modalIsVisible}
+        setModalIsVisible={setModalIsVisible}
+      />
       <ActionButton
         theme={theme}
         fabOpen={fabOpen}
