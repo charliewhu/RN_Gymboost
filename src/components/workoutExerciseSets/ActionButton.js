@@ -1,5 +1,4 @@
 import {SpeedDial} from '@rneui/themed';
-import hexToRgba from 'hex-to-rgba';
 
 export default function ActionButton({
   theme,
@@ -16,7 +15,7 @@ export default function ActionButton({
       onOpen={() => setFabOpen(!fabOpen)}
       onClose={() => setFabOpen(!fabOpen)}
       color={theme.colors.primary}
-      overlayColor={hexToRgba(theme.colors.white, 0.9)}
+      overlayColor="rgba(0, 0, 0, 0)"
     >
       <SpeedDial.Action
         testID="addSetBtn"
