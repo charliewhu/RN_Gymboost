@@ -6,10 +6,13 @@ export default function useTheme() {
 
   const baseTheme = colorScheme === 'dark' ? darkColors : lightColors;
 
+  const grey6 = colorScheme === 'dark' ? '#202020' : '#F5F5F5';
+
   const theme = createTheme({
     colors: {
       ...baseTheme,
       disabled: baseTheme.grey5,
+      grey6: grey6,
     },
     components: {
       ListItem: {
