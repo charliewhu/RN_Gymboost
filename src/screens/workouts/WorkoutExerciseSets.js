@@ -1,8 +1,7 @@
 import {HeaderBackButton} from '@react-navigation/elements';
-import {SpeedDial} from '@rneui/themed';
-import hexToRgba from 'hex-to-rgba';
 import {useLayoutEffect, useState} from 'react';
 import {Platform} from 'react-native';
+import ActionButton from '../../components/workoutExerciseSets/ActionButton';
 
 import WorkoutExerciseSetList from '../../components/workoutExerciseSets/WorkoutExerciseSetList';
 import useTheme from '../../utils/useTheme';
@@ -33,26 +32,8 @@ export default function WorkoutExerciseSets({navigation, route}) {
   return (
     <>
       <WorkoutExerciseSetList route={route} />
-      <SpeedDial
-        testID="actionBtn"
-        isOpen={fabOpen}
-        icon={{name: 'edit'}}
-        openIcon={{name: 'close'}}
-        onOpen={() => setFabOpen(!fabOpen)}
-        onClose={() => setFabOpen(!fabOpen)}
-        color={theme.colors.primary}
-        overlayColor={hexToRgba(theme.colors.white, 0.9)}
-      >
-        <SpeedDial.Action
-          testID="addSetBtn"
-          icon={{name: 'add'}}
-          color={theme.colors.primary}
-          title="Add Set"
-          onPress={() => {
-            setFabOpen(false);
-          }}
-        />
-      </SpeedDial>
+
+      <ActionButton theme={theme} fabOpen={fabOpen} setFabOpen={setFabOpen} />
     </>
   );
 }
