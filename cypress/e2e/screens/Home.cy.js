@@ -85,5 +85,18 @@ describe('Home page', () => {
 
       cy.findByTestId('totalWeekSets').contains(1);
     });
+
+    it('shows total Workouts in past week', () => {
+      console.log(workouts);
+
+      cy.intercept('GET', `${API_URL}/workouts/`, workouts).as('getWorkouts');
+
+      cy.visit('/');
+      cy.wait('@getWorkouts');
+      cy.wait('@getWorkoutExercises');
+      cy.wait('@getWorkoutExerciseSets');
+
+      cy.findByTestId('totalWeekWorkouts').contains(1);
+    });
   });
 });

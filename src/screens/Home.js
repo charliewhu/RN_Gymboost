@@ -1,8 +1,8 @@
-import {Card, Text} from '@rneui/themed';
 import {useEffect} from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {getWorkouts} from '../redux/workout/workoutSlice';
+import DataCard from '../components/home/DataCard';
+import {getWeekWorkoutIds, getWorkouts} from '../redux/workout/workoutSlice';
 import {getWorkoutExercises} from '../redux/workoutExercise/workoutExerciseSlice';
 import {
   getSetCount,
@@ -14,6 +14,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const workouts = useSelector(state => state.workout.workouts);
   const totalSets = useSelector(state => getSetCount(state));
+  const weekWorkoutIds = useSelector(state => getWeekWorkoutIds(state));
   const totalWeekSets = useSelector(state => getTotalWeekSets(state));
 
   useEffect(() => {
@@ -24,26 +25,24 @@ export default function Home() {
 
   return (
     <ScrollView>
-      <Card testID="totalWorkouts">
-        <Card.Title>Total Workouts</Card.Title>
-        <View style={{alignItems: 'center'}}>
-          <Text>{workouts.length}</Text>
-        </View>
-      </Card>
+      <DataCard
+        testID="totalWorkouts"
+        title="Total Workouts"
+        data={workouts.length}
+      />
 
-      <Card testID="totalSets">
-        <Card.Title>Total Sets</Card.Title>
-        <View style={{alignItems: 'center'}}>
-          <Text>{totalSets}</Text>
-        </View>
-      </Card>
+      <DataCard testID="totalSets" title="Total Sets" data={totalSets} />
 
-      <Card testID="totalWeekSets">
-        <Card.Title>Total Sets In Past Week</Card.Title>
-        <View style={{alignItems: 'center'}}>
-          <Text>{totalWeekSets}</Text>
-        </View>
-      </Card>
+      <DataCard
+        testID="totalWeekWorkouts"
+        title="Total Workouts In Past Week"
+        data={weekWorkoutIds.length}
+      />
+      <DataCard
+        testID="totalWeekSets"
+        title="Total Sets In Past Week"
+        data={totalWeekSets}
+      />
     </ScrollView>
   );
 }
