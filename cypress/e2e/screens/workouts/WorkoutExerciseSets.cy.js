@@ -5,7 +5,7 @@ const weight = '100';
 const reps = '8';
 const rir = '2';
 
-describe('WorkoutExercises screen', () => {
+describe('WorkoutExercises screen where sets exist', () => {
   beforeEach(() => {
     cy.workoutIntercepts();
 
@@ -128,5 +128,47 @@ describe('WorkoutExercises screen', () => {
       'have.length',
       1,
     );
+  });
+});
+
+describe.only('WorkoutExercises screen where no sets exist', () => {
+  beforeEach(() => {
+    cy.workoutIntercepts();
+
+    cy.visit('/workouts/1/exercises/2');
+    cy.wait('@getWorkouts');
+    cy.wait('@getWorkoutExercises');
+    cy.wait('@getWorkoutExerciseSets');
+
+    cy.intercept('POST', `${API_URL}/workoutexercisesets/`, {
+      workout_exercise: 2,
+      weight: weight,
+      reps: reps,
+      rir: rir,
+    }).as('postWorkoutExerciseSet');
+
+    cy.intercept('DELETE', `${API_URL}/workoutexercisesets/1/`, {}).as(
+      'deleteWorkoutExerciseSet',
+    );
+  });
+
+  describe('adding a set', () => {
+    it('doesnt show a form on first render', () => {
+      cy.visit('/workouts/1/exercises/2');
+      cy.findAllByTestId('weightInput').should('not', 'be.visible');
+    });
+
+    it('shows a form when addSetBtn is pressed', () => {
+      cy.visit('/workouts/1/exercises/2');
+      cy.findByTestId('actionBtn').click();
+      cy.findByTestId('addSetBtn').click();
+
+      cy.findByTestId('workoutExerciseSetForm').should('be.visible');
+      cy.findAllByTestId('weightInput').should('have.length', 1);
+    });
+
+    // add weight, reps, rir and submit
+    // should not show form
+    // should show set in list
   });
 });
