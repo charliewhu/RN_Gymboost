@@ -13,7 +13,7 @@ export default function FormModal({
         modalProps={{}}
         scrollViewProps={{
           style: {
-            paddingBottom: 50,
+            paddingBottom: 10,
             backgroundColor: theme.colors.grey6,
             borderTopWidth: 2,
             borderColor: theme.colors.grey5,
@@ -23,7 +23,10 @@ export default function FormModal({
         backdropStyle={{backgroundColor: 'rgba(0,0,0,0)'}}
         onBackdropPress={() => setModalIsVisible(false)}
       >
-        <WorkoutExerciseSetForm route={route} />
+        <WorkoutExerciseSetForm
+          route={route}
+          setModalIsVisible={setModalIsVisible}
+        />
       </KeyboardAvoidingBottomSheet>
     </>
   );

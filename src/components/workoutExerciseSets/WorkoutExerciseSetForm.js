@@ -6,7 +6,7 @@ import {postWorkoutExerciseSet} from '../../redux/workoutExerciseSet/workoutExer
 import useTheme from '../../utils/useTheme';
 import {WorkoutExerciseSetSchema} from './WorkoutExerciseSetSchema';
 
-export default function WorkoutExerciseSetForm({route}) {
+export default function WorkoutExerciseSetForm({route, setModalIsVisible}) {
   const dispatch = useDispatch();
   const theme = useTheme();
 
@@ -39,6 +39,7 @@ export default function WorkoutExerciseSetForm({route}) {
           handleSubmitForm(values);
           resetForm();
           validateForm();
+          setModalIsVisible();
         }}
       >
         {({handleChange, handleSubmit, values, isValid}) => (
