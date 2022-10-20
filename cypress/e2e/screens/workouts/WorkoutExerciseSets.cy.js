@@ -1,3 +1,4 @@
+import workoutexercises from '../../../fixtures//workoutexercises.json';
 import workoutexercisesets from '../../../fixtures//workoutexercisesets.json';
 
 const API_URL = Cypress.env('API_URL');
@@ -24,6 +25,10 @@ describe('WorkoutExercises screen where sets exist', () => {
     cy.intercept('DELETE', `${API_URL}/workoutexercisesets/1/`, {}).as(
       'deleteWorkoutExerciseSet',
     );
+  });
+
+  it('has header of exercise name', () => {
+    cy.contains(workoutexercises[0].name);
   });
 
   it('navigates back to WorkoutExercises screen', () => {
