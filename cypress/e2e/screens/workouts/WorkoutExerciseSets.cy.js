@@ -167,8 +167,21 @@ describe.only('WorkoutExercises screen where no sets exist', () => {
       cy.findAllByTestId('weightInput').should('have.length', 1);
     });
 
-    // add weight, reps, rir and submit
-    // should not show form
-    // should show set in list
+    it('adds set and closes modal', () => {
+      cy.visit('/workouts/1/exercises/2');
+      cy.findByTestId('actionBtn').click();
+      cy.findByTestId('addSetBtn').click();
+
+      cy.findByTestId('weightInput').type(weight);
+      cy.findByTestId('repsInput').type(reps);
+      cy.findByTestId('rirInput').type(rir);
+      cy.findByTestId('submitBtn').click();
+
+      cy.findByTestId('workoutExerciseSetForm').should('not.be.visible');
+      cy.findAllByTestId('workout_exercise_set_list_item').should(
+        'have.length',
+        1,
+      );
+    });
   });
 });
