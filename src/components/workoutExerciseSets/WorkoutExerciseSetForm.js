@@ -92,13 +92,13 @@ export default function WorkoutExerciseSetForm({route}) {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    //flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
   inputContainer: {
     width: 100,
-    height: 50,
+    height: 100,
     margin: 10,
     padding: 10,
     textAlign: 'center',
