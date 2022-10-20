@@ -87,13 +87,7 @@ describe('Home page', () => {
     });
 
     it('shows total Workouts in past week', () => {
-      // Need to add a Workout
-      // That occurs within past week
-
-      workouts.push({
-        id: 3,
-        created_on: new Date().toISOString(),
-      });
+      console.log(workouts);
 
       cy.intercept('GET', `${API_URL}/workouts/`, workouts).as('getWorkouts');
 
