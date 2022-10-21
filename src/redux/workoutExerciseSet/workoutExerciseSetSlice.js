@@ -46,10 +46,12 @@ export const deleteWorkoutExerciseSet = createAsyncThunk(
 
 export const deleteAllWorkoutExerciseSets = createAsyncThunk(
   'workoutExerciseSet/deleteAllWorkoutExerciseSets',
-  async (id, thunkAPI) => {
+  async (workoutExerciseId, thunkAPI) => {
     try {
-      await workoutExerciseSetService.deleteWorkoutExerciseSet(id);
-      return id;
+      await workoutExerciseSetService.deleteAllWorkoutExerciseSets(
+        workoutExerciseId,
+      );
+      return workoutExerciseId;
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(error);

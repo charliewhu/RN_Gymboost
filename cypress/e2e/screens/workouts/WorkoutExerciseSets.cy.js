@@ -123,7 +123,7 @@ describe('WorkoutExercises screen where sets exist', () => {
     it('can delete all sets', () => {
       cy.intercept(
         'DELETE',
-        `${API_URL}/workoutexercises/1/delete_all/`,
+        `${API_URL}/workoutexercises/1/delete_sets/`,
         {},
       ).as('deleteAllWorkoutExerciseSets');
 
