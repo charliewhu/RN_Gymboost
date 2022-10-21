@@ -44,6 +44,19 @@ export const deleteWorkoutExerciseSet = createAsyncThunk(
   },
 );
 
+export const deleteAllWorkoutExerciseSets = createAsyncThunk(
+  'workoutExerciseSet/deleteAllWorkoutExerciseSets',
+  async (id, thunkAPI) => {
+    try {
+      await workoutExerciseSetService.deleteWorkoutExerciseSet(id);
+      return id;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 const initialState = {
   workoutExerciseSets: [],
   isLoading: true,
