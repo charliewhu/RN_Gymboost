@@ -124,6 +124,7 @@ describe('WorkoutExercises screen where sets exist', () => {
       'deleteAllWorkoutExerciseSets',
     );
 
+    cy.wait(50);
     cy.findByTestId('actionBtn').click();
     cy.findByTestId('deleteSetsBtn').click();
 
@@ -136,8 +137,9 @@ describe('WorkoutExercises screen where sets exist', () => {
   });
 
   it.only('can repeat last set', () => {
+    cy.wait(100);
     cy.findByTestId('actionBtn').click();
-    cy.findByTestId('repeatLastSetBtn').click({force: true});
+    cy.findByTestId('repeatLastSetBtn').click();
 
     cy.wait('@postWorkoutExerciseSet')
       .its('request.body')
