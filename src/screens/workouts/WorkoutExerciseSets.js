@@ -53,12 +53,15 @@ export default function WorkoutExerciseSets({navigation, route}) {
         modalIsVisible={modalIsVisible}
         setModalIsVisible={setModalIsVisible}
       />
-      <ActionButton
-        theme={theme}
-        fabOpen={fabOpen}
-        setFabOpen={setFabOpen}
-        setModalIsVisible={setModalIsVisible}
-      />
+      {workoutExercise && (
+        <ActionButton
+          theme={theme}
+          workoutExerciseId={workoutExercise.id}
+          fabOpen={fabOpen}
+          setFabOpen={setFabOpen}
+          setModalIsVisible={setModalIsVisible}
+        />
+      )}
     </>
   );
 }
