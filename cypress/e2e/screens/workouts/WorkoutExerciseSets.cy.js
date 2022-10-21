@@ -144,7 +144,7 @@ describe('WorkoutExercises screen where sets exist', () => {
     cy.wait('@postWorkoutExerciseSet')
       .its('request.body')
       .should('deep.equal', {
-        workout_exercise: workoutexercisesets[1].id,
+        workout_exercise: workoutexercisesets[1].workout_exercise,
         weight: workoutexercisesets[1].weight,
         reps: workoutexercisesets[1].reps,
         rir: workoutexercisesets[1].rir,
