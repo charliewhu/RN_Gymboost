@@ -136,7 +136,7 @@ describe('WorkoutExercises screen where sets exist', () => {
     );
   });
 
-  it.only('can repeat last set', () => {
+  it('can repeat last set', () => {
     cy.wait(100);
     cy.findByTestId('actionBtn').click();
     cy.findByTestId('repeatLastSetBtn').click();
