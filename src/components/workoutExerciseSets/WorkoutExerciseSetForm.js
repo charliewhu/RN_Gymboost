@@ -51,6 +51,7 @@ export default function WorkoutExerciseSetForm({route, setModalIsVisible}) {
                 testID="weightInput"
                 placeholder="Weight"
                 textAlign="center"
+                autoFocus={true}
                 value={values.weight}
                 onChangeText={handleChange('weight')}
               />

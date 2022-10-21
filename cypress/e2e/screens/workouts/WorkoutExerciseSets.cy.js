@@ -118,6 +118,43 @@ describe('WorkoutExercises screen where sets exist', () => {
       1,
     );
   });
+
+  it('can delete all sets', () => {
+    cy.intercept('DELETE', `${API_URL}/workoutexercises/1/delete_sets/`, {}).as(
+      'deleteAllWorkoutExerciseSets',
+    );
+
+    cy.wait(50);
+    cy.findByTestId('actionBtn').click();
+    cy.findByTestId('deleteSetsBtn').click();
+
+    cy.wait('@deleteAllWorkoutExerciseSets');
+
+    cy.findAllByTestId('workout_exercise_set_list_item').should(
+      'have.length',
+      0,
+    );
+  });
+
+  it('can repeat last set', () => {
+    cy.wait(100);
+    cy.findByTestId('actionBtn').click();
+    cy.findByTestId('repeatLastSetBtn').click();
+
+    cy.wait('@postWorkoutExerciseSet')
+      .its('request.body')
+      .should('deep.equal', {
+        workout_exercise: workoutexercisesets[1].workout_exercise,
+        weight: workoutexercisesets[1].weight,
+        reps: workoutexercisesets[1].reps,
+        rir: workoutexercisesets[1].rir,
+      });
+
+    cy.findAllByTestId('workout_exercise_set_list_item').should(
+      'have.length',
+      3,
+    );
+  });
 });
 
 describe('WorkoutExercises screen where no sets exist', () => {
@@ -159,7 +196,6 @@ describe('WorkoutExercises screen where no sets exist', () => {
       );
 
       // form is empty when reopened
-
       cy.findByTestId('actionBtn').click();
       cy.findByTestId('addSetBtn').click();
       cy.findByTestId('weightInput').should('have.value', '');
