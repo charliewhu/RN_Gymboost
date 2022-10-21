@@ -1,8 +1,10 @@
 import {SpeedDial} from '@rneui/themed';
 import {useDispatch} from 'react-redux';
+import {deleteAllWorkoutExerciseSets} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
 
 export default function ActionButton({
   theme,
+  workoutExerciseId,
   fabOpen,
   setFabOpen,
   setModalIsVisible,
@@ -26,6 +28,7 @@ export default function ActionButton({
         color={theme.colors.error}
         title="Delete All Sets"
         onPress={() => {
+          dispatch(deleteAllWorkoutExerciseSets(workoutExerciseId));
           setFabOpen(false);
         }}
       />
