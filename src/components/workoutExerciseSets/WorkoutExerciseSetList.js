@@ -1,14 +1,7 @@
 import {FlatList, View} from 'react-native';
-import {useSelector} from 'react-redux';
 import WorkoutExerciseSetListItem from './WorkoutExerciseSetListItem';
 
-export default function WorkoutExerciseSetList({route}) {
-  const workoutExerciseSets = useSelector(state =>
-    state.workoutExerciseSet.workoutExerciseSets.filter(
-      item => item.workout_exercise === +route.params.workoutExerciseId,
-    ),
-  );
-
+export default function WorkoutExerciseSetList({workoutExerciseSets}) {
   return (
     <View style={{flex: 1}}>
       {workoutExerciseSets && (
