@@ -1,4 +1,5 @@
 import {SpeedDial} from '@rneui/themed';
+import {useDispatch} from 'react-redux';
 
 export default function ActionButton({
   theme,
@@ -6,6 +7,8 @@ export default function ActionButton({
   setFabOpen,
   setModalIsVisible,
 }) {
+  const dispatch = useDispatch();
+
   return (
     <SpeedDial
       testID="actionBtn"
@@ -17,6 +20,15 @@ export default function ActionButton({
       color={theme.colors.primary}
       overlayColor="rgba(0, 0, 0, 0)"
     >
+      <SpeedDial.Action
+        testID="deleteSetsBtn"
+        icon={{name: 'delete-outline', color: theme.colors.white}}
+        color={theme.colors.error}
+        title="Delete All Sets"
+        onPress={() => {
+          setFabOpen(false);
+        }}
+      />
       <SpeedDial.Action
         testID="addSetBtn"
         icon={{name: 'add', color: theme.colors.white}}
