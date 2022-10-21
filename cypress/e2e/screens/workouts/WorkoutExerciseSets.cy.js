@@ -119,7 +119,7 @@ describe('WorkoutExercises screen where sets exist', () => {
     );
   });
 
-  describe.only('deleting all sets', () => {
+  describe('deleting all sets', () => {
     it('can delete all sets', () => {
       cy.intercept(
         'DELETE',
