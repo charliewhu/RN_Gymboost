@@ -1,15 +1,30 @@
 import {SpeedDial} from '@rneui/themed';
 import {useDispatch} from 'react-redux';
-import {deleteAllWorkoutExerciseSets} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
+import {
+  deleteAllWorkoutExerciseSets,
+  postWorkoutExerciseSet,
+} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
 
 export default function ActionButton({
   theme,
   workoutExerciseId,
+  workoutExerciseSets,
   fabOpen,
   setFabOpen,
   setModalIsVisible,
 }) {
   const dispatch = useDispatch();
+
+  const handleRepeatLastSet = () => {
+    const lastSet = workoutExerciseSets[workoutExerciseSets.length - 1];
+    const data = {
+      workout_exercise: lastSet.workout_exercise,
+      weight: lastSet.weight,
+      reps: lastSet.reps,
+      rir: lastSet.rir,
+    };
+    dispatch(postWorkoutExerciseSet(data));
+  };
 
   return (
     <SpeedDial
@@ -38,6 +53,7 @@ export default function ActionButton({
         color={theme.colors.primary}
         title="Repeat Last Set"
         onPress={() => {
+          handleRepeatLastSet();
           setFabOpen(false);
         }}
       />
