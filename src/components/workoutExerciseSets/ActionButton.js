@@ -17,13 +17,21 @@ export default function ActionButton({
 
   const handleRepeatLastSet = () => {
     const lastSet = workoutExerciseSets[workoutExerciseSets.length - 1];
-    const data = {
-      workout_exercise: lastSet.workout_exercise,
-      weight: lastSet.weight,
-      reps: lastSet.reps,
-      rir: lastSet.rir,
-    };
-    dispatch(postWorkoutExerciseSet(data));
+    if (lastSet) {
+      const data = {
+        workout_exercise: lastSet.workout_exercise,
+        weight: lastSet.weight,
+        reps: lastSet.reps,
+        rir: lastSet.rir,
+      };
+      dispatch(postWorkoutExerciseSet(data));
+    }
+  };
+
+  const handleDeleteAllSets = () => {
+    if (workoutExerciseSets.length > 0) {
+      dispatch(deleteAllWorkoutExerciseSets(workoutExerciseId));
+    }
   };
 
   return (
@@ -43,7 +51,7 @@ export default function ActionButton({
         color={theme.colors.error}
         title="Delete All Sets"
         onPress={() => {
-          dispatch(deleteAllWorkoutExerciseSets(workoutExerciseId));
+          handleDeleteAllSets();
           setFabOpen(false);
         }}
       />
