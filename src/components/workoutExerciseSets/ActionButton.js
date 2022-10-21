@@ -33,6 +33,15 @@ export default function ActionButton({
         }}
       />
       <SpeedDial.Action
+        testID="repeatLastSetBtn"
+        icon={{name: 'playlist-add', color: theme.colors.white}}
+        color={theme.colors.primary}
+        title="Repeat Last Set"
+        onPress={() => {
+          setFabOpen(false);
+        }}
+      />
+      <SpeedDial.Action
         testID="addSetBtn"
         icon={{name: 'add', color: theme.colors.white}}
         color={theme.colors.primary}
