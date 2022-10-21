@@ -19,6 +19,12 @@ export default function WorkoutExerciseSets({navigation, route}) {
     ),
   );
 
+  const workoutExerciseSets = useSelector(state =>
+    state.workoutExerciseSet.workoutExerciseSets.filter(
+      item => item.workout_exercise === +route.params.workoutExerciseId,
+    ),
+  );
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: workoutExercise ? workoutExercise.name : 'Sets',
@@ -46,17 +52,18 @@ export default function WorkoutExerciseSets({navigation, route}) {
 
   return (
     <>
-      <WorkoutExerciseSetList route={route} />
+      <WorkoutExerciseSetList workoutExerciseSets={workoutExerciseSets} />
       <FormModal
         route={route}
         theme={theme}
         modalIsVisible={modalIsVisible}
         setModalIsVisible={setModalIsVisible}
       />
-      {workoutExercise && (
+      {workoutExercise && workoutExerciseSets && (
         <ActionButton
           theme={theme}
           workoutExerciseId={workoutExercise.id}
+          workoutExerciseSets={workoutExerciseSets}
           fabOpen={fabOpen}
           setFabOpen={setFabOpen}
           setModalIsVisible={setModalIsVisible}
