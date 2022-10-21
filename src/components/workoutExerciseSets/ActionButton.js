@@ -15,7 +15,7 @@ export default function ActionButton({
     <SpeedDial
       testID="actionBtn"
       isOpen={fabOpen}
-      icon={{name: 'edit', color: theme.colors.white}}
+      icon={{name: 'add', color: theme.colors.white}}
       openIcon={{name: 'close', color: theme.colors.white}}
       onOpen={() => setFabOpen(!fabOpen)}
       onClose={() => setFabOpen(!fabOpen)}
