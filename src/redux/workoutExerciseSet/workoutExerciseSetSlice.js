@@ -111,6 +111,20 @@ export const workoutExerciseSetSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+      })
+      .addCase(deleteAllWorkoutExerciseSets.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(deleteAllWorkoutExerciseSets.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.workoutExerciseSets = state.workoutExerciseSets.filter(
+          set => set.workout_exercise !== action.payload,
+        );
+      })
+      .addCase(deleteAllWorkoutExerciseSets.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
   },
 });
