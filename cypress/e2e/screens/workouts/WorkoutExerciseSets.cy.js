@@ -118,6 +118,26 @@ describe('WorkoutExercises screen where sets exist', () => {
       1,
     );
   });
+
+  describe.only('deleting all sets', () => {
+    it('can delete all sets', () => {
+      cy.intercept(
+        'DELETE',
+        `${API_URL}/workoutexercises/1/delete_all/`,
+        {},
+      ).as('deleteAllWorkoutExerciseSets');
+
+      cy.findByTestId('actionBtn').click();
+      cy.findByTestId('deleteSetsBtn').click();
+
+      cy.wait('@deleteAllWorkoutExerciseSets');
+
+      cy.findAllByTestId('workout_exercise_set_list_item').should(
+        'have.length',
+        0,
+      );
+    });
+  });
 });
 
 describe('WorkoutExercises screen where no sets exist', () => {
@@ -159,7 +179,6 @@ describe('WorkoutExercises screen where no sets exist', () => {
       );
 
       // form is empty when reopened
-
       cy.findByTestId('actionBtn').click();
       cy.findByTestId('addSetBtn').click();
       cy.findByTestId('weightInput').should('have.value', '');
