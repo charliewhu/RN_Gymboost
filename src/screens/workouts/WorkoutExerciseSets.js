@@ -52,7 +52,10 @@ export default function WorkoutExerciseSets({navigation, route}) {
 
   return (
     <>
-      <WorkoutExerciseSetList workoutExerciseSets={workoutExerciseSets} />
+      <WorkoutExerciseSetList
+        workoutExerciseSets={workoutExerciseSets}
+        setModalIsVisible={setModalIsVisible}
+      />
       <FormModal
         route={route}
         theme={theme}
