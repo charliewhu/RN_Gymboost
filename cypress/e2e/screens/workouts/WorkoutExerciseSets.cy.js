@@ -2,9 +2,9 @@ import workoutexercises from '../../../fixtures//workoutexercises.json';
 import workoutexercisesets from '../../../fixtures//workoutexercisesets.json';
 
 const API_URL = Cypress.env('API_URL');
-const weight = '100';
+const weight = '400';
 const reps = '8';
-const rir = '2';
+const rir = '5';
 
 describe('WorkoutExercises screen where sets exist', () => {
   beforeEach(() => {
@@ -170,12 +170,15 @@ describe('WorkoutExercises screen where sets exist', () => {
 
       cy.findByTestId('weightInput')
         .should('have.value', workoutexercisesets[0].weight)
+        .clear()
         .type(weight);
       cy.findByTestId('repsInput')
         .should('have.value', workoutexercisesets[0].reps)
+        .clear()
         .type(reps);
       cy.findByTestId('rirInput')
         .should('have.value', workoutexercisesets[0].rir)
+        .clear()
         .type(rir);
 
       cy.findByTestId('submitBtn').click();
@@ -189,9 +192,22 @@ describe('WorkoutExercises screen where sets exist', () => {
           rir: rir,
         });
 
-      cy.findByTestId('weightInput').should('have.value', weight);
-      cy.findByTestId('repsInput').should('have.value', reps);
-      cy.findByTestId('rirInput').should('have.value', rir);
+      cy.findByTestId('workoutExerciseSetForm').should('not.be.visible');
+
+      cy.findAllByTestId('workout_exercise_set_list_item').should(
+        'have.length',
+        2,
+      );
+
+      cy.findAllByTestId('workout_exercise_set_list_item')
+        .first()
+        .contains(weight);
+      cy.findAllByTestId('workout_exercise_set_list_item')
+        .first()
+        .contains(reps);
+      cy.findAllByTestId('workout_exercise_set_list_item')
+        .first()
+        .contains(rir);
     });
   });
 });
