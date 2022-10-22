@@ -2,29 +2,41 @@ import {Button} from '@rneui/themed';
 import {Formik} from 'formik';
 import {StyleSheet, TextInput, View} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {postWorkoutExerciseSet} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
+import {
+  postWorkoutExerciseSet,
+  putWorkoutExerciseSet,
+} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
 import useTheme from '../../utils/useTheme';
 import {WorkoutExerciseSetSchema} from './WorkoutExerciseSetSchema';
 
-export default function WorkoutExerciseSetForm({route, setModalIsVisible}) {
+export default function WorkoutExerciseSetForm({
+  setModalIsVisible,
+  formValues,
+  setFormValues,
+  initialForm,
+  isSetEdit,
+  setIsSetEdit,
+}) {
   const dispatch = useDispatch();
   const theme = useTheme();
 
-  const formValues = {
-    id: '',
-    weight: '',
-    reps: '',
-    rir: '',
-  };
-
   const handleSubmitForm = values => {
-    const data = {
-      workout_exercise: route.params.workoutExerciseId,
+    let data = {
+      workout_exercise: values.workout_exercise,
       weight: values.weight,
       reps: values.reps,
       rir: values.rir,
     };
-    dispatch(postWorkoutExerciseSet(data));
+
+    if (isSetEdit) {
+      data = {id: formValues.id, ...data};
+      dispatch(putWorkoutExerciseSet(data));
+    } else {
+      dispatch(postWorkoutExerciseSet(data));
+    }
+
+    setIsSetEdit(false);
+    setFormValues(initialForm);
   };
 
   return (
@@ -39,7 +51,7 @@ export default function WorkoutExerciseSetForm({route, setModalIsVisible}) {
           handleSubmitForm(values);
           resetForm();
           validateForm();
-          setModalIsVisible();
+          setModalIsVisible(false);
         }}
       >
         {({handleChange, handleSubmit, values, isValid}) => (

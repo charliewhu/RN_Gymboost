@@ -3,10 +3,14 @@ import {KeyboardAvoidingBottomSheet} from '../utils/KeyboardAvoidingBottomSheet'
 import WorkoutExerciseSetForm from './WorkoutExerciseSetForm';
 
 export default function FormModal({
-  route,
   theme,
   modalIsVisible,
   setModalIsVisible,
+  formValues,
+  setFormValues,
+  initialForm,
+  isSetEdit,
+  setIsSetEdit,
 }) {
   return (
     <>
@@ -22,11 +26,19 @@ export default function FormModal({
         }}
         isVisible={modalIsVisible}
         backdropStyle={{backgroundColor: hexToRgba(theme.colors.white, 0.85)}}
-        onBackdropPress={() => setModalIsVisible(false)}
+        onBackdropPress={() => {
+          setModalIsVisible(false);
+          setFormValues(initialForm);
+          setIsSetEdit(false);
+        }}
       >
         <WorkoutExerciseSetForm
-          route={route}
           setModalIsVisible={setModalIsVisible}
+          formValues={formValues}
+          setFormValues={setFormValues}
+          initialForm={initialForm}
+          isSetEdit={isSetEdit}
+          setIsSetEdit={setIsSetEdit}
         />
       </KeyboardAvoidingBottomSheet>
     </>

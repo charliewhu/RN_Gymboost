@@ -15,9 +15,16 @@ async function postWorkoutExerciseSet(data) {
   return response.data;
 }
 
+async function putWorkoutExerciseSet(data) {
+  const response = await axiosInstance.put(
+    `/workoutexercisesets/${data.id}/`,
+    data,
+  );
+  return response.data;
+}
+
 async function deleteWorkoutExerciseSet(id) {
   const response = await axiosInstance.delete(`/workoutexercisesets/${id}/`);
-  console.log(response.data);
   return response.data;
 }
 
@@ -25,13 +32,13 @@ async function deleteAllWorkoutExerciseSets(id) {
   const response = await axiosInstance.delete(
     `/workoutexercises/${id}/delete_sets/`,
   );
-  console.log(response.data);
   return response.data;
 }
 
 const workoutExerciseSetService = {
   getWorkoutExerciseSets,
   postWorkoutExerciseSet,
+  putWorkoutExerciseSet,
   deleteWorkoutExerciseSet,
   deleteAllWorkoutExerciseSets,
 };

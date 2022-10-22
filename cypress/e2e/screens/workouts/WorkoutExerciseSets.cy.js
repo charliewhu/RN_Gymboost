@@ -2,9 +2,9 @@ import workoutexercises from '../../../fixtures//workoutexercises.json';
 import workoutexercisesets from '../../../fixtures//workoutexercisesets.json';
 
 const API_URL = Cypress.env('API_URL');
-const weight = '100';
+const weight = '400';
 const reps = '8';
-const rir = '2';
+const rir = '5';
 
 describe('WorkoutExercises screen where sets exist', () => {
   beforeEach(() => {
@@ -154,6 +154,63 @@ describe('WorkoutExercises screen where sets exist', () => {
       'have.length',
       3,
     );
+  });
+
+  describe('editing set', () => {
+    it('clicking set shows populated form and submits put', () => {
+      cy.intercept('PUT', `${API_URL}/workoutexercisesets/1/`, {
+        id: 1,
+        workout_exercise: 1,
+        weight: weight,
+        reps: reps,
+        rir: rir,
+      }).as('putWorkoutExerciseSet');
+
+      cy.findAllByTestId('workout_exercise_set_list_item').first().click();
+      cy.findByTestId('workoutExerciseSetForm').should('be.visible');
+
+      cy.findByTestId('weightInput')
+        .should('have.value', workoutexercisesets[0].weight)
+        .clear()
+        .type(weight);
+      cy.findByTestId('repsInput')
+        .should('have.value', workoutexercisesets[0].reps)
+        .clear()
+        .type(reps);
+      cy.findByTestId('rirInput')
+        .should('have.value', workoutexercisesets[0].rir)
+        .clear()
+        .type(rir);
+
+      cy.findByTestId('submitBtn').click();
+
+      cy.wait('@putWorkoutExerciseSet')
+        .its('request.body')
+        .should('deep.equal', {
+          id: 1,
+          workout_exercise: 1,
+          weight: weight,
+          reps: reps,
+          rir: rir,
+        });
+
+      cy.findByTestId('workoutExerciseSetForm').should('not.be.visible');
+
+      cy.findAllByTestId('workout_exercise_set_list_item').should(
+        'have.length',
+        2,
+      );
+
+      cy.findAllByTestId('workout_exercise_set_list_item')
+        .first()
+        .contains(weight);
+      cy.findAllByTestId('workout_exercise_set_list_item')
+        .first()
+        .contains(reps);
+      cy.findAllByTestId('workout_exercise_set_list_item')
+        .first()
+        .contains(rir);
+    });
   });
 });
 

@@ -11,6 +11,16 @@ import useTheme from '../../utils/useTheme';
 export default function WorkoutExerciseSets({navigation, route}) {
   const [fabOpen, setFabOpen] = useState(false);
   const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [isSetEdit, setIsSetEdit] = useState(false);
+
+  const initialForm = {
+    id: '',
+    workout_exercise: route.params.workoutExerciseId,
+    weight: '',
+    reps: '',
+    rir: '',
+  };
+  const [formValues, setFormValues] = useState(initialForm);
   const theme = useTheme();
 
   const workoutExercise = useSelector(state =>
@@ -52,12 +62,22 @@ export default function WorkoutExerciseSets({navigation, route}) {
 
   return (
     <>
-      <WorkoutExerciseSetList workoutExerciseSets={workoutExerciseSets} />
+      <WorkoutExerciseSetList
+        workoutExerciseSets={workoutExerciseSets}
+        setModalIsVisible={setModalIsVisible}
+        setFormValues={setFormValues}
+        setIsSetEdit={setIsSetEdit}
+      />
       <FormModal
         route={route}
         theme={theme}
         modalIsVisible={modalIsVisible}
         setModalIsVisible={setModalIsVisible}
+        formValues={formValues}
+        setFormValues={setFormValues}
+        initialForm={initialForm}
+        isSetEdit={isSetEdit}
+        setIsSetEdit={setIsSetEdit}
       />
       {workoutExercise && workoutExerciseSets && (
         <ActionButton
