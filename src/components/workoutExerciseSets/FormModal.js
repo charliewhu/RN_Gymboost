@@ -8,6 +8,8 @@ export default function FormModal({
   modalIsVisible,
   setModalIsVisible,
   formValues,
+  setFormValues,
+  initialForm,
   isSetEdit,
   setIsSetEdit,
 }) {
@@ -25,12 +27,17 @@ export default function FormModal({
         }}
         isVisible={modalIsVisible}
         backdropStyle={{backgroundColor: hexToRgba(theme.colors.white, 0.85)}}
-        onBackdropPress={() => setModalIsVisible(false)}
+        onBackdropPress={() => {
+          setModalIsVisible(false);
+          setFormValues(initialForm);
+        }}
       >
         <WorkoutExerciseSetForm
           route={route}
           setModalIsVisible={setModalIsVisible}
           formValues={formValues}
+          setFormValues={setFormValues}
+          initialForm={initialForm}
           isSetEdit={isSetEdit}
           setIsSetEdit={setIsSetEdit}
         />
