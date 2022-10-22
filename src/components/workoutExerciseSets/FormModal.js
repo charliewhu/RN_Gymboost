@@ -8,6 +8,8 @@ export default function FormModal({
   modalIsVisible,
   setModalIsVisible,
   formValues,
+  isSetEdit,
+  setIsSetEdit,
 }) {
   return (
     <>
@@ -29,6 +31,8 @@ export default function FormModal({
           route={route}
           setModalIsVisible={setModalIsVisible}
           formValues={formValues}
+          isSetEdit={isSetEdit}
+          setIsSetEdit={setIsSetEdit}
         />
       </KeyboardAvoidingBottomSheet>
     </>

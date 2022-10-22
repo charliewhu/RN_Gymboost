@@ -71,6 +71,8 @@ export default function WorkoutExerciseSets({navigation, route}) {
         modalIsVisible={modalIsVisible}
         setModalIsVisible={setModalIsVisible}
         formValues={formValues}
+        isSetEdit={isSetEdit}
+        setIsSetEdit={setIsSetEdit}
       />
       {workoutExercise && workoutExerciseSets && (
         <ActionButton
