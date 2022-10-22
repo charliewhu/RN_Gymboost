@@ -13,14 +13,14 @@ export default function WorkoutExerciseSetListItem({
   const dispatch = useDispatch();
 
   const handlePress = () => {
-    setIsSetEdit(true);
     setFormValues({
       id: item.id,
       workout_exercise: item.workout_exercise,
-      weight: item.weight,
-      reps: item.reps,
-      rir: item.rir,
+      weight: `${item.weight}`,
+      reps: `${item.reps}`,
+      rir: `${item.rir}`,
     });
+    setIsSetEdit(true);
     setModalIsVisible(true);
   };
 
