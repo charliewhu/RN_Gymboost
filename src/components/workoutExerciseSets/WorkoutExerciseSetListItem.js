@@ -4,7 +4,7 @@ import {deleteWorkoutExerciseSet} from '../../redux/workoutExerciseSet/workoutEx
 
 import IconButton from '../utils/IconButton';
 
-export default function WorkoutExerciseSetListItem({item}) {
+export default function WorkoutExerciseSetListItem({item, setModalIsVisible}) {
   const dispatch = useDispatch();
 
   const handleDelete = id => {
@@ -12,7 +12,12 @@ export default function WorkoutExerciseSetListItem({item}) {
   };
 
   return (
-    <ListItem testID="workout_exercise_set_list_item">
+    <ListItem
+      testID="workout_exercise_set_list_item"
+      onPress={() => {
+        setModalIsVisible(true);
+      }}
+    >
       <ListItem.Content>
         <ListItem.Title>
           {`${item.weight} x ${item.reps} @ ${item.rir}`}
