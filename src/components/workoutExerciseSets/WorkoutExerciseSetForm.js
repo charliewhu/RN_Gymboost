@@ -1,6 +1,6 @@
 import {Button} from '@rneui/themed';
 import {Formik} from 'formik';
-import {StyleSheet, TextInput, View} from 'react-native';
+import {Platform, StyleSheet, TextInput, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {
   postWorkoutExerciseSet,
@@ -63,7 +63,7 @@ export default function WorkoutExerciseSetForm({
                 testID="weightInput"
                 placeholder="Weight"
                 textAlign="center"
-                autoFocus={true}
+                autoFocus={Platform.OS === 'web' ? true : false}
                 value={values.weight}
                 onChangeText={handleChange('weight')}
               />
