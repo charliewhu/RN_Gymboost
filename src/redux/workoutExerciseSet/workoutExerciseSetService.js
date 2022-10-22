@@ -15,6 +15,11 @@ async function postWorkoutExerciseSet(data) {
   return response.data;
 }
 
+async function putWorkoutExerciseSet(id, data) {
+  const response = await axiosInstance.put(`/workoutexercisesets/${id}/`, data);
+  return response.data;
+}
+
 async function deleteWorkoutExerciseSet(id) {
   const response = await axiosInstance.delete(`/workoutexercisesets/${id}/`);
   console.log(response.data);
@@ -32,6 +37,7 @@ async function deleteAllWorkoutExerciseSets(id) {
 const workoutExerciseSetService = {
   getWorkoutExerciseSets,
   postWorkoutExerciseSet,
+  putWorkoutExerciseSet,
   deleteWorkoutExerciseSet,
   deleteAllWorkoutExerciseSets,
 };
