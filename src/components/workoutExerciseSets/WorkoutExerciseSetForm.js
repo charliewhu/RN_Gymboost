@@ -2,7 +2,10 @@ import {Button} from '@rneui/themed';
 import {Formik} from 'formik';
 import {StyleSheet, TextInput, View} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {postWorkoutExerciseSet} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
+import {
+  postWorkoutExerciseSet,
+  putWorkoutExerciseSet,
+} from '../../redux/workoutExerciseSet/workoutExerciseSetSlice';
 import useTheme from '../../utils/useTheme';
 import {WorkoutExerciseSetSchema} from './WorkoutExerciseSetSchema';
 
@@ -10,6 +13,8 @@ export default function WorkoutExerciseSetForm({
   route,
   setModalIsVisible,
   formValues,
+  isSetEdit,
+  setIsSetEdit,
 }) {
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -21,7 +26,13 @@ export default function WorkoutExerciseSetForm({
       reps: values.reps,
       rir: values.rir,
     };
-    dispatch(postWorkoutExerciseSet(data));
+
+    if (isSetEdit) {
+      dispatch(putWorkoutExerciseSet(formValues.id, data));
+    } else {
+      dispatch(postWorkoutExerciseSet(data));
+    }
+    setIsSetEdit(false);
   };
 
   return (
