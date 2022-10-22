@@ -10,7 +10,6 @@ import useTheme from '../../utils/useTheme';
 import {WorkoutExerciseSetSchema} from './WorkoutExerciseSetSchema';
 
 export default function WorkoutExerciseSetForm({
-  route,
   setModalIsVisible,
   formValues,
   setFormValues,
@@ -23,7 +22,7 @@ export default function WorkoutExerciseSetForm({
 
   const handleSubmitForm = values => {
     let data = {
-      workout_exercise: route.params.workoutExerciseId,
+      workout_exercise: values.workout_exercise,
       weight: values.weight,
       reps: values.reps,
       rir: values.rir,

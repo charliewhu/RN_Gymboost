@@ -15,6 +15,7 @@ export default function WorkoutExerciseSets({navigation, route}) {
 
   const initialForm = {
     id: '',
+    workout_exercise: route.params.workoutExerciseId,
     weight: '',
     reps: '',
     rir: '',

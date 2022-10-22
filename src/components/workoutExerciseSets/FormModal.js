@@ -3,7 +3,6 @@ import {KeyboardAvoidingBottomSheet} from '../utils/KeyboardAvoidingBottomSheet'
 import WorkoutExerciseSetForm from './WorkoutExerciseSetForm';
 
 export default function FormModal({
-  route,
   theme,
   modalIsVisible,
   setModalIsVisible,
@@ -34,7 +33,6 @@ export default function FormModal({
         }}
       >
         <WorkoutExerciseSetForm
-          route={route}
           setModalIsVisible={setModalIsVisible}
           formValues={formValues}
           setFormValues={setFormValues}
