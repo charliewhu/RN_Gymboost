@@ -155,6 +155,45 @@ describe('WorkoutExercises screen where sets exist', () => {
       3,
     );
   });
+
+  describe('editing set', () => {
+    it.only('clicking set shows populated form and submits put', () => {
+      cy.intercept('PUT', `${API_URL}/workoutexercisesets/`, {
+        workout_exercise: 1,
+        weight: weight,
+        reps: reps,
+        rir: rir,
+      }).as('putWorkoutExerciseSet');
+
+      cy.findAllByTestId('workout_exercise_set_list_item').first().click();
+      cy.findByTestId('workoutExerciseSetForm').should('be.visible');
+
+      cy.findByTestId('weightInput')
+        .should('have.value', workoutexercisesets[0].weight)
+        .type(weight);
+      cy.findByTestId('repsInput')
+        .should('have.value', workoutexercisesets[0].reps)
+        .type(reps);
+      cy.findByTestId('rirInput')
+        .should('have.value', workoutexercisesets[0].rir)
+        .type(rir);
+
+      cy.findByTestId('submitBtn').click();
+
+      cy.wait('@putWorkoutExerciseSet')
+        .its('request.body')
+        .should('deep.equal', {
+          workout_exercise: '1',
+          weight: weight,
+          reps: reps,
+          rir: rir,
+        });
+
+      cy.findByTestId('weightInput').should('have.value', weight);
+      cy.findByTestId('repsInput').should('have.value', reps);
+      cy.findByTestId('rirInput').should('have.value', rir);
+    });
+  });
 });
 
 describe('WorkoutExercises screen where no sets exist', () => {
