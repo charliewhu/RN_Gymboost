@@ -4,6 +4,7 @@ import WorkoutExerciseSetListItem from './WorkoutExerciseSetListItem';
 export default function WorkoutExerciseSetList({
   workoutExerciseSets,
   setModalIsVisible,
+  setFormValues,
 }) {
   return (
     <View style={{flex: 1}}>
@@ -16,6 +17,7 @@ export default function WorkoutExerciseSetList({
             <WorkoutExerciseSetListItem
               item={item}
               setModalIsVisible={setModalIsVisible}
+              setFormValues={setFormValues}
             />
           )}
         />

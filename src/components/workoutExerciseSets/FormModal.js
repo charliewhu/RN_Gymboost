@@ -7,6 +7,7 @@ export default function FormModal({
   theme,
   modalIsVisible,
   setModalIsVisible,
+  formValues,
 }) {
   return (
     <>
@@ -27,6 +28,7 @@ export default function FormModal({
         <WorkoutExerciseSetForm
           route={route}
           setModalIsVisible={setModalIsVisible}
+          formValues={formValues}
         />
       </KeyboardAvoidingBottomSheet>
     </>
