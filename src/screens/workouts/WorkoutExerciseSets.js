@@ -11,6 +11,7 @@ import useTheme from '../../utils/useTheme';
 export default function WorkoutExerciseSets({navigation, route}) {
   const [fabOpen, setFabOpen] = useState(false);
   const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [isSetEdit, setIsSetEdit] = useState(false);
   const [formValues, setFormValues] = useState({
     id: '',
     weight: '',
@@ -62,6 +63,7 @@ export default function WorkoutExerciseSets({navigation, route}) {
         workoutExerciseSets={workoutExerciseSets}
         setModalIsVisible={setModalIsVisible}
         setFormValues={setFormValues}
+        setIsSetEdit={setIsSetEdit}
       />
       <FormModal
         route={route}
