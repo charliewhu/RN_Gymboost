@@ -188,7 +188,7 @@ describe('WorkoutExercises screen where sets exist', () => {
         .its('request.body')
         .should('deep.equal', {
           id: 1,
-          workout_exercise: '1',
+          workout_exercise: 1,
           weight: weight,
           reps: reps,
           rir: rir,
