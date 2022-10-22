@@ -35,7 +35,7 @@ export default function WorkoutExerciseSetListItem({
     >
       <ListItem.Content>
         <ListItem.Title>
-          {`${item.id}, ${item.weight} x ${item.reps} @ ${item.rir}`}
+          {`${item.weight} x ${item.reps} @ ${item.rir}`}
         </ListItem.Title>
       </ListItem.Content>
       <IconButton
