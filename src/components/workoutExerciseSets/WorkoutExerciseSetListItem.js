@@ -8,10 +8,12 @@ export default function WorkoutExerciseSetListItem({
   item,
   setModalIsVisible,
   setFormValues,
+  setIsSetEdit,
 }) {
   const dispatch = useDispatch();
 
   const handlePress = () => {
+    setIsSetEdit(true);
     setFormValues({
       id: item.id,
       weight: item.weight,

@@ -5,6 +5,7 @@ export default function WorkoutExerciseSetList({
   workoutExerciseSets,
   setModalIsVisible,
   setFormValues,
+  setIsSetEdit,
 }) {
   return (
     <View style={{flex: 1}}>
@@ -18,6 +19,7 @@ export default function WorkoutExerciseSetList({
               item={item}
               setModalIsVisible={setModalIsVisible}
               setFormValues={setFormValues}
+              setIsSetEdit={setIsSetEdit}
             />
           )}
         />
