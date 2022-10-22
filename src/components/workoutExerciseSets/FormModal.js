@@ -30,6 +30,7 @@ export default function FormModal({
         onBackdropPress={() => {
           setModalIsVisible(false);
           setFormValues(initialForm);
+          setIsSetEdit(false);
         }}
       >
         <WorkoutExerciseSetForm
