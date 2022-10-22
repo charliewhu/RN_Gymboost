@@ -13,6 +13,8 @@ export default function WorkoutExerciseSetForm({
   route,
   setModalIsVisible,
   formValues,
+  setFormValues,
+  initialForm,
   isSetEdit,
   setIsSetEdit,
 }) {
@@ -20,7 +22,7 @@ export default function WorkoutExerciseSetForm({
   const theme = useTheme();
 
   const handleSubmitForm = values => {
-    const data = {
+    let data = {
       workout_exercise: route.params.workoutExerciseId,
       weight: values.weight,
       reps: values.reps,
@@ -28,11 +30,14 @@ export default function WorkoutExerciseSetForm({
     };
 
     if (isSetEdit) {
-      dispatch(putWorkoutExerciseSet(formValues.id, data));
+      data = {id: formValues.id, ...data};
+      dispatch(putWorkoutExerciseSet(data));
     } else {
       dispatch(postWorkoutExerciseSet(data));
     }
+
     setIsSetEdit(false);
+    setFormValues(initialForm);
   };
 
   return (
@@ -47,7 +52,7 @@ export default function WorkoutExerciseSetForm({
           handleSubmitForm(values);
           resetForm();
           validateForm();
-          setModalIsVisible();
+          setModalIsVisible(false);
         }}
       >
         {({handleChange, handleSubmit, values, isValid}) => (

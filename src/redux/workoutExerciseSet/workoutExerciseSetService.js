@@ -15,8 +15,12 @@ async function postWorkoutExerciseSet(data) {
   return response.data;
 }
 
-async function putWorkoutExerciseSet(id, data) {
-  const response = await axiosInstance.put(`/workoutexercisesets/${id}/`, data);
+async function putWorkoutExerciseSet(data) {
+  console.log(data);
+  const response = await axiosInstance.put(
+    `/workoutexercisesets/${data.id}/`,
+    data,
+  );
   return response.data;
 }
 

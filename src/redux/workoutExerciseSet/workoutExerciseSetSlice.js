@@ -33,10 +33,10 @@ export const postWorkoutExerciseSet = createAsyncThunk(
 
 export const putWorkoutExerciseSet = createAsyncThunk(
   'workoutExerciseSet/putWorkoutExerciseSet',
-  async (id, data, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
       const workoutExercise =
-        await workoutExerciseSetService.putWorkoutExerciseSet(id, data);
+        await workoutExerciseSetService.putWorkoutExerciseSet(data);
       return workoutExercise;
     } catch (error) {
       console.log(error);

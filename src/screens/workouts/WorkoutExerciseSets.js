@@ -12,12 +12,14 @@ export default function WorkoutExerciseSets({navigation, route}) {
   const [fabOpen, setFabOpen] = useState(false);
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [isSetEdit, setIsSetEdit] = useState(false);
-  const [formValues, setFormValues] = useState({
+
+  const initialForm = {
     id: '',
     weight: '',
     reps: '',
     rir: '',
-  });
+  };
+  const [formValues, setFormValues] = useState(initialForm);
   const theme = useTheme();
 
   const workoutExercise = useSelector(state =>
@@ -71,6 +73,8 @@ export default function WorkoutExerciseSets({navigation, route}) {
         modalIsVisible={modalIsVisible}
         setModalIsVisible={setModalIsVisible}
         formValues={formValues}
+        setFormValues={setFormValues}
+        initialForm={initialForm}
         isSetEdit={isSetEdit}
         setIsSetEdit={setIsSetEdit}
       />

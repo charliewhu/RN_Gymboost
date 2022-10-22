@@ -16,6 +16,7 @@ export default function WorkoutExerciseSetListItem({
     setIsSetEdit(true);
     setFormValues({
       id: item.id,
+      workout_exercise: item.workout_exercise,
       weight: item.weight,
       reps: item.reps,
       rir: item.rir,
@@ -34,7 +35,7 @@ export default function WorkoutExerciseSetListItem({
     >
       <ListItem.Content>
         <ListItem.Title>
-          {`${item.weight} x ${item.reps} @ ${item.rir}`}
+          {`${item.id}, ${item.weight} x ${item.reps} @ ${item.rir}`}
         </ListItem.Title>
       </ListItem.Content>
       <IconButton
