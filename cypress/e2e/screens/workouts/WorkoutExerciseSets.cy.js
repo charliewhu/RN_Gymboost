@@ -157,8 +157,9 @@ describe('WorkoutExercises screen where sets exist', () => {
   });
 
   describe('editing set', () => {
-    it.only('clicking set shows populated form and submits put', () => {
-      cy.intercept('PUT', `${API_URL}/workoutexercisesets/`, {
+    it('clicking set shows populated form and submits put', () => {
+      cy.intercept('PUT', `${API_URL}/workoutexercisesets/1/`, {
+        id: 1,
         workout_exercise: 1,
         weight: weight,
         reps: reps,
@@ -186,6 +187,7 @@ describe('WorkoutExercises screen where sets exist', () => {
       cy.wait('@putWorkoutExerciseSet')
         .its('request.body')
         .should('deep.equal', {
+          id: 1,
           workout_exercise: '1',
           weight: weight,
           reps: reps,
